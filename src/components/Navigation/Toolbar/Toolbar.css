@@ -1,0 +1,28 @@
+.Toolbar {
+  height: 56px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(48, 160, 212);
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 90;
+}
+
+.Toolbar nav {
+  height: 100%;
+}
+
+/*
+  If the screen is 499px or smaller, we want to hide the menu items so we can display the sidedrawer menu
+*/
+@media (max-width: 499px) {
+  .DesktopOnly {
+      display: none;
+  }
+}

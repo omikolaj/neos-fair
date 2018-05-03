@@ -11,10 +11,24 @@ import registerServiceWorker from './registerServiceWorker';
 //import reducer1 from ''
 //import reducer2 from ''
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const rootReducer = combineReducers({
   red1: 'reducer1',
   red2: 'reducer2'
 })
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(rootReducer, composeEnhancers(
+  applyMiddleware(thunk)
+));
+
+const app = (
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
+);
+
+ReactDOM.render(app, document.getElementById('root'));
 registerServiceWorker();
