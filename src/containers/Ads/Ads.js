@@ -5,6 +5,7 @@ import AdDetails from '../AdDetails/AdDetails';
 import {Route} from 'react-router-dom';
 import Ad from '../../components/Ad/Ad';
 import * as actions from '../../store/actions/index';
+import classes from './Ads.css'
 
 
 class Ads extends Component {
@@ -17,15 +18,23 @@ class Ads extends Component {
   }
 
   render(){
+    const ads = this.props.ads.map(ad => {
+      return (
+        <p>{ad.title}</p>
+      )
+    })
     return (
-      <div>Ads</div>
+      <div className={classes.Ads}>
+        {ads}
+      </div>
     )
   }  
 }
 
 const mapStateToProps = (state) => {
   return {
-
+    ads: state.ads.ads,
+    loading: state.ads.loading
   }
 }
 
