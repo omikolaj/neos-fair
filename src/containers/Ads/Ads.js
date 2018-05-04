@@ -10,17 +10,31 @@ import classes from './Ads.css'
 
 class Ads extends Component {
   state = {
-    ads: []
+    loading: false,    
   }
 
-  componentDidMount(){
+  componentDidMount(){    
     this.props.fetchAds();
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    return nextProps.ads.length === this.props.ads.length ? false : true;  
+  }
+
+  adSelectedHandler = (id) => {
+    this.props.history.push({pathname: '/ads/' + id})
   }
 
   render(){
     const ads = this.props.ads.map(ad => {
       return (
-        <p>{ad.title}</p>
+        <Ad 
+          key={ad.id}
+          title={ad.title}
+          type={ad.type}
+          user={ad.user.username}
+          clicked={() => this.adSelectedHandler(ad.id)}
+        />
       )
     })
     return (

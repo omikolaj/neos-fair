@@ -13,8 +13,7 @@ const reducer = (state = initialState, action) => {
       const updatedAds = []
       action.ads.map(ad => {
         updatedAds.push({
-          ...ad,
-          id: cuid()
+          ...ad
         })
       })
       return {
