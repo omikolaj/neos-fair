@@ -4,6 +4,7 @@ import axios from 'axios';
 import AdDetails from '../AdDetails/AdDetails';
 import {Route} from 'react-router-dom';
 import Ad from '../../components/Ad/Ad';
+import * as actions from '../../store/actions/index';
 
 
 class Ads extends Component {
@@ -12,7 +13,7 @@ class Ads extends Component {
   }
 
   componentDidMount(){
-    
+    this.props.fetchAds();
   }
 
   render(){
@@ -22,16 +23,16 @@ class Ads extends Component {
   }  
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
   return {
 
   }
 }
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    
-  }
-}
+    fetchAds: () => dispatch(actions.fetchAds())
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ads);
