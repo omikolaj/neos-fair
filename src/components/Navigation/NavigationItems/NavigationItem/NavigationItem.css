@@ -19,6 +19,7 @@
   color: rgb(161, 166, 167);
 }
 
+/* Desktop view */
 @media (min-width: 500px) {
   .NavigationItem {
       margin: 0;
@@ -32,7 +33,6 @@
       color: white;
       height: 100%;
       padding: 16px 10px;
-      border-bottom: 4px solid transparent;
   }
   
   .NavigationItem a:hover,
