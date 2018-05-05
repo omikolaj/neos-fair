@@ -10,7 +10,7 @@ class App extends Component {
       <div>
         <Layout>
           <Switch>
-            <Route path="/ads" component={Ads}/>
+            <Route path="/ads" component={Ads}/>            
           </Switch>
         </Layout>
       </div>

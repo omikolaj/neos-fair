@@ -4,14 +4,14 @@
   text-align: center;
   border: 1px solid #eee;
   box-shadow: 0 2px 3px #ccc;
-  margin: 10px;
+  margin: 5px;
   box-sizing: border-box;
   cursor: pointer;
 }
 
-.Post:hover,
-.Post:active {
-    background-color: #C0DDF5;
+.Ad:hover,
+.Ad:active {
+    background-color: rgba(94, 168, 230, 0.555);
 }
 
 .User {

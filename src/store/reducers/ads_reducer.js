@@ -7,29 +7,22 @@ const initialState = {
   loading: false,
 }
 
+const fetchAdsSuccess = (state, action) => {
+  return {ads: state.ads.concat(action.ads)}
+}
+
+const fetchAdsStart = (state, action) => {
+  return {
+    ...state,
+    loading: true
+  }
+}
+
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actionTypes.FETCH_ADS_SUCCESS:
-      const updatedAds = []
-      action.ads.map(ad => {
-        updatedAds.push({
-          ...ad
-        })
-      })
-      return {
-        ...state,
-        ads: [
-          ...updatedAds
-        ],
-        loading: false        
-      }
-    case actionTypes.FETCH_ADS_START:
-      return {
-        ...state,
-        loading: true
-      }
-    default:
-      return state;
+  switch(action.type){
+    case actionTypes.FETCH_ADS_START: return fetchAdsStart(state, action);
+    case actionTypes.FETCH_ADS_SUCCESS: return fetchAdsSuccess(state, action);
+    default: return state;
   }
 }
 
