@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import AdDetails from '../AdDetails/AdDetails';
-import {Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import Ad from '../../components/Ad/Ad';
 import * as actions from '../../store/actions/index';
 import classes from './Ads.css'
@@ -13,13 +12,12 @@ class Ads extends Component {
     loading: false,    
   }
 
-  componentDidMount(){    
+  componentDidMount(){
     this.props.fetchAds();
   }
 
-  shouldComponentUpdate(nextProps, nextState){
-    return nextProps.ads.length === this.props.ads.length ? false : true;  
-  }
+  // shouldComponentUpdate(nextProps, nextState){
+  // }
 
   adSelectedHandler = (id) => {
     this.props.history.push({pathname: '/ads/' + id})
@@ -38,8 +36,10 @@ class Ads extends Component {
       )
     })
     return (
-      <div className={classes.Ads}>
-        {ads}
+      <div>
+        <section className={classes.Ads}>
+          {ads}
+        </section>      
       </div>
     )
   }  

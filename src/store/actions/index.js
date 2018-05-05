@@ -1,3 +1,4 @@
 export {
-  fetchAds
+  fetchAds,
+  fetchAd
 } from './ads';

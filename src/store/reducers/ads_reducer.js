@@ -7,14 +7,20 @@ const initialState = {
   loading: false,
 }
 
-const fetchAdsSuccess = (state, action) => {
-  return {ads: state.ads.concat(action.ads)}
-}
-
 const fetchAdsStart = (state, action) => {
   return {
     ...state,
     loading: true
+  }
+}
+
+const fetchAdsSuccess = (state, action) => {
+  return {ads: state.ads.concat(action.ads)}
+}
+
+const fetchAdsFail = (state, action) => {
+  return {
+    //...
   }
 }
 
