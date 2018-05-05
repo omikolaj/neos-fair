@@ -4,6 +4,9 @@ import cuid from 'cuid';
 
 const initialState = {
   ads: [],
+  ad: {
+    
+  },
   loading: false,
 }
 
