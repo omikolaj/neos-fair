@@ -17,13 +17,27 @@ export const fetchAdsSuccess = (ads) => {
 export const fetchAdsFail = (error) => {
   return {
     type: actionTypes.FETCH_AD_FAIL,
-    error: error
+    payload: error
   }
 }
 
 export const fetchAdStart = () => {
   return {
     type: actionTypes.FETCH_AD_START
+  }
+}
+
+export const fetchAdSuccess = (ad) => {
+  return {
+    type: actionTypes.FETCH_AD_SUCCESS,
+    ad: ad
+  }
+}
+
+export const fetchAdFail = (error) => {
+  return {
+    type: actionTypes.FETCH_AD_FAIL,
+    payload: error
   }
 }
 
@@ -35,7 +49,10 @@ export const fetchAd = (id) => {
     fetch(`/api/ads/${id}`)
     .then(resp=>resp.json())
     .then(data => {
-      debugger
+      dispatch(fetchAdSuccess(data))
+    })
+    .catch(error=>{
+      dispatch(fetchAdFail(error))
     })
   }
 }

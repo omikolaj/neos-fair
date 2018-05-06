@@ -8,33 +8,33 @@ import classes from './Ads.css'
 
 
 class Ads extends Component {
-  state = {
-    loading: false,    
-  }
 
   componentDidMount(){
     this.props.fetchAds();
   }
-
-  // shouldComponentUpdate(nextProps, nextState){
-  // }
 
   adSelectedHandler = (id) => {
     this.props.history.push({pathname: '/ads/' + id})
   }
 
   render(){
-    const ads = this.props.ads.map(ad => {
-      return (
-        <Ad 
-          key={ad.id}
-          title={ad.title}
-          type={ad.type}
-          user={ad.user.username}
-          clicked={() => this.adSelectedHandler(ad.id)}
-        />
-      )
-    })
+    let ads = null;
+    if(this.props.loading){
+      ads = <p style={{textAlign: 'center'}}>Loading...</p>
+    }
+    if(this.props.ads){
+      ads = this.props.ads.map(ad => {
+        return (
+          <Ad 
+            key={ad.id}
+            title={ad.title}
+            type={ad.type}
+            user={ad.user.username}
+            clicked={() => this.adSelectedHandler(ad.id)}
+          />
+        )
+      })      
+    }
     return (
       <div>
         <section className={classes.Ads}>
