@@ -1,6 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
 import {updateObject} from '../utility';
-import cuid from 'cuid';
 
 const initialState = {
   ads: [],

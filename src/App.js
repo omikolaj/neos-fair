@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Layout from './hoc/Layout/Layout'
-import classes from './App.css'
-import Ads from './containers/Ads/Ads'
+import Layout from './hoc/Layout/Layout';
+import classes from './App.css';
+import Ads from './containers/Ads/Ads';
 import AdDetails from './containers/AdDetails/AdDetails';
+import AdBuilder from './containers/AdBuilder/AdBuilder';
 
 class App extends Component {
   render() {
@@ -11,8 +12,9 @@ class App extends Component {
       <div>
         <Layout>
           <Switch>
-            <Route exact path={'/ads/:id'} component={AdDetails} />
-            <Route exact path="/ads" component={Ads}/>            
+            <Route exact path='/ads/:id' component={AdDetails} />
+            <Route exact path='/ads/new' component={AdBuilder} />
+            <Route exact path='/ads' component={Ads} />            
           </Switch>
         </Layout>
       </div>
