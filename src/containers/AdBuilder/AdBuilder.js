@@ -120,7 +120,6 @@ class AdBuilder extends Component {
     };
 
     this.props.createNewAd(newAd);
-
    }
 
   
@@ -162,12 +161,13 @@ class AdBuilder extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    newAd: state.adBuilder
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchNewAd: () => dispatch(actions.fetchNewAd())
+    createNewAd: (newAd) => dispatch(actions.createNewAd(newAd))
   }
 }
 

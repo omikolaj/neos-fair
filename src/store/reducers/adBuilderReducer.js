@@ -1,71 +1,37 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  newAd: {
-    title: {
-      elementType: 'input',
-      elementConfig: {
-        type: 'text',
-        placeholder: 'Enter display title for your ad'
-      },
-      value: ''
-    },
-    description: {
-      elementType: 'textarea',
-      elementConfig: {
-        type: 'textarea',
-        placeholder: 'Ad description'
-      },
-      value: ''
-    },
-    firstName: {
-      elementType: 'input',
-      elementConfig: {
-        type: 'text',
-        placeholder: 'Your first name'
-      },
-      value: ''
-     },
-    lastName: {
-      elementType: 'input',
-      elementConfig: {
-        type: 'text',
-        placeholder: 'Your last name'
-      },
-    value: ''
-    },
-    email: {
-      elementType: 'email',
-      elementConfig: {
-        type: 'email',
-        placeholder: 'Your E-mail'
-      },
-      value: '',
-    },
-    itemName: {
-      elementType: 'input',
-      elementConfig: {
-        type: 'text',
-        placeholder: 'Enter the name of your item' 
-      },
-      value: '',
-    }, 
-    category: {
-      elementType: 'select',
-      elementConfig: {
-        options: [
-          {value: 'test', displayValue: 'Test Category'}
-        ]
-      },
-      value: 'test' 
-    }   
+  loading: false,
+  error: null
+}
+
+const createNewAdStart = (state, action) => {
+  return {
+    ...state.loading = true
+  }
+}
+
+const createNewAdSuccess = (state, action) => {
+  debugger
+  return {
+  }
+}
+
+const createNewAdFail = (state, action) => {
+  debugger
+  return {
+    ...state.loading = false,
+    ...state.error = action.payload.error
   }
 }
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
-   default: return state; 
-  }
+    case actionTypes.CREATE_NEW_AD_START: return createNewAdStart(state, action);
+    case actionTypes.CREATE_NEW_AD_SUCCESS: return createNewAdSuccess(state,action);
+    case actionTypes.CREATE_NEW_AD_FAIL: return createNewAdFail(state, action);
+    default: return state; 
+  } 
 }
 
 export default reducer;
