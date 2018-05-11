@@ -12,8 +12,8 @@ class App extends Component {
       <div>
         <Layout>
           <Switch>
-            <Route exact path='/ads/:id' component={AdDetails} />
             <Route exact path='/ads/new' component={AdBuilder} />
+            <Route exact path='/ads/:id' component={AdDetails} />            
             <Route exact path='/ads' component={Ads} />            
           </Switch>
         </Layout>
