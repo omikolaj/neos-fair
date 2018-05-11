@@ -1,4 +1,5 @@
 import React from 'react';
+import Aux from '../../../hoc/Aux/Aux';
 import classes from './Input.css';
 
 const input = (props) => {
@@ -38,10 +39,9 @@ const input = (props) => {
   }
 
   return (
-    <div>
-      <label>{props.label}</label>
-      {inputElement}
-    </div>
+    <Aux>
+      {inputElement}    
+    </Aux>
   )
 }
 
