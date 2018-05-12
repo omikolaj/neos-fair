@@ -37,6 +37,17 @@ class AdBuilder extends Component {
         value: '',
         label: 'Item Name'
       },
+      itemPrice: {
+        elementType: 'text',
+        elementConfig: {
+          type: 'number',
+          placeholder: 'Enter the Price',
+          min: 1,
+          step: 'any',
+        },
+        value: '',
+        label: 'Item Price'
+      },
       itemCondition: {
         elementType: 'select',
         elementConfig: {
@@ -111,14 +122,33 @@ class AdBuilder extends Component {
   newAdSubmitHandler = (event) => {
     event.preventDefault();
     
-    const formData = {};
-    for(let formElement in this.state.newAdForm) {
-      formData[formElement] = this.state.newAdForm[formElement].value;
-    }
-    const newAd = {
-      newAdData: formData
-    };
+    let ad = this.state.newAdForm;
+    // for(let formElement in this.state.newAdForm) {
+    //   formData[formElement] = this.state.newAdForm[formElement].value;      
+    // }
 
+    const formData = {
+      title: ad.title.value,
+      description: ad.description.value,
+      user_attributes: {
+        email: ad.email.value
+      },
+      item_attributes: {
+        title: ad.itemName.value,
+        condition: ad.itemCondition.value
+      },
+      ad_item_attributes: {
+        price: ad.itemPrice.value
+      },
+      category_attributes: {
+        name: ad.category.value
+      }
+    }    
+    
+    const newAd = {
+      ad: formData
+    };
+        
     this.props.createNewAd(newAd);
    }
 
@@ -135,10 +165,9 @@ class AdBuilder extends Component {
    let form = (
      <form className={classes.Form} onSubmit={this.newAdSubmitHandler}>
       {formElementsArray.map(formElement => {                
-          return <Aux>
+          return <Aux key={formElement.id}>
             <Label labelFor={formElement.id}>{formElement.config.label}</Label>
-            <Input
-              key={formElement.id}          
+            <Input                        
               elementType={formElement.config.elementType}
               elementConfig = {formElement.config.elementConfig}
               value={formElement.config.value}

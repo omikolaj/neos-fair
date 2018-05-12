@@ -3,5 +3,5 @@ export {
   fetchAd
 } from './ads';
 export {
-  createNewAd
+  createNewAd,
 } from './adBuilder';

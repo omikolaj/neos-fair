@@ -2,17 +2,23 @@ import * as actionTypes from '../actions/actionTypes';
 import axios from 'axios';
 
 export const createNewAdStart = () => {
-  type: actionTypes.CREATE_NEW_AD_START
+  return {
+    type: actionTypes.CREATE_NEW_AD_START
+  }  
 }
 
 export const createNewAdSuccess = (resp) => {
-  type: actionTypes.CREATE_NEW_AD_SUCCESS
-  resp: resp
+  return {
+    type: actionTypes.CREATE_NEW_AD_SUCCESS,
+    resp: resp
+  }  
 }
 
 export const createNewAdFail = (error) => {
-  type: actionTypes.CREATE_NEW_AD_FAIL
-  payload: error
+  return {
+    type: actionTypes.CREATE_NEW_AD_FAIL,
+    payload: error
+  }  
 }
 
 // Async code
@@ -32,7 +38,7 @@ export const createNewAd = (adData) => {
       dispatch(createNewAdSuccess(resp))
     })
     .catch(error=>{
-      dispatch(createNewAdFail(error))
+      // dispatch(createNewAdFail(error))
     })
   }  
 }

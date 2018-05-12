@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
   loading: false,
+  message: '',
   error: null
 }
 
@@ -12,8 +13,9 @@ const createNewAdStart = (state, action) => {
 }
 
 const createNewAdSuccess = (state, action) => {
-  debugger
   return {
+    ...state,
+    message: action.resp.success
   }
 }
 
