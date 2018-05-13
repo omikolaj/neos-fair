@@ -28,6 +28,7 @@ class Ads extends Component {
           <Ad 
             key={ad.id}
             title={ad.title}
+            description={ad.description}
             type={ad.type}
             user={ad.user.username}
             clicked={() => this.adSelectedHandler(ad.id)}

@@ -6,6 +6,7 @@ const ad = (props) => (
   <h1>{props.title}</h1>
   <div className={classes.User}>
     <div className="User">{props.user}</div>
+    <div>{props.description}</div>
   </div>
   </article>
 )

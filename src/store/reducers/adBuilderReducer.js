@@ -6,8 +6,8 @@ const initialState = {
     id: null,
     message: '',    
     validations: [],
-    isNewAd: false,
-    error: null,
+    posted: false,
+    error: false,
   }  
 }
 
@@ -19,7 +19,8 @@ const createNewAdStart = (state, action) => {
       validations: [
         ...state.newAd.validations
       ],
-      isNewAd: true
+      posted: true,
+      error: false
     }
   }
 }
@@ -31,6 +32,8 @@ const createNewAdSuccess = (state, action) => {
       loading: false,    
       id: action.resp.id,
       message: action.resp.success,
+      error: false,
+      posted: true
     }    
   }
 }
@@ -44,6 +47,7 @@ const createNewAdFail = (state, action) => {
       validations: [
         ...action.validations
       ],
+      posted: false,
       error: true
     }
   }
@@ -56,8 +60,8 @@ const setNewAdStale = (state, action) => {
       validations: [
         ...state.newAd.validations
       ],
-      isNewAd: false,
-      error: null,
+      posted: false,
+      error: false,
     }
   }
 }

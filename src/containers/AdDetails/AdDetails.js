@@ -16,7 +16,7 @@ class AdDetails extends Component {
     if(this.props.match.params.id){
       ad = <p style={{textAlign: 'center'}}>Loading...</p>
     }
-    if(this.props.ad){      
+    if(this.props.ad){    
       ad = (
         <div className={classes.AdDetails}>
           <h1>{this.props.ad.title}</h1>
@@ -27,7 +27,9 @@ class AdDetails extends Component {
       </div>
       )
     }
-    return ad      
+    return (
+      ad
+    )       
   }
 }
 

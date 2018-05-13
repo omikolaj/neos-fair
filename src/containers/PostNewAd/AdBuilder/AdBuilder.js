@@ -8,6 +8,7 @@ import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import Label from '../../../components/UI/Label/Label';
 import AdDetails from '../../AdDetails/AdDetails';
+import adPosted from '../../../components/Ad/AdPosted/AdPosted';
 
 class AdBuilder extends Component {
   state = {
@@ -97,16 +98,15 @@ class AdBuilder extends Component {
         },
         value: '',
         label: 'E-mail'
-      }   
+      },
+      posted: false,
     }
   }
 
   componentDidMount(){
-
   }
 
   componentWillUnmount(){
-    this.props.newAdIsStale()
   }
 
   // inputID = email , category on the newAdForm etc.
@@ -149,8 +149,8 @@ class AdBuilder extends Component {
       category_attributes: {
         name: ad.category.value
       }
-    }    
-    
+    }
+
     const newAd = {
       ad: formData
     };
@@ -185,20 +185,19 @@ class AdBuilder extends Component {
      </form>
    )
 
-   let adPosted = null;
-   if(this.props.adID || this.props.error){
-     debugger
-     const postedAdRedirect = this.props.isNewAd ? <Redirect to={`/ads/` + this.props.adID} /> : null ;
-     adPosted = (
+  let adPosted = null;
+  if(this.props.adID){    
+    const postedAdRedirect = this.props.posted ? <Redirect to={`/ads/` + this.props.adID} /> : null ;
+    adPosted = (
       <div>
         {postedAdRedirect}
-        {this.props.posted ? null : this.props.message}
         <Route exact path={`/ads/${this.props.adID}`} component={AdDetails}/>
       </div>
      )
    }
    return (
       <div className={classes.AdBuilder}>
+        {this.props.error ? this.props.message : null}
         {adPosted}
         {form}
       </div>
@@ -208,7 +207,7 @@ class AdBuilder extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isNewAd: state.adBuilder.newAd.isNewAd,
+    posted: state.adBuilder.newAd.posted,
     adID: state.adBuilder.newAd.id,
     message: state.adBuilder.newAd.message,
     error: state.adBuilder.newAd.error
@@ -218,7 +217,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createNewAd: (newAd) => dispatch(actions.createNewAd(newAd)),
-    newAdIsStale: () => dispatch(actions.setNewAdStale())
   }
 }
 

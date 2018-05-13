@@ -4,6 +4,8 @@ import {updateObject} from '../utility';
 const initialState = {
   ads: [],
   ad: {
+    title: '',
+    description: '',    
     user: {},
     item: {},
     category: {}
@@ -16,6 +18,7 @@ const fetchAdsStart = (state, action) => {
   return {
     ads: [...state.ads],
     ad: {
+      ...state.ad,     
       user: {
         ...state.ad.user
       },
@@ -42,6 +45,7 @@ const fetchAdsSuccess = (state, action) => {
   return {
     ads: [...updatedAds],
     ad: {
+      ...state.ad,      
       user: {
         ...state.ad.user
       },
@@ -61,6 +65,7 @@ const fetchAdsFail = (state, action) => {
   return {
     ads: [...state.ads],
     ad: {
+      ...state.ad,     
       user: {
         ...state.ad.user
       },
@@ -78,15 +83,29 @@ const fetchAdsFail = (state, action) => {
 
 const fetchAdStart = (state, action) => {
   return {
-    ...state,
-    loading: true
+    ads: [...state.ads],
+    ad: {
+      ...state.ad,     
+      user: {
+        ...state.ad.user
+      },
+      item: {
+        ...state.ad.item
+      },
+      category: {
+        ...state.ad.category
+      }
+    },
+    loading: true,
+    ...state.error
   }
 }
 
 const fetchAdSuccess = (state, action) => {
   return {
     ads: [...state.ads],
-    ad: {      
+    ad: {
+      ...action.ad,        
       user: {
         ...action.ad.user
       },
@@ -97,14 +116,16 @@ const fetchAdSuccess = (state, action) => {
         ...action.ad.category
       }
     },
-    loading: false
+    loading: false,
+    ...state.error
   }
 }
 
 const fetchAdFail = (state, action) => {
   return {
     ads: [...state.ads],
-    ad: {      
+    ad: {    
+      ...state.ad,     
       user: {
         ...action.ad.user
       },
