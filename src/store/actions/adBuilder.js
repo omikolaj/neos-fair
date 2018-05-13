@@ -17,8 +17,14 @@ export const createNewAdSuccess = (resp) => {
 export const createNewAdFail = (error) => {
   return {
     type: actionTypes.CREATE_NEW_AD_FAIL,
-    message: error,
+    resp: error,
     validations: error.validations
+  }  
+}
+
+export const setNewAdStale = () => {
+  return {
+    type: actionTypes.SET_NEW_AD_STALE
   }  
 }
 
@@ -26,7 +32,7 @@ export const createNewAdFail = (error) => {
 
 export const createNewAd = (adData) => {
   return dispatch => {
-    // dispatch(createNewAdStart())
+    dispatch(createNewAdStart())
     fetch('/api/ads', {
       method: 'POST',
       headers: {

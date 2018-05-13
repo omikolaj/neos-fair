@@ -62,9 +62,9 @@ export const fetchAds = () => {
     dispatch(fetchAdsStart())
     fetch('/api/ads')
     .then(resp=>resp.json())
-    .then(data =>
+    .then(data =>{
       dispatch(fetchAdsSuccess(data))
-    )
+    })
     .catch(error => {
       dispatch(fetchAdsFail(error))
     })

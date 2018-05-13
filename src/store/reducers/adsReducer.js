@@ -12,7 +12,7 @@ const initialState = {
   error: null
 }
 
-const fetchAdsStart = (state, action) => {
+const fetchAdsStart = (state, action) => {  
   return {
     ads: [...state.ads],
     ad: {

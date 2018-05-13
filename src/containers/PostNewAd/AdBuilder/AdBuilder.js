@@ -105,6 +105,10 @@ class AdBuilder extends Component {
 
   }
 
+  componentWillUnmount(){
+    this.props.newAdIsStale()
+  }
+
   // inputID = email , category on the newAdForm etc.
   inputChangedHandler = (event, inputID) => {
     const updatedNewAdForm = {
@@ -183,11 +187,12 @@ class AdBuilder extends Component {
 
    let adPosted = null;
    if(this.props.adID || this.props.error){
-     const postedAdRedirect = this.props.posted ? <Redirect to={`/ads/` + this.props.adID} /> : null;      
+     debugger
+     const postedAdRedirect = this.props.isNewAd ? <Redirect to={`/ads/` + this.props.adID} /> : null ;
      adPosted = (
       <div>
         {postedAdRedirect}
-        {this.props.message}
+        {this.props.posted ? null : this.props.message}
         <Route exact path={`/ads/${this.props.adID}`} component={AdDetails}/>
       </div>
      )
@@ -203,7 +208,7 @@ class AdBuilder extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    posted: state.adBuilder.newAd.posted,
+    isNewAd: state.adBuilder.newAd.isNewAd,
     adID: state.adBuilder.newAd.id,
     message: state.adBuilder.newAd.message,
     error: state.adBuilder.newAd.error
@@ -212,7 +217,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createNewAd: (newAd) => dispatch(actions.createNewAd(newAd))
+    createNewAd: (newAd) => dispatch(actions.createNewAd(newAd)),
+    newAdIsStale: () => dispatch(actions.setNewAdStale())
   }
 }
 

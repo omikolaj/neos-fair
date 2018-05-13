@@ -4,4 +4,5 @@ export {
 } from './ads';
 export {
   createNewAd,
+  setNewAdStale
 } from './adBuilder';
