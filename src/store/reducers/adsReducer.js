@@ -26,7 +26,8 @@ const fetchAdsStart = (state, action) => {
         ...state.ad.category
       }
     },
-    loading: true
+    loading: true,
+    error: null
   }
 }
 
@@ -51,7 +52,8 @@ const fetchAdsSuccess = (state, action) => {
         ...state.ad.category
       },
     },
-    loading: false
+    loading: false,
+    error: null
   }
 }
 

@@ -17,7 +17,8 @@ export const createNewAdSuccess = (resp) => {
 export const createNewAdFail = (error) => {
   return {
     type: actionTypes.CREATE_NEW_AD_FAIL,
-    payload: error
+    message: error,
+    validations: error.validations
   }  
 }
 
@@ -35,10 +36,15 @@ export const createNewAd = (adData) => {
     })
     .then(req=>req.json())
     .then(resp=> {
-      dispatch(createNewAdSuccess(resp))
+      if(resp.status >= 200 && resp.status < 300){
+        dispatch(createNewAdSuccess(resp))
+      }
+      else{        
+        return Promise.reject(resp)
+      }     
     })
     .catch(error=>{
-      // dispatch(createNewAdFail(error))
+      dispatch(createNewAdFail(error))
     })
   }  
 }
