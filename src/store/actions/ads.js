@@ -41,6 +41,7 @@ export const fetchAdFail = (error) => {
   }
 }
 
+
 // Async calls
 
 export const fetchAd = (id) => {

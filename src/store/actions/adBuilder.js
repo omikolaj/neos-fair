@@ -22,10 +22,10 @@ export const createNewAdFail = (error) => {
   }  
 }
 
-export const setNewAdStale = () => {
+export const adPostingInit = () =>{
   return {
-    type: actionTypes.SET_NEW_AD_STALE
-  }  
+    type: actionTypes.AD_POSTING_INIT
+  }
 }
 
 // Async code

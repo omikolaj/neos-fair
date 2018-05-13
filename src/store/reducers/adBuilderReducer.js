@@ -19,8 +19,6 @@ const createNewAdStart = (state, action) => {
       validations: [
         ...state.newAd.validations
       ],
-      posted: true,
-      error: false
     }
   }
 }
@@ -32,7 +30,9 @@ const createNewAdSuccess = (state, action) => {
       loading: false,    
       id: action.resp.id,
       message: action.resp.success,
-      error: false,
+      validations: [
+        ...state.newAd.validations
+      ],      
       posted: true
     }    
   }
@@ -47,13 +47,12 @@ const createNewAdFail = (state, action) => {
       validations: [
         ...action.validations
       ],
-      posted: false,
-      error: true
+      error: true,      
     }
   }
 }
 
-const setNewAdStale = (state, action) => {
+const adPostingInit = (state , action) => {
   return {
     newAd: {
       ...state.newAd,
@@ -61,7 +60,7 @@ const setNewAdStale = (state, action) => {
         ...state.newAd.validations
       ],
       posted: false,
-      error: false,
+      error: false, 
     }
   }
 }
@@ -71,7 +70,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.CREATE_NEW_AD_START: return createNewAdStart(state, action);
     case actionTypes.CREATE_NEW_AD_SUCCESS: return createNewAdSuccess(state, action);
     case actionTypes.CREATE_NEW_AD_FAIL: return createNewAdFail(state, action);
-    case actionTypes.SET_NEW_AD_STALE: return setNewAdStale(state, action);
+    case actionTypes.AD_POSTING_INIT: return adPostingInit(state, action) 
     default: return state; 
   } 
 }

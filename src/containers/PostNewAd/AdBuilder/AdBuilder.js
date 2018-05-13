@@ -99,14 +99,11 @@ class AdBuilder extends Component {
         value: '',
         label: 'E-mail'
       },
-      posted: false,
-    }
-  }
-
-  componentDidMount(){
+    },
   }
 
   componentWillUnmount(){
+    this.props.onInitAdPost()
   }
 
   // inputID = email , category on the newAdForm etc.
@@ -156,9 +153,8 @@ class AdBuilder extends Component {
     };
         
     this.props.createNewAd(newAd);
-   }
 
-  
+   }  
 
  render(){
    const formElementsArray = [];
@@ -186,18 +182,18 @@ class AdBuilder extends Component {
    )
 
   let adPosted = null;
-  if(this.props.adID){    
+  if(this.props.adID || this.props.error){
     const postedAdRedirect = this.props.posted ? <Redirect to={`/ads/` + this.props.adID} /> : null ;
     adPosted = (
       <div>
         {postedAdRedirect}
+        {this.props.error ? this.props.message : null}
         <Route exact path={`/ads/${this.props.adID}`} component={AdDetails}/>
       </div>
      )
    }
    return (
       <div className={classes.AdBuilder}>
-        {this.props.error ? this.props.message : null}
         {adPosted}
         {form}
       </div>
@@ -216,9 +212,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createNewAd: (newAd) => dispatch(actions.createNewAd(newAd)),
+    createNewAd: (newAd) => dispatch(actions.createNewAd(newAd)), 
+    onInitAdPost: () => dispatch(actions.adPostingInit())
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdBuilder);

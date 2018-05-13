@@ -4,5 +4,5 @@ export {
 } from './ads';
 export {
   createNewAd,
-  setNewAdStale
+  adPostingInit
 } from './adBuilder';

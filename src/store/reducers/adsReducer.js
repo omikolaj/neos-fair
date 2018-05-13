@@ -8,7 +8,7 @@ const initialState = {
     description: '',    
     user: {},
     item: {},
-    category: {}
+    category: {},
   },
   loading: false,
   error: null
@@ -85,7 +85,7 @@ const fetchAdStart = (state, action) => {
   return {
     ads: [...state.ads],
     ad: {
-      ...state.ad,     
+      ...state.ad, 
       user: {
         ...state.ad.user
       },
@@ -105,7 +105,7 @@ const fetchAdSuccess = (state, action) => {
   return {
     ads: [...state.ads],
     ad: {
-      ...action.ad,        
+      ...action.ad, 
       user: {
         ...action.ad.user
       },
@@ -125,15 +125,15 @@ const fetchAdFail = (state, action) => {
   return {
     ads: [...state.ads],
     ad: {    
-      ...state.ad,     
+      ...state.ad,    
       user: {
-        ...action.ad.user
+        ...state.ad.user
       },
       item: {
-        ...action.ad.item
+        ...state.ad.item
       },
       category: {
-        ...action.ad.category
+        ...state.ad.category
       }
     },
     loading: false,
