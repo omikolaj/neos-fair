@@ -4,6 +4,7 @@ import * as actions from '../../store/actions/index';
 import classes from './AdDetails.css';
 import Item from '../../components/Ad/AdItem/AdItem';
 import Category from '../../components/Ad/AdCategory/AdCategory';
+import Loader from '../../components/UI/Loader/Loader';
 
 class AdDetails extends Component {  
 
@@ -12,11 +13,8 @@ class AdDetails extends Component {
   }
 
   render() {
-    let ad = null;
-    if(this.props.match.params.id){
-      ad = <p style={{textAlign: 'center'}}>Loading...</p>
-    }
-    if(this.props.ad){    
+    let ad = <Loader />;
+    if(!this.props.loading){
       ad = (
         <div className={classes.AdDetails}>
           <h1>{this.props.ad.title}</h1>

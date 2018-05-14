@@ -5,6 +5,7 @@ import {Route, Switch} from 'react-router-dom';
 import Ad from '../../components/Ad/Ad';
 import * as actions from '../../store/actions/index';
 import classes from './Ads.css'
+import Loader from '../../components/UI/Loader/Loader';
 
 
 class Ads extends Component {
@@ -18,11 +19,8 @@ class Ads extends Component {
   }
 
   render(){
-    let ads = null;
-    if(this.props.loading){
-      ads = <p style={{textAlign: 'center'}}>Loading...</p>
-    }
-    if(this.props.ads){
+    let ads = <Loader />;
+    if(!this.props.loading){
       ads = this.props.ads.map(ad => {
         return (
           <Ad 
