@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {Route, Redirect, Link} from 'react-router-dom';
-import Aux from '../../../hoc/Aux/Aux';
-import * as actions from '../../../store/actions/index';
+import Aux from '../../hoc/Aux/Aux';
+import * as actions from '../../store/actions/index';
 import classes from './AdBuilder.css';
-import Input from '../../../components/UI/Input/Input';
-import Button from '../../../components/UI/Button/Button';
-import Label from '../../../components/UI/Label/Label';
-import AdDetails from '../../AdDetails/AdDetails';
-import adPosted from '../../../components/Ad/AdPosted/AdPosted';
+import Input from '../../components/UI/Input/Input';
+import Button from '../../components/UI/Button/Button';
+import Label from '../../components/UI/Label/Label';
+import AdDetails from '../AdDetails/AdDetails';
+import Loader from '../../components/UI/Loader/Loader';
 
 class AdBuilder extends Component {
   state = {
@@ -194,7 +194,7 @@ class AdBuilder extends Component {
     adPosted = (
       <div>
         {postedAdRedirect}
-        {this.props.error ? this.props.message : null}
+        {this.props.error ? this.props.message : null}        
         <Route exact path={`/ads/${this.props.adID}`} component={AdDetails}/>
       </div>
      )
@@ -202,7 +202,7 @@ class AdBuilder extends Component {
    return (
       <div className={classes.AdBuilder}>
         {adPosted}
-        {form}
+        {this.props.loading ? <Loader /> : form}
       </div>
     )
   }
@@ -210,6 +210,7 @@ class AdBuilder extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    loading: state.adBuilder.newAd.loading,
     posted: state.adBuilder.newAd.posted,
     adID: state.adBuilder.newAd.id,
     message: state.adBuilder.newAd.message,

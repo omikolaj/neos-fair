@@ -7,7 +7,7 @@ const initialState = {
     message: '',    
     validations: [],
     posted: false,
-    error: false,
+    error: false,    
   }  
 }
 

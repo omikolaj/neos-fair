@@ -4,7 +4,7 @@ import Layout from './hoc/Layout/Layout';
 import classes from './App.css';
 import Ads from './containers/Ads/Ads';
 import AdDetails from './containers/AdDetails/AdDetails';
-import AdBuilder from './containers/PostNewAd/AdBuilder/AdBuilder';
+import AdBuilder from './containers/AdBuilder/AdBuilder';
 
 class App extends Component {
   render() {
