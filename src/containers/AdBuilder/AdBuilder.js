@@ -14,7 +14,7 @@ class AdBuilder extends Component {
   state = {
     newAdForm: {
       title: {
-        elementType: 'text',
+        elementType: 'input',
         elementConfig: {
           type: 'text',
           placeholder: 'Display title for your ad'
@@ -30,9 +30,10 @@ class AdBuilder extends Component {
         },
         value: '',
         label: 'Ad Description'
+
       },
       itemName: {
-        elementType: 'text',
+        elementType: 'input',
         elementConfig: {
           type: 'text',
           placeholder: 'Enter the name of your item' 
@@ -41,7 +42,7 @@ class AdBuilder extends Component {
         label: 'Item Name'
       },
       itemPrice: {
-        elementType: 'text',
+        elementType: 'input',
         elementConfig: {
           type: 'number',
           placeholder: 'Enter the Price',
@@ -72,26 +73,8 @@ class AdBuilder extends Component {
         value: 'test' ,
         label: 'Category'
       },
-      // firstName: {
-      //   elementType: 'text',
-      //   elementConfig: {
-      //     type: 'text',
-      //     placeholder: 'Your first name'
-      //   },
-      //   value: '',
-      //   label: 'First Name'
-      //  },
-      // lastName: {
-      //   elementType: 'text',
-      //   elementConfig: {
-      //     type: 'text',
-      //     placeholder: 'Your last name'
-      //   },
-      // value: '',
-      // label: 'Last Name'
-      // },
       email: {
-        elementType: 'email',
+        elementType: 'input',
         elementConfig: {
           type: 'email',
           placeholder: 'Your E-mail'

@@ -1,0 +1,14 @@
+.Form {
+  display: grid;
+  grid-template-columns: 16rem;
+  grid-template-rows: repeat(5, 2rem);
+  grid-auto-rows: minmax(2rem, auto);
+  grid-row-gap: .5rem;
+  padding: 1rem;
+  justify-content: center;    
+}
+
+.Form textarea[type="textarea"]{
+  grid-column: span 2;
+  resize: vertical;  
+}

@@ -6,3 +6,7 @@ export {
   createNewAd,
   adPostingInit
 } from './adBuilder';
+export {
+  auth
+} from './auth';
+

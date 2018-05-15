@@ -10,3 +10,8 @@ export const CREATE_NEW_AD_SUCCESS = "CREATE_NEW_AD_SUCCESS";
 export const CREATE_NEW_AD_FAIL = "CREATE_NEW_AD_FAIL";
 
 export const AD_POSTING_INIT = "AD_POSTING_INIT";
+
+export const AUTH_START = "AUTH_START";
+export const AUTH_SUCCESS = "AUTH_SUCCESS";
+export const AUTH_FAIL = "AUTH_FAIL";
+
