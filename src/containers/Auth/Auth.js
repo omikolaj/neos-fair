@@ -11,7 +11,6 @@ import Aux from '../../hoc/Aux/Aux';
 class Auth extends Component {
   state = {
     controls: {
-      signup: {
         firstName: {
           elementType: 'input',
           elementConfig: {
@@ -24,7 +23,8 @@ class Auth extends Component {
           },
           valid: false,
           touched: false,
-          label: 'First Name'
+          label: 'First Name',
+          isSignUp: true,
         },
         lastName: {
           elementType: 'input',
@@ -38,7 +38,8 @@ class Auth extends Component {
         },
         valid: false,
         touched: false,
-        label: 'Last Name'
+        label: 'Last Name',
+        isSignUp: true,
         },
         email: {
           elementType: 'input',
@@ -53,10 +54,9 @@ class Auth extends Component {
           },
           valid: false,
           touched: false,
-          label: 'E-mail'
+          label: 'E-mail',
+          isSignUp: true,
           },
-        },
-      login: {
         username: {
           elementType: 'text',
           elementConfig: {
@@ -69,7 +69,8 @@ class Auth extends Component {
           },
           valid: false,
           touched: false,
-          label: 'Username'
+          label: 'Username',
+          isSignUp: false,
           },
         password: {
           elementType: 'text',
@@ -84,11 +85,11 @@ class Auth extends Component {
           },
           valid: false,
           touched: false,
-          label: 'Password'
-          },
+          label: 'Password',
+          isSignUp: false,
         },
       },
-      isSignUp: true,
+      isSignUp: false,
     }
 
     checkValidity = (value, rules) => {
@@ -150,12 +151,22 @@ class Auth extends Component {
 
   render() {
     const formElementsArray = [];
-    for ( let key in this.state.controls ) {
-        formElementsArray.push( {
+    for (let key in this.state.controls) {
+      if(this.state.isSignUp){
+          formElementsArray.push({
             id: key,
             config: this.state.controls[key]
-        } );
+        });           
+    }else{
+      if(!this.state.controls[key].isSignUp){
+        formElementsArray.push({
+          id: key,
+          config: this.state.controls[key]
+          });  
+        }
+      }
     }
+
     let form = (
       <form className={classes.Form} onSubmit={this.submitHandler}>
       {formElementsArray.map(formElement => {
