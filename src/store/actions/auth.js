@@ -79,7 +79,7 @@ export const auth = (username, password, isSignUp) =>{
     .then(resp=>resp.json())
     .then(auth => {
       if(auth.status >=200 && auth.status < 300){
-        const expirationDate = new Date(new Date().getTime() + auth.expiresIn * 1000);          
+        const expirationDate = new Date(new Date().getTime() + auth.expiresIn * 1000);       
         localStorage.setItem("token", auth.token)
         localStorage.setItem("user_id", auth.userID)         
         localStorage.setItem("expirationDate", expirationDate)

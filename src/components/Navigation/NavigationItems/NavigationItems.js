@@ -9,7 +9,7 @@ const navigationItems = (props) => {
             <NavigationItem link="/ads">Ads</NavigationItem>
             <NavigationItem link="/ads/new">Post Ad</NavigationItem>            
             <NavigationItem link="/users">Account</NavigationItem>
-            <NavigationItem link="/">Logout</NavigationItem>
+            <NavigationItem link="/logout">Logout</NavigationItem>
         </Aux>
     ) : (
         <Aux>

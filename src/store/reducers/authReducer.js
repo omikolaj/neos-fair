@@ -5,7 +5,6 @@ const initialState = {
   userID: null,
   error: null,
   loading: false,
-  isAuthenticated: false
 };
 
 const authStart = (state, action) => {
@@ -22,7 +21,6 @@ const authSuccess = (state, action) => {
     // userID: action.userID,
     error: null,
     loading: false,
-    isAuthenticated: true
   }
 }
 
@@ -31,14 +29,12 @@ const authFail = (state, action) => {
     ...state,
     error: action.error,
     loading: false,
-    isAuthenticated: false
   }
 }
 
 const logout = (state, action) => {
   return {
     ...state,
-    isAuthenticated: false,
     token: null,
     userID: null,
   }

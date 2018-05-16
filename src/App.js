@@ -8,6 +8,7 @@ import AdDetails from './containers/AdDetails/AdDetails';
 import AdBuilder from './containers/AdBuilder/AdBuilder';
 import Auth from './containers/Auth/Auth';
 import * as actions from './store/actions/index';
+import Logout from './containers/Auth/Logout/Logout';
 
 class App extends Component {  
   componentDidMount(){
@@ -21,7 +22,8 @@ class App extends Component {
           <Switch>
             <Route exact path='/ads/new' component={AdBuilder} />
             <Route exact path='/ads/:id' component={AdDetails} />            
-            <Route exact path='/ads' component={Ads} />    
+            <Route exact path='/ads' component={Ads} />
+            <Route exact path='/logout' component={Logout} />
             <Route exact path='/' component={Auth} />
           </Switch>
         </Layout>
@@ -32,14 +34,13 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.token !== null
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onTryAutoAuth: () => dispatch(actions.authCheckState()),
-    onLogout: () => dispatch(actions.logout())
+    onTryAutoAuth: () => dispatch(actions.authCheckState())
   };
 }
 

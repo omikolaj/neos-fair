@@ -196,10 +196,9 @@ class Auth extends Component {
         <p>{this.props.error.error}</p>
       )
     }
-
     let authRedirect = null;
     if(this.props.isAuthenticated){
-      authRedirect = <Redirect to="/account" />
+      authRedirect = <Redirect to="/users" />
     }
     return (
       <div>
@@ -216,7 +215,7 @@ const mapStateToProps = (state) => {
   return {
     loading: state.auth.loading,
     error: state.auth.error,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.token !== null
   }
 }
 
