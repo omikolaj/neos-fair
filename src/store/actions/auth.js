@@ -29,6 +29,14 @@ export const logout = () => {
 
 // Async
 
+export const checkExpirationTimeout = (expirationTime) => {
+  return dispatch => {
+    setTimeout(() => {  
+      dispatch(logout());
+    }, expirationTime * 1000);
+  };
+};
+
 export const auth = (username, password, isSignUp) =>{
   return dispatch => {
     dispatch(authStart());
@@ -51,6 +59,7 @@ export const auth = (username, password, isSignUp) =>{
     .then(auth => {
       if(auth.status >=200 && auth.status < 300){
         dispatch(authSuccess(auth))
+        dispatch(checkExpirationTimeout(auth.expiresIn))
       }else{
         return Promise.reject(auth)
       }       

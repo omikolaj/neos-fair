@@ -58,10 +58,10 @@ export const fetchAd = (id) => {
   }
 }
 
-export const fetchAds = () => {
+export const fetchAds = (token) => {
   return dispatch => {
     dispatch(fetchAdsStart())
-    fetch('/api/ads')
+    fetch('/api/ads.json?auth='+ token)
     .then(resp=>resp.json())
     .then(data =>{
       dispatch(fetchAdsSuccess(data))

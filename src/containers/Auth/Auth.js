@@ -176,7 +176,6 @@ class Auth extends Component {
     let errorMessage = null;
 
     if(this.props.error){
-      debugger
       errorMessage = (
         <p>{this.props.error.error}</p>
       )
