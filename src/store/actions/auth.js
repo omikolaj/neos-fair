@@ -21,7 +21,11 @@ export const authFail = (error) => {
   }
 }
 
-export const
+export const logout = () => {
+  return {
+    type: actionTypes.LOGOUT
+  }
+}
 
 // Async
 
