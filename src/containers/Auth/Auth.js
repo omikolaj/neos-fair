@@ -5,6 +5,8 @@ import Input from '../../components/UI/Input/Input';
 import Label from '../../components/UI/Label/Label';
 import classes from './Auth.css';
 import * as actions from '../../store/actions/index';
+import Loader from '../../components/UI/Loader/Loader';
+import Aux from '../../hoc/Aux/Aux';
 
 class Auth extends Component {
   state = {
@@ -81,8 +83,8 @@ class Auth extends Component {
         touched: false,
         label: 'Password'
         },
-        isSignUp: true,
-      }
+      },
+      isSignUp: true,
     }
 
     checkValidity = (value, rules) => {
@@ -133,7 +135,7 @@ class Auth extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.props.onAuth(this.state.controls.email, this.state.controls.password)
+    this.props.onAuth(this.state.controls.username.value, this.state.controls.password.value, this.state.isSignUp)
   }
 
   switchAuthModeHandler = () => {
@@ -150,9 +152,10 @@ class Auth extends Component {
             config: this.state.controls[key]
         } );
     }
-
-    let form = formElementsArray.map(formElement => (
-      <Input
+    let form = (
+      <form className={classes.Form} onSubmit={this.submitHandler}>
+      {formElementsArray.map(formElement => {
+        return <Input
         key={formElement.id}
         elementType={formElement.config.elementType}
         elementConfig={formElement.config.elementConfig}
@@ -160,16 +163,30 @@ class Auth extends Component {
         invalid={!formElement.config.valid}
         shouldValidate={formElement.config.validation}
         touched={formElement.config.touched}
-        changed={(event) => this.inputChangedHandler( event, formElement.id )} />
-    ))
+        changed={(event) => this.inputChangedHandler( event, formElement.id )} />          
+      })}
+      <Button btnType="Success">Log In</Button>
+      </form>
+    )
+    
+    if(this.props.loading){
+      form = <Loader />
+    }
+
+    let errorMessage = null;
+
+    if(this.props.error){
+      debugger
+      errorMessage = (
+        <p>{this.props.error.error}</p>
+      )
+    }
 
     return (
       <div>
-        <form className={classes.Form} onSubmit={this.submitHandler}>
-          {form}
-          <Button btnType="Success">Create Account</Button>
-        </form>
-        <Button on btnType="Success">Login In</Button>    
+        {errorMessage}        
+        {form}
+        {/* <Button on btnType="Success">Create Account</Button>     */}
       </div>
     );
   }
@@ -177,13 +194,14 @@ class Auth extends Component {
 
 const mapStateToProps = (state) => {
   return {
-
+    loading: state.auth.loading,
+    error: state.auth.error
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAuth: (email, password) => dispatch(actions.auth(email, password))
+    onAuth: (username, password, isSignUp) => dispatch(actions.auth(username, password, isSignUp))
   }
 }
 

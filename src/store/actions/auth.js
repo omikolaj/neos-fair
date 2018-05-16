@@ -9,22 +9,52 @@ export const authStart = () => {
 export const authSuccess = (data) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    authData: data
+    token: data.token,
+    userID: data.userID
   }
 }
 
-export const authFails = (error) => {
+export const authFail = (error) => {
   return {
     type: actionTypes.AUTH_FAIL,
     error: error,
   }
 }
 
+export const
+
 // Async
 
-export const auth = (email, password) =>{
+export const auth = (username, password, isSignUp) =>{
   return dispatch => {
     dispatch(authStart());
-    fetch()
+    const userData = {
+      username: username,
+      password: password
+    }
+    let url = '/api/users/login';
+    if(!isSignUp){
+      url = '/api/users/signup'
+    }
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    })
+    .then(resp=>resp.json())
+    .then(auth => {
+      if(auth.status >=200 && auth.status < 300){
+        dispatch(authSuccess(auth))
+      }else{
+        return Promise.reject(auth)
+      }       
+      
+    })
+    .catch(err => {
+      debugger
+      dispatch(authFail(err))
+    })
   }
 }
