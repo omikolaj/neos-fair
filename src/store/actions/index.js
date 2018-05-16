@@ -7,6 +7,8 @@ export {
   adPostingInit
 } from './adBuilder';
 export {
-  auth
+  auth,
+  authCheckState,
+  logout
 } from './auth';
 

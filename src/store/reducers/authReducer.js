@@ -5,7 +5,7 @@ const initialState = {
   userID: null,
   error: null,
   loading: false,
-  isAuthenticated: !!localStorage.getItem("token")
+  isAuthenticated: false
 };
 
 const authStart = (state, action) => {
@@ -16,8 +16,7 @@ const authStart = (state, action) => {
   }
 }
 
-const authSuccess = (state, action) => {
-  debugger
+const authSuccess = (state, action) => {   
   return {
     // token: action.token,
     // userID: action.userID,
@@ -32,14 +31,16 @@ const authFail = (state, action) => {
     ...state,
     error: action.error,
     loading: false,
+    isAuthenticated: false
   }
 }
 
 const logout = (state, action) => {
-  localStorage.removeItem("token")
-  localStorage.removeItem("userID")
   return {
     ...state,
+    isAuthenticated: false,
+    token: null,
+    userID: null,
   }
 }
 

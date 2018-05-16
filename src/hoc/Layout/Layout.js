@@ -7,7 +7,7 @@ class Layout extends Component {
     render () {
         return (
             <Aux>
-                <Toolbar isAuthenticated={!!localStorage.getItem("token")}/>
+                <Toolbar isAuthenticated={this.props.isAuthenticated}/>
                 <main className={classes.Content}>
                     {this.props.children}
                 </main>

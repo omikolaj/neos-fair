@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Redirect, Route} from 'react-router-dom';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
 import Label from '../../components/UI/Label/Label';
@@ -196,9 +197,14 @@ class Auth extends Component {
       )
     }
 
+    let authRedirect = null;
+    if(this.props.isAuthenticated){
+      authRedirect = <Redirect to="/account" />
+    }
     return (
       <div>
-        {errorMessage}        
+        {authRedirect}
+        {errorMessage}      
         {form}
         {/* <Button on btnType="Success">Create Account</Button>     */}
       </div>
@@ -209,7 +215,8 @@ class Auth extends Component {
 const mapStateToProps = (state) => {
   return {
     loading: state.auth.loading,
-    error: state.auth.error
+    error: state.auth.error,
+    isAuthenticated: state.auth.isAuthenticated
   }
 }
 
