@@ -4,7 +4,8 @@ const initialState = {
   token: null,
   userID: null,
   error: null,
-  loading: false
+  loading: false,
+  isAuthenticated: !!localStorage.getItem("token")
 };
 
 const authStart = (state, action) => {
@@ -16,11 +17,13 @@ const authStart = (state, action) => {
 }
 
 const authSuccess = (state, action) => {
+  debugger
   return {
-    token: action.token,
-    userID: action.userID,
+    // token: action.token,
+    // userID: action.userID,
     error: null,
     loading: false,
+    isAuthenticated: true
   }
 }
 
@@ -28,15 +31,15 @@ const authFail = (state, action) => {
   return {
     ...state,
     error: action.error,
-    loading: false
+    loading: false,
   }
 }
 
 const logout = (state, action) => {
+  localStorage.removeItem("token")
+  localStorage.removeItem("userID")
   return {
     ...state,
-    token: null,
-    userID: null
   }
 }
 

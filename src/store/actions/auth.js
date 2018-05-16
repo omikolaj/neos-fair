@@ -57,8 +57,10 @@ export const auth = (username, password, isSignUp) =>{
     })
     .then(resp=>resp.json())
     .then(auth => {
-      if(auth.status >=200 && auth.status < 300){
+      if(auth.status >=200 && auth.status < 300){        
         dispatch(authSuccess(auth))
+        localStorage.setItem("token", auth.token)
+        localStorage.setItem("user_id", auth.userID)
         dispatch(checkExpirationTimeout(auth.expiresIn))
       }else{
         return Promise.reject(auth)

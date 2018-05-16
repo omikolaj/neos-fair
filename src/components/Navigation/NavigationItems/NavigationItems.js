@@ -1,13 +1,25 @@
 import React from 'react';
 import classes from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
+import Aux from '../../../hoc/Aux/Aux';
 
-const navigationItems = () => (
-    <ul className={classes.NavigationItems}>
-        <NavigationItem link="/ads/new">Post Ad</NavigationItem>
-        <NavigationItem link="/ads">Ads</NavigationItem>
-        <NavigationItem link="/users">Account</NavigationItem>
+const navigationItems = (props) => {    
+    const nav = props.isAuthenticated ? (
+        <Aux>
+            <NavigationItem link="/ads/new">Post Ad</NavigationItem>
+            <NavigationItem link="/ads">Ads</NavigationItem>
+            <NavigationItem link="/users">Account</NavigationItem>
+        </Aux>
+    ) : (
+        <Aux>
+            <NavigationItem link="/ads">Ads</NavigationItem>
+            <NavigationItem link="/Login">Login</NavigationItem>
+            <NavigationItem link="/Signup">Sign Up</NavigationItem>
+        </Aux>
+    );
+    return <ul className={classes.NavigationItems}>        
+        {nav}
     </ul>
-);
+};
 
 export default navigationItems;

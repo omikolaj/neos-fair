@@ -11,77 +11,81 @@ import Aux from '../../hoc/Aux/Aux';
 class Auth extends Component {
   state = {
     controls: {
-      // firstName: {
-      //   elementType: 'input',
-      //   elementConfig: {
-      //     type: 'text',
-      //     placeholder: 'Your first name'
-      //   },
-      //   value: '',
-      //   validation: {
-      //     required: true,
-      //   },
-      //   valid: false,
-      //   touched: false,
-      //   label: 'First Name'
-      //  },
-      // lastName: {
-      //   elementType: 'input',
-      //   elementConfig: {
-      //     type: 'text',
-      //     placeholder: 'Your last name'
-      //   },
-      // value: '',
-      // validation: {
-      //   required: true,
-      // },
-      // valid: false,
-      // touched: false,
-      // label: 'Last Name'
-      // },
-      // email: {
-      //   elementType: 'input',
-      //   elementConfig: {
-      //     type: 'email',
-      //     placeholder: 'Your E-mail'
-      //   },
-      //   value: '',
-      //   validation: {
-      //     required: true,
-      //     isEmail: true
-      //   },
-      //   valid: false,
-      //   touched: false,
-      //   label: 'E-mail'
-      //   },
-      username: {
-        elementType: 'text',
-        elementConfig: {
-          type: 'text',
-          placeholder: 'Username'
+      signup: {
+        firstName: {
+          elementType: 'input',
+          elementConfig: {
+            type: 'text',
+            placeholder: 'Your first name'
+          },
+          value: '',
+          validation: {
+            required: true,
+          },
+          valid: false,
+          touched: false,
+          label: 'First Name'
         },
+        lastName: {
+          elementType: 'input',
+          elementConfig: {
+            type: 'text',
+            placeholder: 'Your last name'
+          },
         value: '',
         validation: {
           required: true,
         },
         valid: false,
         touched: false,
-        label: 'Username'
+        label: 'Last Name'
         },
-      password: {
-        elementType: 'text',
-        elementConfig: {
-          type: 'password',
-          placeholder: 'Password'
+        email: {
+          elementType: 'input',
+          elementConfig: {
+            type: 'email',
+            placeholder: 'Your E-mail'
+          },
+          value: '',
+          validation: {
+            required: true,
+            isEmail: true
+          },
+          valid: false,
+          touched: false,
+          label: 'E-mail'
+          },
         },
-        value: '',
-        validation: {
-          required: true,
-          minLength: 6,
-        },
-        valid: false,
-        touched: false,
-        label: 'Password'
+      login: {
+        username: {
+          elementType: 'text',
+          elementConfig: {
+            type: 'text',
+            placeholder: 'Username'
+          },
+          value: '',
+          validation: {
+            required: true,
+          },
+          valid: false,
+          touched: false,
+          label: 'Username'
+          },
+        password: {
+          elementType: 'text',
+          elementConfig: {
+            type: 'password',
+            placeholder: 'Password'
+          },
+          value: '',
+          validation: {
+            required: true,
+            minLength: 6,
+          },
+          valid: false,
+          touched: false,
+          label: 'Password'
+          },
         },
       },
       isSignUp: true,
