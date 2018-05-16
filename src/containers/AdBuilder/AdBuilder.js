@@ -182,10 +182,12 @@ class AdBuilder extends Component {
       </div>
      )
    }
+
+   const adForm = this.props.loading ? <Loader /> : form;
    return (
       <div className={classes.AdBuilder}>
         {adPosted}
-        {this.props.loading ? <Loader /> : form}
+        {this.props.isAuthenticated ? adForm : <Redirect to="/" />}
       </div>
     )
   }
@@ -197,7 +199,8 @@ const mapStateToProps = (state) => {
     posted: state.adBuilder.newAd.posted,
     adID: state.adBuilder.newAd.id,
     message: state.adBuilder.newAd.message,
-    error: state.adBuilder.newAd.error
+    error: state.adBuilder.newAd.error,
+    isAuthenticated: state.auth.token !== null,
   }
 }
 
