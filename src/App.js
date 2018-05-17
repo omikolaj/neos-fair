@@ -32,6 +32,7 @@ class App extends Component {
         <Switch>
         <Route exact path='/ads/new' component={AdBuilder} />                  
         <Route exact path='/ads' component={Ads} />
+        <Route exact path='/ads/:id' component={AdDetails} />  
         <Route exact path='/logout' component={Logout} />
         <Redirect to="/" />
       </Switch>

@@ -1,11 +1,18 @@
+.Auth {
+  display: grid;
+  grid-template-columns: 16rem;
+  grid-auto-rows: minmax(2rem, auto);
+  justify-content: center;
+  padding: 1rem; 
+  grid-row-gap: .5rem;
+}
+
 .Form {
   display: grid;
   grid-template-columns: 16rem;
-  grid-template-rows: repeat(5, 2rem);
   grid-auto-rows: minmax(2rem, auto);
-  grid-row-gap: .5rem;
-  padding: 1rem;
-  justify-content: center;    
+  justify-content: center;   
+  grid-row-gap: .5rem; 
 }
 
 .Form textarea[type="textarea"]{

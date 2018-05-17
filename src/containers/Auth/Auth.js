@@ -183,7 +183,7 @@ class Auth extends Component {
         touched={formElement.config.touched}
         changed={(event) => this.inputChangedHandler( event, formElement.id )} />          
       })}
-      <Button btnType="Success">Log In</Button>
+      <Button btnType="Success">Submit</Button>
       </form>
     )
     
@@ -203,11 +203,11 @@ class Auth extends Component {
       authRedirect = <Redirect to="/users" />
     }
     return (
-      <div>
+      <div className={classes.Auth}>
         {authRedirect}
         {errorMessage}      
         {this.state.isSignUp ? <SignUp form={form}/> : <Login form={form} />}
-        <Button clicked={this.switchAuthModeHandler} btnType="Success">Create Account</Button>    
+        <Button clicked={this.switchAuthModeHandler} btnType="Success">Switch To {this.state.isSignUp ? 'Login' : 'Sign Up'}</Button>    
       </div>
     );
   }
