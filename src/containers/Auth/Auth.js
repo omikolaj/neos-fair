@@ -8,6 +8,8 @@ import classes from './Auth.css';
 import * as actions from '../../store/actions/index';
 import Loader from '../../components/UI/Loader/Loader';
 import Aux from '../../hoc/Aux/Aux';
+import Login from '../../components/Auth/Login/Login';
+import SignUp from '../../components/Auth/Signup/Signup';
 
 class Auth extends Component {
   state = {
@@ -204,8 +206,8 @@ class Auth extends Component {
       <div>
         {authRedirect}
         {errorMessage}      
-        {form}
-        {/* <Button on btnType="Success">Create Account</Button>     */}
+        {this.state.isSignUp ? <SignUp form={form}/> : <Login form={form} />}
+        <Button clicked={this.switchAuthModeHandler} btnType="Success">Create Account</Button>    
       </div>
     );
   }

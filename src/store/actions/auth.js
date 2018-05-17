@@ -91,7 +91,6 @@ export const auth = (username, password, isSignUp) =>{
       
     })
     .catch(err => {
-      debugger
       dispatch(authFail(err))
     })
   }

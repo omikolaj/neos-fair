@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Layout from './hoc/Layout/Layout';
 import classes from './App.css';
@@ -9,6 +9,7 @@ import AdBuilder from './containers/AdBuilder/AdBuilder';
 import Auth from './containers/Auth/Auth';
 import * as actions from './store/actions/index';
 import Logout from './containers/Auth/Logout/Logout';
+import Welcome from './containers/Welcome/Welcome';
 
 class App extends Component {  
   componentDidMount(){
@@ -16,16 +17,31 @@ class App extends Component {
   }
 
   render() {
+
+    let routes = (
+      <Switch>                    
+        <Route exact path='/ads' component={Ads} />
+        <Route exact path='/ads/:id' component={AdDetails} />  
+        <Route exact path='/' component={Welcome} />  
+        <Redirect to="/" />     
+      </Switch>
+    );
+
+    if(this.props.isAuthenticated){
+      routes = (
+        <Switch>
+        <Route exact path='/ads/new' component={AdBuilder} />                  
+        <Route exact path='/ads' component={Ads} />
+        <Route exact path='/logout' component={Logout} />
+        <Redirect to="/" />
+      </Switch>
+      )
+    }    
+
     return (
       <div>
-        <Layout isAuthenticated={this.props.isAuthenticated}>
-          <Switch>
-            <Route exact path='/ads/new' component={AdBuilder} />
-            <Route exact path='/ads/:id' component={AdDetails} />            
-            <Route exact path='/ads' component={Ads} />
-            <Route exact path='/logout' component={Logout} />
-            <Route exact path='/' component={Auth} />
-          </Switch>
+        <Layout>
+          {routes}         
         </Layout>
       </div>
     );

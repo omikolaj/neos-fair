@@ -14,8 +14,7 @@ const navigationItems = (props) => {
     ) : (
         <Aux>
             <NavigationItem link="/ads">Ads</NavigationItem>
-            <NavigationItem link="/login">Login</NavigationItem>
-            <NavigationItem link="/signup">Sign Up</NavigationItem>
+            <NavigationItem link="/">Home</NavigationItem>
         </Aux>
     );
     return <ul className={classes.NavigationItems}>        
