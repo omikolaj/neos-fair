@@ -79,7 +79,7 @@ export const auth = (userInfo, isSignUp) =>{
   const userData = formatData(userInfo, isSignUp);
   return dispatch => {
     dispatch(authStart());
-    let url = '/api/users/login';
+    let url = '/api/login';
     if(isSignUp){
       url = '/api/users'
     }
@@ -112,7 +112,7 @@ export const auth = (userInfo, isSignUp) =>{
 export const loginAsGuest = () => {
   return dispatch => {
     dispatch(authStart());
-    fetch('/api/users/guest', {
+    fetch('/api/guest', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
