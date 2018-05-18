@@ -8,7 +8,7 @@ class Layout extends Component {
     render () {
         return (
             <Aux>
-                <Toolbar isAuthenticated={this.props.isAuthenticated}/>
+                <Toolbar isAuthenticated={this.props.isAuthenticated} userID={this.props.userID} />
                 <main className={classes.Content}>
                     {this.props.children}
                 </main>
@@ -19,7 +19,8 @@ class Layout extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isAuthenticated: state.auth.token !== null
+        isAuthenticated: state.auth.token !== null,
+        userID: localStorage.getItem("user_id")
     }
 }
 
