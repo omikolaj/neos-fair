@@ -9,6 +9,7 @@ export {
 export {
   auth,
   authCheckState,
-  logout
+  logout,
+  loginAsGuest
 } from './auth';
 

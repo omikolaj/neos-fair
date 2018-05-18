@@ -174,6 +174,10 @@ class Auth extends Component {
     })
   }
 
+  loginAsGuestHandler = () => {
+    this.props.loginAsGuest()
+  }
+
   render() {
     const formElementsArray = this.formatData()
     // const formElementsArray1 = [];
@@ -227,7 +231,8 @@ class Auth extends Component {
       <div className={classes.Auth}>
         {errorMessage}      
         {this.state.isSignUp ? <SignUp form={form}/> : <Login form={form} />}
-        <Button clicked={this.switchAuthModeHandler} btnType="Success">Go to {this.state.isSignUp ? 'Login' : 'Sign Up'}</Button>    
+        <Button clicked={this.switchAuthModeHandler} btnType="Success">Go to {this.state.isSignUp ? 'Login' : 'Sign Up'}</Button>
+        <Button clicked={this.loginAsGuestHandler}>Login as Guest</Button>
       </div>
     );
   }
@@ -243,7 +248,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAuth: (username, password, isSignUp) => dispatch(actions.auth(username, password, isSignUp))
+    onAuth: (username, password, isSignUp) => dispatch(actions.auth(username, password, isSignUp)),
+    loginAsGuest: () => dispatch(actions.loginAsGuest())
   }
 }
 
