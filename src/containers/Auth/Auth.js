@@ -141,9 +141,31 @@ class Auth extends Component {
     })
   }
 
+  formatData = () => {
+    let formElementsArray = [];
+    for (let key in this.state.controls) {
+      if(this.state.isSignUp){       
+          formElementsArray.push({
+            id: key,
+            config: this.state.controls[key]
+        });           
+    }else{
+      if(!this.state.controls[key].isSignUp){
+          formElementsArray.push({
+          id: key,
+          config: this.state.controls[key]
+          });  
+        }
+      }
+    }
+    return formElementsArray;
+  }
+
   submitHandler = (event) => {
     event.preventDefault();
-    this.props.onAuth(this.state.controls.username.value, this.state.controls.password.value, this.state.isSignUp)
+    const formData = this.formatData();
+    // this.props.onAuth(this.state.controls.username.value, this.state.controls.password.value, this.state.isSignUp)
+    this.props.onAuth(formData, this.state.isSignUp)
   }
 
   switchAuthModeHandler = () => {
@@ -153,22 +175,23 @@ class Auth extends Component {
   }
 
   render() {
-    const formElementsArray = [];
-    for (let key in this.state.controls) {
-      if(this.state.isSignUp){
-          formElementsArray.push({
-            id: key,
-            config: this.state.controls[key]
-        });           
-    }else{
-      if(!this.state.controls[key].isSignUp){
-        formElementsArray.push({
-          id: key,
-          config: this.state.controls[key]
-          });  
-        }
-      }
-    }
+    const formElementsArray = this.formatData()
+    // const formElementsArray1 = [];
+    // for (let key in this.state.controls) {
+    //   if(this.state.isSignUp){
+    //       formElementsArray.push({
+    //         id: key,
+    //         config: this.state.controls[key]
+    //     });           
+    // }else{
+    //   if(!this.state.controls[key].isSignUp){
+    //     formElementsArray.push({
+    //       id: key,
+    //       config: this.state.controls[key]
+    //       });  
+    //     }
+    //   }
+    // }
 
     let form = (
       <form className={classes.Form} onSubmit={this.submitHandler}>
@@ -183,7 +206,7 @@ class Auth extends Component {
         touched={formElement.config.touched}
         changed={(event) => this.inputChangedHandler( event, formElement.id )} />          
       })}
-      <Button btnType="Success">Submit</Button>
+      <Button btnType="Success">{this.state.isSignUp ? 'Sign Up' : 'Login' }</Button>
       </form>
     )
     
@@ -202,12 +225,15 @@ class Auth extends Component {
     if(this.props.isAuthenticated){
       authRedirect = <Redirect to="/users" />
     }
+
+    
+
     return (
       <div className={classes.Auth}>
         {authRedirect}
         {errorMessage}      
         {this.state.isSignUp ? <SignUp form={form}/> : <Login form={form} />}
-        <Button clicked={this.switchAuthModeHandler} btnType="Success">Switch To {this.state.isSignUp ? 'Login' : 'Sign Up'}</Button>    
+        <Button clicked={this.switchAuthModeHandler} btnType="Success">Go to {this.state.isSignUp ? 'Login' : 'Sign Up'}</Button>    
       </div>
     );
   }

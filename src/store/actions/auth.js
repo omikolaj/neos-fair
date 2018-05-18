@@ -58,16 +58,60 @@ export const checkExpirationTimeout = (expirationTime) => {
 
 // Async
 
-export const auth = (username, password, isSignUp) =>{
+// export const auth = (username, password, isSignUp) =>{
+//   return dispatch => {
+//     dispatch(authStart());
+//     const userData = {
+//       username: username,
+//       password: password
+//     }
+//     let url = '/api/users/login';
+//     if(isSignUp){
+//       url = '/api/users/signup'
+//     }
+//     fetch(url, {
+//       method: 'POST',
+//       headers: {
+//         'content-type': 'application/json'
+//       },
+//       body: JSON.stringify(userData)
+//     })
+//     .then(resp=>resp.json())
+//     .then(auth => {
+//       if(auth.status >=200 && auth.status < 300){
+//         const expirationDate = new Date(new Date().getTime() + auth.expiresIn * 1000);       
+//         localStorage.setItem("token", auth.token)
+//         localStorage.setItem("user_id", auth.userID)         
+//         localStorage.setItem("expirationDate", expirationDate)
+//         dispatch(authSuccess(auth))
+//         dispatch(checkExpirationTimeout(auth.expiresIn))
+//       }else{
+//         return Promise.reject(auth)
+//       }       
+      
+//     })
+//     .catch(err => {
+//       dispatch(authFail(err))
+//     })
+//   }
+// }
+
+const formatData = (userInfo, isSignUp) => {
+  let userData = {};
+    userInfo.map((userInputField, index) => {
+      userData[userInputField.id] = userInfo[index].config.value
+    }
+  );
+  return userData
+}
+
+export const auth = (userInfo, isSignUp) =>{
+  const userData = formatData(userInfo, isSignUp);
   return dispatch => {
     dispatch(authStart());
-    const userData = {
-      username: username,
-      password: password
-    }
     let url = '/api/users/login';
     if(isSignUp){
-      url = '/api/users/signup'
+      url = '/api/users'
     }
     fetch(url, {
       method: 'POST',
@@ -95,3 +139,4 @@ export const auth = (username, password, isSignUp) =>{
     })
   }
 }
+

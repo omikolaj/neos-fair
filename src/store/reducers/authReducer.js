@@ -15,10 +15,10 @@ const authStart = (state, action) => {
   }
 }
 
-const authSuccess = (state, action) => {   
+const authSuccess = (state, action) => {
   return {
-    // token: action.token,
-    // userID: action.userID,
+    token: action.token,
+    userID: action.userID,
     error: null,
     loading: false,
   }
