@@ -23,8 +23,8 @@ export const authFail = (error) => {
 
 export const logout = () => {
   localStorage.removeItem('token');
-  localStorage.removeItem('expires');
-  localStorage.removeItem('userID');
+  localStorage.removeItem('expirationDate');
+  localStorage.removeItem('user_id');
   return {
     type: actionTypes.LOGOUT
   }
@@ -40,7 +40,7 @@ export const authCheckState = () => {
       if(expirationDate <= new Date()){
         dispatch(logout());  
       } else {
-        const userID = localStorage.getItem('userID')
+        const userID = localStorage.getItem('user_id')
         dispatch(authSuccess(token, userID))
         dispatch(checkExpirationTimeout((expirationDate.getTime() - new Date().getTime()) / 1000));
       }      
@@ -99,10 +99,18 @@ export const checkExpirationTimeout = (expirationTime) => {
 const formatData = (userInfo, isSignUp) => {
   let userData = {};
     userInfo.map((userInputField, index) => {
-      userData[userInputField.id] = userInfo[index].config.value
+      if(userInputField.id === 'firstName'){
+        userData['first_name'] = userInfo[index].config.value
+      }else if(userInputField.id === 'lastName'){
+        userData['last_name'] = userInfo[index].config.value
+      }else{
+        userData[userInputField.id] = userInfo[index].config.value
+      }      
     }
   );
-  return userData
+  return {
+    user: userData
+  }
 }
 
 export const auth = (userInfo, isSignUp) =>{

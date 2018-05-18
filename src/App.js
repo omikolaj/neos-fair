@@ -22,8 +22,6 @@ class App extends Component {
 
     let routes = (
       <Switch>                    
-        <Route exact path='/ads' component={Ads} />
-        <Route exact path='/ads/:id' component={AdDetails} />  
         <Route exact path='/' component={Welcome} />  
         <Redirect to="/" />     
       </Switch>
@@ -37,8 +35,7 @@ class App extends Component {
         <Route exact path='/ads/:id' component={AdDetails} />
         <Route exact path='/users/:id' component={Account} />
         <Route exact path='/logout' component={Logout} />
-        <Route exact path='/' component={Home} />
-        <Redirect to='/' />
+        <Redirect to='/ads' />
       </Switch>
       )
     }    

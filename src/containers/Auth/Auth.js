@@ -222,15 +222,9 @@ class Auth extends Component {
       )
     }
     let authRedirect = null;
-    if(this.props.isAuthenticated){
-      authRedirect = <Redirect to="/users" />
-    }
-
-    
-
+   
     return (
       <div className={classes.Auth}>
-        {authRedirect}
         {errorMessage}      
         {this.state.isSignUp ? <SignUp form={form}/> : <Login form={form} />}
         <Button clicked={this.switchAuthModeHandler} btnType="Success">Go to {this.state.isSignUp ? 'Login' : 'Sign Up'}</Button>    
