@@ -11,17 +11,24 @@ import * as actions from './store/actions/index';
 import Logout from './containers/Auth/Logout/Logout';
 import Welcome from './containers/Welcome/Welcome';
 import Account from './containers/Account/Account';
+import { getQueryParams } from './store/utility';
 
 class App extends Component {  
   componentDidMount(){
     this.props.onTryAutoAuth();
+    const paramsArray = getQueryParams()
+  }
+
+  componentDidUpdate(){    
+    const paramsArray = getQueryParams()
   }
 
   render() {
 
     let routes = (
       <Switch>                    
-        <Route exact path='/' component={Welcome} />  
+        <Route exact path='/' component={Welcome} /> 
+        {/* <Route exact path='/ads' component={Ads} /> */}
         <Redirect to="/" />     
       </Switch>
     );
@@ -34,7 +41,7 @@ class App extends Component {
         <Route exact path='/ads/:id' component={AdDetails} />
         <Route exact path='/users/:id' component={Account} />
         <Route exact path='/logout' component={Logout} />
-        <Redirect to='/users/:id' />
+        <Redirect to='/ads' />
       </Switch>
       )
     }    
