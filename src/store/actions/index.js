@@ -11,6 +11,7 @@ export {
   authCheckState,
   logout,
   loginAsGuest,
-  loginGitHub
+  initLoginGithub,
+  loginGithub
 } from './auth';
 

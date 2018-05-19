@@ -21,6 +21,17 @@ export const authFail = (error) => {
   }
 }
 
+export const loginGithub = (auth) => {
+  localStorage.setItem('token', auth.token)
+  localStorage.setItem('expirationDate', auth.expiresIn)
+  localStorage.setItem('user_id', auth.id)
+  return {
+    type: actionTypes.LOGIN_GITHUB,
+    token: auth.token,    
+    userID: auth.id   
+  }
+}
+
 export const logout = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('expirationDate');
@@ -109,7 +120,7 @@ export const auth = (userInfo, isSignUp) =>{
   }
 }
 
-export const loginGitHub = () => {
+export const initLoginGithub = () => {
   return dispatch => {
     window.location.href="https://github.com/login/oauth/authorize?client_id=67cb7ac47afbb2aad88e&scope=user"
   }

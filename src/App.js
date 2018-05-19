@@ -16,7 +16,10 @@ import { getQueryParams } from './store/utility';
 class App extends Component {  
   componentDidMount(){
     this.props.onTryAutoAuth();
-    const paramsArray = getQueryParams()
+    const githubParams = getQueryParams()
+    if(githubParams){
+      this.props.loginGithub(githubParams)
+    }
   }
 
   componentDidUpdate(){    
@@ -27,8 +30,7 @@ class App extends Component {
 
     let routes = (
       <Switch>                    
-        <Route exact path='/' component={Welcome} /> 
-        {/* <Route exact path='/ads' component={Ads} /> */}
+        <Route exact path='/' component={Welcome} />         
         <Redirect to="/" />     
       </Switch>
     );
@@ -65,7 +67,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onTryAutoAuth: () => dispatch(actions.authCheckState())
+    onTryAutoAuth: () => dispatch(actions.authCheckState()),
+    loginGithub: (auth) => dispatch(actions.loginGithub(auth))
   };
 }
 
