@@ -15,11 +15,11 @@ import GitHubButton from '../../components/Auth/GitHubButton/GitHubButton';
 class Auth extends Component {
   state = {
     controls: {
-        firstName: {
+        name: {
           elementType: 'input',
           elementConfig: {
             type: 'text',
-            placeholder: 'Your first name'
+            placeholder: 'Name'
           },
           value: '',
           validation: {
@@ -27,29 +27,14 @@ class Auth extends Component {
           },
           valid: false,
           touched: false,
-          label: 'First Name',
+          label: 'Name',
           isSignUp: true,
-        },
-        lastName: {
-          elementType: 'input',
-          elementConfig: {
-            type: 'text',
-            placeholder: 'Your last name'
-          },
-        value: '',
-        validation: {
-          required: true,
-        },
-        valid: false,
-        touched: false,
-        label: 'Last Name',
-        isSignUp: true,
         },
         email: {
           elementType: 'input',
           elementConfig: {
             type: 'email',
-            placeholder: 'Your E-mail'
+            placeholder: 'E-mail'
           },
           value: '',
           validation: {

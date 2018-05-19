@@ -59,13 +59,13 @@ export const checkExpirationTimeout = (expirationTime) => {
 const formatData = (userInfo, isSignUp) => {
   let userData = {};
     userInfo.map((userInputField, index) => {
-      if(userInputField.id === 'firstName'){
-        userData['first_name'] = userInfo[index].config.value
-      }else if(userInputField.id === 'lastName'){
-        userData['last_name'] = userInfo[index].config.value
-      }else{
+      // if(userInputField.id === 'name'){
+      //   userData['first_name'] = userInfo[index].config.value
+      // }else if(userInputField.id === 'lastName'){
+      //   userData['last_name'] = userInfo[index].config.value
+      // }else{
         userData[userInputField.id] = userInfo[index].config.value
-      }      
+      // }      
     }
   );
   return {
