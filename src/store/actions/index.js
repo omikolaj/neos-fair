@@ -10,6 +10,7 @@ export {
   auth,
   authCheckState,
   logout,
-  loginAsGuest
+  loginAsGuest,
+  loginGitHub
 } from './auth';
 

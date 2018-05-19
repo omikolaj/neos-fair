@@ -109,6 +109,12 @@ export const auth = (userInfo, isSignUp) =>{
   }
 }
 
+export const loginGitHub = () => {
+  return dispatch => {
+    window.location.href="https://github.com/login/oauth/authorize?client_id=67cb7ac47afbb2aad88e&scope=user"
+  }
+}
+
 export const loginAsGuest = () => {
   return dispatch => {
     dispatch(authStart());

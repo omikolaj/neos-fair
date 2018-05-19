@@ -10,6 +10,7 @@ import Loader from '../../components/UI/Loader/Loader';
 import Aux from '../../hoc/Aux/Aux';
 import Login from '../../components/Auth/Login/Login';
 import SignUp from '../../components/Auth/Signup/Signup';
+import GitHubButton from '../../components/Auth/GitHubButton/GitHubButton';
 
 class Auth extends Component {
   state = {
@@ -178,6 +179,10 @@ class Auth extends Component {
     this.props.loginAsGuest()
   }
 
+  loginGitHubHandler = () => { 
+    this.props.loginGitHub()
+  }
+
   render() {
     const formElementsArray = this.formatData()
     // const formElementsArray1 = [];
@@ -233,6 +238,7 @@ class Auth extends Component {
         {this.state.isSignUp ? <SignUp form={form}/> : <Login form={form} />}
         <Button clicked={this.switchAuthModeHandler} btnType="Success">Go to {this.state.isSignUp ? 'Login' : 'Sign Up'}</Button>
         <Button clicked={this.loginAsGuestHandler}>Login as Guest</Button>
+        <Button clicked={this.loginGitHubHandler}>Login via GitHub</Button>
       </div>
     );
   }
@@ -249,7 +255,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onAuth: (username, password, isSignUp) => dispatch(actions.auth(username, password, isSignUp)),
-    loginAsGuest: () => dispatch(actions.loginAsGuest())
+    loginAsGuest: () => dispatch(actions.loginAsGuest()),
+    loginGitHub: () => dispatch(actions.loginGitHub())
   }
 }
 

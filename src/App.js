@@ -11,7 +11,6 @@ import * as actions from './store/actions/index';
 import Logout from './containers/Auth/Logout/Logout';
 import Welcome from './containers/Welcome/Welcome';
 import Account from './containers/Account/Account';
-import Home from './containers/Home/Home';
 
 class App extends Component {  
   componentDidMount(){
@@ -35,7 +34,7 @@ class App extends Component {
         <Route exact path='/ads/:id' component={AdDetails} />
         <Route exact path='/users/:id' component={Account} />
         <Route exact path='/logout' component={Logout} />
-        <Redirect to='/ads' />
+        <Redirect to='/users/:id' />
       </Switch>
       )
     }    
