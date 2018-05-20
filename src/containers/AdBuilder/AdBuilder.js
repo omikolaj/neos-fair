@@ -73,15 +73,15 @@ class AdBuilder extends Component {
         value: 'test' ,
         label: 'Category'
       },
-      email: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'email',
-          placeholder: 'Your E-mail'
-        },
-        value: '',
-        label: 'E-mail'
-      },
+      // email: {
+      //   elementType: 'input',
+      //   elementConfig: {
+      //     type: 'email',
+      //     placeholder: 'Your E-mail'
+      //   },
+      //   value: '',
+      //   label: 'E-mail'
+      // },
     },
   }
 
@@ -117,8 +117,7 @@ class AdBuilder extends Component {
       title: ad.title.value,
       description: ad.description.value,
       user_attributes: {
-        id: this.props.userID,
-        email: ad.email.value
+        id: this.props.userID
       },
       item_attributes: {
         title: ad.itemName.value,
