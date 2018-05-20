@@ -117,6 +117,7 @@ class AdBuilder extends Component {
       title: ad.title.value,
       description: ad.description.value,
       user_attributes: {
+        id: this.props.userID,
         email: ad.email.value
       },
       item_attributes: {
@@ -201,6 +202,7 @@ const mapStateToProps = (state) => {
     message: state.adBuilder.newAd.message,
     error: state.adBuilder.newAd.error,
     isAuthenticated: state.auth.token != null,
+    userID: state.auth.userID
   }
 }
 
