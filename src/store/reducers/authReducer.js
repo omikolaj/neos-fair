@@ -32,22 +32,6 @@ const authFail = (state, action) => {
   }
 }
 
-const loginGithub = (state, action) => {
-  return {
-    ...state,
-    token: action.token,
-    userID: action.userID
-  }
-} 
-
-const loginGithubFail = (state, action) => {
-  return {
-    ...state,
-    token: null,
-    error: action.error
-  }
-}
-
 const logout = (state, action) => {
   return {
     ...state,
@@ -60,10 +44,8 @@ const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.AUTH_START: return authStart(state, action);
     case actionTypes.AUTH_SUCCESS: return authSuccess(state, action);
-    case actionTypes.AUTH_FAIL: return authFail(state, action);
-    case actionTypes.LOGIN_GITHUB: return loginGithub(state, action);
-    case actionTypes.LOGOUT: return logout(state, action);
-    case actionTypes.LOGIN_GITHUB_FAIL: return loginGithubFail(state, action);
+    case actionTypes.AUTH_FAIL: return authFail(state, action);    
+    case actionTypes.LOGOUT: return logout(state, action);    
     default: return state;
   }
 };

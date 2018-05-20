@@ -149,8 +149,7 @@ class Auth extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    const formData = this.formatData();
-    // this.props.onAuth(this.state.controls.username.value, this.state.controls.password.value, this.state.isSignUp)
+    const formData = this.formatData();    
     this.props.onAuth(formData, this.state.isSignUp)
   }
 
@@ -161,7 +160,8 @@ class Auth extends Component {
   }
 
   loginAsGuestHandler = () => {
-    this.props.loginAsGuest()
+    const isSignUp="guest"
+    this.props.onAuth({}, isSignUp)
   }
 
   initLoginGitHubHandler = () => { 
@@ -170,23 +170,6 @@ class Auth extends Component {
 
   render() {
     const formElementsArray = this.formatData()
-    // const formElementsArray1 = [];
-    // for (let key in this.state.controls) {
-    //   if(this.state.isSignUp){
-    //       formElementsArray.push({
-    //         id: key,
-    //         config: this.state.controls[key]
-    //     });           
-    // }else{
-    //   if(!this.state.controls[key].isSignUp){
-    //     formElementsArray.push({
-    //       id: key,
-    //       config: this.state.controls[key]
-    //       });  
-    //     }
-    //   }
-    // }
-
     let form = (
       <form className={classes.Form} onSubmit={this.submitHandler}>
       {formElementsArray.map(formElement => {
@@ -239,8 +222,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAuth: (username, password, isSignUp) => dispatch(actions.auth(username, password, isSignUp)),
-    loginAsGuest: () => dispatch(actions.loginAsGuest()),
+    onAuth: (userInfo, isSignUp) => dispatch(actions.auth(userInfo, isSignUp)),    
     initLoginGithub: () => dispatch(actions.initLoginGithub())
   }
 }

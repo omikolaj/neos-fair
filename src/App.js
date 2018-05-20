@@ -18,10 +18,12 @@ class App extends Component {
     this.props.onTryAutoAuth();
     const githubParams = getQueryParams()
     if(githubParams){
-      if(githubParams.token)
-        this.props.loginGithub(githubParams)
+      if(githubParams.token){
+        const expirationDate = new Date(new Date().getTime() + githubParams.expiresIn * 1000);   
+        this.props.authSuccess({token: githubParams.token, userID: githubParams.id, expirationDate: expirationDate})
+      }
       else{
-        this.props.loginGIthubFail(githubParams)
+        this.props.authFail(githubParams)
       }
     }   
   }
@@ -72,8 +74,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onTryAutoAuth: () => dispatch(actions.authCheckState()),
-    loginGithub: (auth) => dispatch(actions.loginGithub(auth)),
-    loginGIthubFail: (error) => dispatch(actions.loginGithubFail(error))
+    // loginGithub: (auth) => dispatch(actions.loginGithub(auth)),
+    authSuccess: (data) => dispatch(actions.authSuccess(data)),
+    authFail: (error) => (dispatch(actions.authFail(error)))
+    // loginGithubFail: (error) => dispatch(actions.loginGithubFail(error))
   };
 }
 

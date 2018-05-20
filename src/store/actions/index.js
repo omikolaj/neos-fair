@@ -8,11 +8,10 @@ export {
 } from './adBuilder';
 export {
   auth,
+  authSuccess,
+  authFail,
   authCheckState,
   logout,
-  loginAsGuest,
   initLoginGithub,
-  loginGithub,
-  loginGithubFail
 } from './auth';
 
