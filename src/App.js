@@ -17,8 +17,11 @@ class App extends Component {
   componentDidMount(){
     this.props.onTryAutoAuth();
     const githubParams = getQueryParams()
-    if(githubParams){
+    if(githubParams.token){
       this.props.loginGithub(githubParams)
+    }
+    if(githubParams.error){
+      this.props.loginGIthubFail(githubParams)
     }
   }
 
@@ -60,7 +63,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.auth.token !== null,
+    isAuthenticated: state.auth.token != null,
     userID: state.auth.userID
   }
 }
@@ -68,7 +71,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onTryAutoAuth: () => dispatch(actions.authCheckState()),
-    loginGithub: (auth) => dispatch(actions.loginGithub(auth))
+    loginGithub: (auth) => dispatch(actions.loginGithub(auth)),
+    loginGIthubFail: (error) => dispatch(actions.loginGithubFail(error))
   };
 }
 

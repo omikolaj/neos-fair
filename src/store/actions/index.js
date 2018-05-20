@@ -12,6 +12,7 @@ export {
   logout,
   loginAsGuest,
   initLoginGithub,
-  loginGithub
+  loginGithub,
+  loginGithubFail
 } from './auth';
 

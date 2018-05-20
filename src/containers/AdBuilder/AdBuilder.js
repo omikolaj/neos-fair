@@ -200,7 +200,7 @@ const mapStateToProps = (state) => {
     adID: state.adBuilder.newAd.id,
     message: state.adBuilder.newAd.message,
     error: state.adBuilder.newAd.error,
-    isAuthenticated: state.auth.token !== null,
+    isAuthenticated: state.auth.token != null,
   }
 }
 

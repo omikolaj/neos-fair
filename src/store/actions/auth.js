@@ -32,6 +32,13 @@ export const loginGithub = (auth) => {
   }
 }
 
+export const loginGithubFail = (error) => {
+  return {
+    type: actionTypes.LOGIN_GITHUB_FAIL,
+    error: error
+  }
+}
+
 export const logout = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('expirationDate');

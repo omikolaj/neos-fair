@@ -17,4 +17,5 @@ export const AUTH_FAIL = "AUTH_FAIL";
 export const LOGOUT = "LOGOUT";
 
 export const LOGIN_GITHUB = "LOGIN_GITHUB";
+export const LOGIN_GITHUB_FAIL = "LOGIN_GITHUB_FAIL";
 

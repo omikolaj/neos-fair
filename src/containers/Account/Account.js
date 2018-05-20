@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 class Account extends Component {
 
   componentDidMount(){
-    debugger
   }
 
   render() {

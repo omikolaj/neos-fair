@@ -12,8 +12,11 @@ export const getQueryParams = () => {
                           .map((arr) => {
                             paramPairs[[arr[0]]] = arr[1]
                           });
-  if(!('token' in paramPairs)){
-    return null
+  if('token' in paramPairs){
+    return paramPairs    
   }
-  return paramPairs    
+  if('error' in paramPairs){
+    return {error: decodeURIComponent(paramPairs.error)}
+  }
+  return null  
 }
