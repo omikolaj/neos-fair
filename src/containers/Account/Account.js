@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import classes from './Account.css';
 
 class Account extends Component {
 
@@ -8,7 +9,9 @@ class Account extends Component {
 
   render() {
     return (
-      <h1>Account</h1>
+      <div className={classes.Account}>
+        <h1>Account</h1>
+      </div>
     )
   }
 }
