@@ -17,12 +17,13 @@ class App extends Component {
   componentDidMount(){
     this.props.onTryAutoAuth();
     const githubParams = getQueryParams()
-    if(githubParams.token){
-      this.props.loginGithub(githubParams)
-    }
-    if(githubParams.error){
-      this.props.loginGIthubFail(githubParams)
-    }
+    if(githubParams){
+      if(githubParams.token)
+        this.props.loginGithub(githubParams)
+      else{
+        this.props.loginGIthubFail(githubParams)
+      }
+    }   
   }
 
   componentDidUpdate(){    
