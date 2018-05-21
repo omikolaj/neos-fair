@@ -5,6 +5,7 @@ import classes from './Account.css';
 class Account extends Component {
 
   componentDidMount(){
+    this.props.fetchUserInfo()
   }
 
   render() {
@@ -16,5 +17,18 @@ class Account extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.userInfo.user,
+    pastOrders: state.userInfo.pastOrders,
+    ads: state.userInfo.user.ads
+  }
+}
 
-export default Account;
+const mapDispatchToState = (dispatch) => {
+  return {
+    
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToState)(Account);
