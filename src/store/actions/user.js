@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+import { FETCH_USERINFO_FAIL } from '../actions/actionTypes';
 
 export const fetchUserInfoStart = () => {
   return {
@@ -13,6 +14,13 @@ export const fetchUserInfoSuccess = (userData) => {
   }
 }
 
+export const fetchUserInfoFail = (error) => {
+  return {
+    type: actionTypes.FETCH_USERINFO_FAIL,
+    error: error
+  }
+}
+
 // Async
 
 export const fetchUserInfo = (userID) => {
@@ -21,7 +29,15 @@ export const fetchUserInfo = (userID) => {
     fetch('/api/users/' + userID)
     .then(resp=>resp.json())
     .then(userData => {
-      dispatch(fetchUserInfoSuccess(userData))
+      if(userData.status >= 200 && userData.status < 300){
+        dispatch(fetchUserInfoSuccess(userData))
+      }
+      else{        
+        return Promise.reject(userData)
+      }     
     })
-  }
+    .catch(error=>{
+      dispatch(fetchUserInfoFail(error))
+    })
+  } 
 }
