@@ -73,15 +73,6 @@ class AdBuilder extends Component {
         value: 'test' ,
         label: 'Category'
       },
-      // email: {
-      //   elementType: 'input',
-      //   elementConfig: {
-      //     type: 'email',
-      //     placeholder: 'Your E-mail'
-      //   },
-      //   value: '',
-      //   label: 'E-mail'
-      // },
     },
   }
 
@@ -109,10 +100,6 @@ class AdBuilder extends Component {
     event.preventDefault();
     
     let ad = this.state.newAdForm;
-    // for(let formElement in this.state.newAdForm) {
-    //   formData[formElement] = this.state.newAdForm[formElement].value;      
-    // }
-
     const formData = {
       title: ad.title.value,
       description: ad.description.value,

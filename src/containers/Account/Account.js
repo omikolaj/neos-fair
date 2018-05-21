@@ -6,9 +6,41 @@ import Loading from '../../components/UI/Loader/Loader';
 import Button from '../../components/UI/Button/Button';
 import Modal from '../../components/UI/Modal/Modal';
 import Aux from '../../hoc/Aux/Aux';
+import EditInfo from '../../components/Account/EditInfo';
 
 class Account extends Component {
   state ={
+    userUpdateInfoForm: {
+      name: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',          
+        },
+        value: ''
+      },
+      username: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text'
+        },
+        value: ''
+      },
+      email: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text'
+        },
+        value: ''
+      },
+      password: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'password',
+          placeholder: 'Password'
+        },
+        value: ''
+      }
+    },      
     editing: false
   }
 
@@ -20,10 +52,21 @@ class Account extends Component {
     this.setState({editing: true});
   }
 
-  render() {
+  editCancelHandler = () => {
+    this.setState({editing: false})
+  }
+
+  inputChangeHandler = (event, id) => {
+    debugger
+  }
+
+  updateUserInfoHandler = (event) => {
+    debugger
+  }
+
+  render() {    
     let userInfo = null;
-    let editInfo = null;
-    if(!this.props.loading){      
+    if(this.props.loading !== true){      
       userInfo = (
         <div>
           <h1>Account</h1>
@@ -34,12 +77,17 @@ class Account extends Component {
           <Button clicked={this.editInfoHandler}>Edit</Button>
         </div>
       )
-      editInfo = <EditInfo 
-        userInfo={this.props.userInfo}
-      />
-
     }
 
+    let editInfo = null;
+    if(this.state.editing){
+      editInfo = <EditInfo 
+      updateUserInfo={(event) => this.updateUserInfoHandler(event)}
+      userUpdateInfoForm={this.state.userUpdateInfoForm}
+      userInfo={this.props.userInfo}
+      changed={(event, id) => this.inputChangeHandler(event, id)}
+    />
+    }
         
     if(this.props.loading){
       userInfo = <Loading />
@@ -51,12 +99,12 @@ class Account extends Component {
         <p>{this.props.error.error}</p>
       )
     }
-
+  
     return (
       <div className={classes.Account}>
         <Aux>        
           <Modal show={this.state.editing} modalClosed={this.editCancelHandler}>
-            
+            {editInfo}
           </Modal>
           {errorMessage ? errorMessage : userInfo}
         </Aux>
