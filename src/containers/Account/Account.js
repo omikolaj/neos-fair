@@ -68,7 +68,7 @@ class Account extends Component {
     let userInfo = null;
     if(this.props.loading !== true){      
       userInfo = (
-        <div>
+        <div className={classes.Account}>
           <h1>Account</h1>
           <h3>Welcome {this.props.userInfo.name}</h3>
           <p>username: {this.props.userInfo.username}</p>
@@ -78,13 +78,14 @@ class Account extends Component {
         </div>
       )
     }
-
+    
     let editInfo = null;
     if(this.state.editing){
+      const userInfoForEdit = {...this.props.userInfo}
       editInfo = <EditInfo 
       updateUserInfo={(event) => this.updateUserInfoHandler(event)}
       userUpdateInfoForm={this.state.userUpdateInfoForm}
-      userInfo={this.props.userInfo}
+      userInfo={userInfoForEdit}
       changed={(event, id) => this.inputChangeHandler(event, id)}
     />
     }

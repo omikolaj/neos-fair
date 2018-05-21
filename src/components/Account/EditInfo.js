@@ -8,29 +8,29 @@ import classes from './EditInfo.css';
 class EditInfo extends Component{
 
   render(){
+  const userInfo = {...this.props.userInfo}
+  const userInfoUpdateForm = {...this.props.userUpdateInfoForm}
   let formElementsArray = []
-  for(let key in this.props.userUpdateInfoForm){
+  for(let key in userInfoUpdateForm){
     formElementsArray.push({
       id: key,
-      config: this.props.userUpdateInfoForm[key]
+      config: userInfoUpdateForm[key]
     })
   }
   let editInfoForm = (
     <Aux>
       <form className={classes.Form} onSubmit={(event) => this.props.updateUserInfo(event)}>
       {formElementsArray.map(formElement => {
-        debugger
         return <Input
         key={formElement.id}
         elementType={formElement.config.elementType}
         elementConfig={formElement.config.elementConfig}
-        value={this.props.userInfo[formElement] ? this.props.userInfo[formElement].value : ''}
+        value={formElement.id ? userInfo[formElement.id] : ''}
         changed={(event) => this.props.changed(event, formElement.id)}
         />
       })}
-      </form>
-      {/* <Button>Update</Button> */}
       <Button btnType="Success">Update</Button>
+      </form>
     </Aux>
     )
 
