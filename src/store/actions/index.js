@@ -14,4 +14,7 @@ export {
   logout,
   initLoginGithub,
 } from './auth';
+export{
+  fetchUserInfo
+} from './user';
 
