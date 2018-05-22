@@ -10,42 +10,102 @@ import EditInfo from '../../components/Account/EditInfo';
 
 class Account extends Component {
   state ={
-    userUpdateInfoForm: {
-      name: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'text',          
-        },
-        value: ''
-      },
-      username: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'text'
-        },
-        value: ''
-      },
-      email: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'text'
-        },
-        value: ''
-      },
-      password: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'password',
-          placeholder: 'Password'
-        },
-        value: ''
-      }
-    },      
     editing: false
   }
 
   componentDidMount(){
     this.props.fetchUserInfo(this.props.userID)
+  }
+  
+  static getDerivedStateFromProps(nextProps, prevState){
+    return {
+      userUpdateInfoForm: {
+        name: {
+          elementType: 'input',
+          elementConfig: {
+            type: 'text',
+            placeholder: 'Name'         
+          },
+          value: nextProps.userInfo.name,
+          validation: {
+            required: true,
+            minlength: 4
+          },
+          touched: false,
+          valid: false,
+        },
+        username: {
+          elementType: 'input',
+          elementConfig: {
+            type: 'text'
+          },
+          value: nextProps.userInfo.username,
+          validation: {
+            required: true,
+            minLength: 6
+          },
+          touched: false,
+          valid: false,
+        },
+        email: {
+          elementType: 'input',
+          elementConfig: {
+            type: 'email'
+          },
+          value: nextProps.userInfo.email,
+          validation: {
+            required: true,
+            isEmail: true
+          },
+          touched: false,
+          valid: false,
+        },
+        password: {
+          elementType: 'input',
+          elementConfig: {
+            type: 'password',
+            placeholder: 'Password'
+          },
+          value: '',
+          validation: {
+            required: true,
+            minLength: 6
+          },
+          touched: false,
+          valid: false,
+        },
+      },
+    }
+  }
+
+  checkValidity = (value, rules) => {
+    let isValid = true;
+    if (!rules) {
+        return true;
+    }
+    
+    if (rules.required) {
+        isValid = value.trim() !== '' && isValid;
+    }
+
+    if (rules.minLength) {
+        isValid = value.length >= rules.minLength && isValid
+    }
+
+    if (rules.maxLength) {
+        isValid = value.length <= rules.maxLength && isValid
+    }
+
+    if (rules.isEmail) {
+        const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        isValid = pattern.test(value) && isValid
+    }
+
+    if (rules.isNumeric) {
+        const pattern = /^\d+$/;
+        isValid = pattern.test(value) && isValid
+    }
+    return isValid;      
   }
 
   editInfoHandler = () => {
@@ -56,8 +116,19 @@ class Account extends Component {
     this.setState({editing: false})
   }
 
-  inputChangeHandler = (event, id) => {
-    debugger
+  inputChangedHandler = (event, id) => {
+    const updatedUserInfo = {
+      ...this.state.userUpdateInfoForm,
+      [id]: {
+        ...this.state.userUpdateInfoForm[id],
+        value: event.target.value,
+        valid: this.checkValidity(event.target.value, this.state.userUpdateInfoForm[id].validation),
+        touched: true,
+      }  
+    }
+    this.setState({
+      userUpdateInfoForm: updatedUserInfo
+    })
   }
 
   updateUserInfoHandler = (event) => {
@@ -81,12 +152,11 @@ class Account extends Component {
     
     let editInfo = null;
     if(this.state.editing){
-      const userInfoForEdit = {...this.props.userInfo}
       editInfo = <EditInfo 
       updateUserInfo={(event) => this.updateUserInfoHandler(event)}
       userUpdateInfoForm={this.state.userUpdateInfoForm}
-      userInfo={userInfoForEdit}
-      changed={(event, id) => this.inputChangeHandler(event, id)}
+      userInfo={this.state.userUpdateInfoForm}
+      changed={(event, id) => this.inputChangedHandler(event, id)}
     />
     }
         

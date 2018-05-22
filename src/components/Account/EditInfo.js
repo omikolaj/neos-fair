@@ -25,7 +25,7 @@ class EditInfo extends Component{
         key={formElement.id}
         elementType={formElement.config.elementType}
         elementConfig={formElement.config.elementConfig}
-        value={formElement.id ? userInfo[formElement.id] : ''}
+        value={formElement.id ? userInfo[formElement.id].value : ''}
         changed={(event) => this.props.changed(event, formElement.id)}
         />
       })}

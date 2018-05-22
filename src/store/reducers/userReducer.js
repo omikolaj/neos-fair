@@ -3,7 +3,11 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   loading: null,
   error: null,
-  userInfo: {}
+  userInfo: {
+    name: '',
+    username: '',
+    email: ''
+  }
 };
 
 const fetchUserInfoStart = (state, action) => {
