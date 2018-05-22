@@ -37,7 +37,8 @@ class Account extends Component {
         username: {
           elementType: 'input',
           elementConfig: {
-            type: 'text'
+            type: 'text',
+            placeholder: 'Username'
           },
           value: nextProps.userInfo.username,
           validation: {
@@ -50,7 +51,8 @@ class Account extends Component {
         email: {
           elementType: 'input',
           elementConfig: {
-            type: 'email'
+            type: 'email',
+            placeholder: 'Email'
           },
           value: nextProps.userInfo.email,
           validation: {
@@ -137,8 +139,26 @@ class Account extends Component {
     })
   }
 
+  formatUserUpdateForm = () => {
+    const userUpdatedForm = {...this.state.userUpdateInfoForm}
+    let userFormattedForm = [];
+    for(let key in userUpdatedForm){
+      userFormattedForm.push({
+        id: key,
+        value: userUpdatedForm[key].value
+      })
+    }
+    userFormattedForm.push({
+      id: 'id',
+      value: this.props.match.params.id
+    })
+    return userFormattedForm
+  }
+
   updateUserInfoHandler = (event) => {
-    debugger
+    event.preventDefault()
+    const userForm = this.formatUserUpdateForm()
+    this.props.updateUserInfo(userForm)
   }
 
   render() {    
@@ -202,7 +222,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToState = (dispatch) => {
   return {
-    fetchUserInfo: (userID) => dispatch(actions.fetchUserInfo(userID))
+    fetchUserInfo: (userID) => dispatch(actions.fetchUserInfo(userID)),
+    updateUserInfo: (userInfo) => dispatch(actions.updateUserInfo(userInfo))
   }
 }
 

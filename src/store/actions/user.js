@@ -21,7 +21,54 @@ export const fetchUserInfoFail = (error) => {
   }
 }
 
+export const updateUserInfoStart = () => {
+  return {
+    type: actionTypes.UPDATE_USER_INFO_START
+  }
+}
+
+export const updateUserInfoSuccess = (resp) => {
+  return {
+    type: actionTypes.UPDATE_USER_INFO_SUCCESS,
+    resp: resp
+  }
+}
+
+export const updateUserInfoFail = (error) => {
+  return {
+    type: actionTypes.UPDATE_USER_INFO_FAIL,
+    error: error
+  }
+}
+
+
+const formatData = (userInfo) => {
+  let formattedUserInfo = {};
+  userInfo.map(infoType => {
+    formattedUserInfo[infoType.id] = infoType.value
+  })
+  return formattedUserInfo;
+}
+
 // Async
+
+export const updateUserInfo = (userInfo) => {
+  const userInfoFormatted = formatData(userInfo)
+  return dispatch => {
+    dispatch(updateUserInfoStart());
+    fetch('/api/users/' + userInfoFormatted.id, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(userInfoFormatted)
+    })
+    .then(resp=>resp.json())
+    .then(resp => {
+      debugger
+    })
+  }
+}
 
 export const fetchUserInfo = (userID) => {
   return dispatch => {

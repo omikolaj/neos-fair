@@ -15,6 +15,7 @@ export {
   initLoginGithub,
 } from './auth';
 export{
-  fetchUserInfo
+  fetchUserInfo,
+  updateUserInfo
 } from './user';
 
