@@ -12,20 +12,23 @@ const input = (props) => {
 
   switch(props.elementType){
     case('input'):
-      inputElement = <input 
+      inputElement = <input
+        className={inputClasses.join(' ')} 
         {...props.elementConfig}
         value={props.value}
         onChange={props.changed} />
       break;
     case('textarea'):
-      inputElement = <textarea 
+      inputElement = <textarea
+        className={inputClasses.join(' ')}  
         {...props.elementConfig}
         value={props.value}
         onChange={props.changed} />
       break;
     case('select'):
       inputElement = (
-        <select 
+        <select
+          className={inputClasses.join(' ')}  
           value={props.value}
           onChange={props.changed}>
           {props.elementConfig.options.map(option => (
@@ -38,6 +41,7 @@ const input = (props) => {
       break;
     default:
       inputElement = <input 
+        className={inputClasses.join(' ')} 
         {...props.elementConfig}
         value={props.value}
         onChange={props.changed} />;
@@ -45,8 +49,9 @@ const input = (props) => {
 
   return (
     <Aux>
+      <div className={classes.Input}>
         {inputElement}    
-      
+      </div>
     </Aux>
   )
 }

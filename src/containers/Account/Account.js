@@ -32,7 +32,7 @@ class Account extends Component {
             minlength: 4
           },
           touched: false,
-          valid: false,
+          valid: true,
         },
         username: {
           elementType: 'input',
@@ -42,10 +42,10 @@ class Account extends Component {
           value: nextProps.userInfo.username,
           validation: {
             required: true,
-            minLength: 6
+            minLength: 4
           },
           touched: false,
-          valid: false,
+          valid: true,
         },
         email: {
           elementType: 'input',
@@ -58,7 +58,7 @@ class Account extends Component {
             isEmail: true
           },
           touched: false,
-          valid: false,
+          valid: true,
         },
         password: {
           elementType: 'input',
@@ -162,6 +162,7 @@ class Account extends Component {
       updateUserInfo={(event) => this.updateUserInfoHandler(event)}
       userUpdateInfoForm={this.state.userUpdateInfoForm}
       userInfo={this.state.userUpdateInfoForm}
+      isFormValid={this.state.isFormValid}
       changed={(event, id) => this.inputChangedHandler(event, id)}
     />
     }

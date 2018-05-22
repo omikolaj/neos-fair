@@ -31,7 +31,7 @@ class EditInfo extends Component{
         changed={(event) => this.props.changed(event, formElement.id)}
         />
       })}
-      <Button btnType="Success" disabled={!this.props.userInfo.isFormValid}>Update</Button>
+      <Button btnType="Success" disabled={!this.props.isFormValid}>Update</Button>
       </form>
     </Aux>
     )
