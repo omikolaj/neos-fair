@@ -173,15 +173,15 @@ class Account extends Component {
             {userInfo}
           </div>
         )
-          userInfo.push(<h1>Account</h1>)
+          userInfo.push(<h1 key='accountInfo'>Account</h1>)
           if(this.props.info !== ''){
-            userInfo.push(<p>{this.props.info}</p>)
+            userInfo.push(<p key='info'>{this.props.info}</p>)
           } 
-          userInfo.push(<h3>Welcome {this.props.userInfo.name}</h3>)
-          userInfo.push(<p>username: {this.props.userInfo.username}</p>)
-          userInfo.push(<p>email: {this.props.userInfo.email}</p>)
+          userInfo.push(<h3 key={this.props.userInfo.name}>Welcome {this.props.userInfo.name}</h3>)
+          userInfo.push(<p key='username'>username: {this.props.userInfo.username}</p>)
+          userInfo.push(<p key='email'>email: {this.props.userInfo.email}</p>)
           {/* <p>Wallet: {}</p> */}
-          userInfo.push(<Button clicked={this.editInfoHandler}>Edit</Button>)
+          userInfo.push(<Button key='editButton' clicked={this.editInfoHandler}>Edit</Button>)
     }
     
     let editInfo = null;

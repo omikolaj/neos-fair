@@ -75,6 +75,7 @@ class AdBuilder extends Component {
       },
     },
   }
+  
 
   componentWillUnmount(){
     this.props.onInitAdPost()
