@@ -75,6 +75,7 @@ class Account extends Component {
           valid: false,
         },
       },
+      isFormValid: false
     }
   }
 
@@ -124,10 +125,15 @@ class Account extends Component {
         value: event.target.value,
         valid: this.checkValidity(event.target.value, this.state.userUpdateInfoForm[id].validation),
         touched: true,
-      }  
+      }        
+    }
+    let isFormValid = true;
+    for(let inputID in updatedUserInfo){
+      isFormValid = updatedUserInfo[inputID].valid && isFormValid;
     }
     this.setState({
-      userUpdateInfoForm: updatedUserInfo
+      userUpdateInfoForm: updatedUserInfo,
+      isFormValid: isFormValid
     })
   }
 

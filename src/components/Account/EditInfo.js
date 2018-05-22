@@ -26,10 +26,12 @@ class EditInfo extends Component{
         elementType={formElement.config.elementType}
         elementConfig={formElement.config.elementConfig}
         value={formElement.id ? userInfo[formElement.id].value : ''}
+        touched={formElement.config.touched}
+        invalid={!formElement.config.valid}
         changed={(event) => this.props.changed(event, formElement.id)}
         />
       })}
-      <Button btnType="Success">Update</Button>
+      <Button btnType="Success" disabled={!this.props.userInfo.isFormValid}>Update</Button>
       </form>
     </Aux>
     )
