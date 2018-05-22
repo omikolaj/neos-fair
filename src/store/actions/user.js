@@ -30,6 +30,7 @@ export const updateUserInfoStart = () => {
 export const updateUserInfoSuccess = (resp) => {
   return {
     type: actionTypes.UPDATE_USER_INFO_SUCCESS,
+    userInfo: resp.userInfo,
     resp: resp
   }
 }
@@ -43,9 +44,11 @@ export const updateUserInfoFail = (error) => {
 
 
 const formatData = (userInfo) => {
-  let formattedUserInfo = {};
+  let formattedUserInfo = {
+    user: {}
+  };
   userInfo.map(infoType => {
-    formattedUserInfo[infoType.id] = infoType.value
+    formattedUserInfo.user[infoType.id] = infoType.value
   })
   return formattedUserInfo;
 }
@@ -56,16 +59,25 @@ export const updateUserInfo = (userInfo) => {
   const userInfoFormatted = formatData(userInfo)
   return dispatch => {
     dispatch(updateUserInfoStart());
-    fetch('/api/users/' + userInfoFormatted.id, {
+    fetch('/api/users/' + userInfoFormatted.user.id, {
       method: 'PATCH',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Accept': 'application/json'
       },
       body: JSON.stringify(userInfoFormatted)
     })
     .then(resp=>resp.json())
-    .then(resp => {
-      debugger
+    .then(data => {
+      if(data.status >= 200 && data.status < 300){
+        dispatch(updateUserInfoSuccess(data))
+      }
+      else{
+        return Promise.reject(data)
+      }
+    })
+    .catch(error => {
+      dispatch(updateUserInfoFail(error))
     })
   }
 }

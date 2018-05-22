@@ -16,7 +16,7 @@ class Account extends Component {
   componentDidMount(){
     this.props.fetchUserInfo(this.props.userID)
   }
-  
+
   static getDerivedStateFromProps(nextProps, prevState){
     return {
       userUpdateInfoForm: {
@@ -157,23 +157,31 @@ class Account extends Component {
 
   updateUserInfoHandler = (event) => {
     event.preventDefault()
+    this.setState({
+      editing: false,
+    })
     const userForm = this.formatUserUpdateForm()
     this.props.updateUserInfo(userForm)
   }
 
   render() {    
-    let userInfo = null;
-    if(this.props.loading !== true){      
-      userInfo = (
-        <div className={classes.Account}>
-          <h1>Account</h1>
-          <h3>Welcome {this.props.userInfo.name}</h3>
-          <p>username: {this.props.userInfo.username}</p>
-          <p>email: {this.props.userInfo.email}</p>
+    let showUserInfo = null;
+    if(this.props.loading !== true){ 
+      let userInfo = [];   
+        showUserInfo = (
+          <div className={classes.Account}>
+            {userInfo}
+          </div>
+        )
+          userInfo.push(<h1>Account</h1>)
+          if(this.props.info !== ''){
+            userInfo.push(<p>{this.props.info}</p>)
+          } 
+          userInfo.push(<h3>Welcome {this.props.userInfo.name}</h3>)
+          userInfo.push(<p>username: {this.props.userInfo.username}</p>)
+          userInfo.push(<p>email: {this.props.userInfo.email}</p>)
           {/* <p>Wallet: {}</p> */}
-          <Button clicked={this.editInfoHandler}>Edit</Button>
-        </div>
-      )
+          userInfo.push(<Button clicked={this.editInfoHandler}>Edit</Button>)
     }
     
     let editInfo = null;
@@ -188,7 +196,7 @@ class Account extends Component {
     }
         
     if(this.props.loading){
-      userInfo = <Loading />
+      showUserInfo = <Loading />
     }
 
     let errorMessage = null;
@@ -197,14 +205,14 @@ class Account extends Component {
         <p>{this.props.error.error}</p>
       )
     }
-  
+    
     return (
       <div className={classes.Account}>
         <Aux>        
           <Modal show={this.state.editing} modalClosed={this.editCancelHandler}>
             {editInfo}
           </Modal>
-          {errorMessage ? errorMessage : userInfo}
+          {errorMessage ? errorMessage : showUserInfo}
         </Aux>
       </div>
     )
@@ -216,7 +224,8 @@ const mapStateToProps = (state) => {
     userInfo: state.userInfo.userInfo,
     loading: state.userInfo.loading,
     error: state.userInfo.error,
-    userID: state.auth.userID
+    info: state.userInfo.info,
+    userID: state.auth.userID    
   }
 }
 
