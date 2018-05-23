@@ -5,4 +5,5 @@
   justify-content: center;
   padding: 1rem;
   grid-row-gap: .5rem;
+  justify-items: center;
 }

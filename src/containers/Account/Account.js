@@ -182,7 +182,7 @@ class Account extends Component {
           userInfo.push(<p key='username'>username: {this.props.userInfo.username}</p>)
           userInfo.push(<p key='email'>email: {this.props.userInfo.email}</p>)
           {/* <p>Wallet: {}</p> */}
-          userInfo.push(<Button key='editButton' clicked={this.editInfoHandler}>Edit</Button>)
+          userInfo.push(<Button key='editButton' btnType="EditButton" clicked={this.editInfoHandler}>Edit</Button>)
     }
     
     let editInfo = null;

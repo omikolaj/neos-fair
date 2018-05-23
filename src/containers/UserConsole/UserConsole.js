@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classes from './UserConsole.css';
 import * as action from '../../store/actions/index';
+import Aux from '../../hoc/Aux/Aux';
+import Button from '../../components/UI/Button/Button';
 
 class UserConsole extends Component {
   componentDidMount(){
@@ -10,13 +12,18 @@ class UserConsole extends Component {
   }
 
   render(){
-    let userAds = null;
-
+    const userAds = this.props.userAds.map(ad => {
+      return <div className={classes.UserAds}>
+        <h3>{ad.title}</h3>
+        <Button btnType="RemoveButton">Remove</Button>
+      </div>
+    })
 
     return (
-      <div className={classes.UserConsole}>
-
-      </div>
+      <Aux>
+        <h2>Posted Ads</h2>
+          {userAds}
+      </Aux>
     );
   }
 }

@@ -27,3 +27,18 @@
 .Danger {
   color: #944317;
 }
+
+.RemoveButton {
+  justify-self: center;
+  align-self: center;
+  height: 60%;
+  width: 60%;
+  max-height: 32px;
+}
+
+.EditButton {
+  justify-self: center;
+  align-self: center;
+  height: 80%;
+  width: 60%;
+}

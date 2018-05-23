@@ -7,10 +7,6 @@ import classes from './EditInfo.css';
 
 class EditInfo extends Component{
 
-  test = (e) => {
-    debugger
-  }
-
   render(){
   const userInfo = {...this.props.userInfo}
   const userInfoUpdateForm = {...this.props.userUpdateInfoForm}

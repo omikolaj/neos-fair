@@ -17,7 +17,8 @@ class AdBuilder extends Component {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Display title for your ad'
+          placeholder: 'Display title for your ad',
+          maxlength: 30
         },
         value: '',
         label: 'Ad Title'
