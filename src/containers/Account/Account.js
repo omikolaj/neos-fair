@@ -169,6 +169,7 @@ class Account extends Component {
   render() {    
     let showUserInfo = null;
     if(this.props.loading !== true){ 
+      let errorMessage = null;
       let userInfo = [];   
         showUserInfo = (
           <div className={classes.Account}>
@@ -178,7 +179,10 @@ class Account extends Component {
           userInfo.push(<h1 key='accountInfo'>Account</h1>)
           if(this.props.info !== ''){
             userInfo.push(<FlashMessage duration={5000}><span key='info'>{this.props.info}</span></FlashMessage>)
-          } 
+          }
+          if(this.props.error){
+            userInfo.push(<FlashMessage duraction={5000}><span>{this.props.error.fail}</span></FlashMessage>)
+          }
           userInfo.push(<h3 key={this.props.userInfo.name}>Welcome {this.props.userInfo.name}</h3>)
           userInfo.push(<span key='username'>username: {this.props.userInfo.username}</span>)
           userInfo.push(<span key='email'>email: {this.props.userInfo.email}</span>)
@@ -200,13 +204,6 @@ class Account extends Component {
     if(this.props.loading){
       showUserInfo = <Loading />
     }
-
-    let errorMessage = null;
-    if(this.props.error){
-      errorMessage = (
-        <p>{this.props.error.error}</p>
-      )
-    }
     
     return (
       <div className={classes.Account}>
@@ -214,7 +211,7 @@ class Account extends Component {
           <Modal show={this.state.editing} modalClosed={this.editCancelHandler}>
             {editInfo}
           </Modal>
-          {errorMessage ? <FlashMessage duration={500}>errorMessage</FlashMessage> : showUserInfo}
+          {showUserInfo}
           <UserConsole />
         {/* </Aux> */}
       </div>
