@@ -8,6 +8,7 @@ import Modal from '../../components/UI/Modal/Modal';
 import Aux from '../../hoc/Aux/Aux';
 import EditInfo from '../../components/Account/EditInfo';
 import UserConsole from '../UserConsole/UserConsole';
+import FlashMessage from 'react-flash-message'
 
 class Account extends Component {
   state ={
@@ -176,11 +177,11 @@ class Account extends Component {
         )
           userInfo.push(<h1 key='accountInfo'>Account</h1>)
           if(this.props.info !== ''){
-            userInfo.push(<p key='info'>{this.props.info}</p>)
+            userInfo.push(<FlashMessage duration={5000}><span key='info'>{this.props.info}</span></FlashMessage>)
           } 
           userInfo.push(<h3 key={this.props.userInfo.name}>Welcome {this.props.userInfo.name}</h3>)
-          userInfo.push(<p key='username'>username: {this.props.userInfo.username}</p>)
-          userInfo.push(<p key='email'>email: {this.props.userInfo.email}</p>)
+          userInfo.push(<span key='username'>username: {this.props.userInfo.username}</span>)
+          userInfo.push(<span key='email'>email: {this.props.userInfo.email}</span>)
           {/* <p>Wallet: {}</p> */}
           userInfo.push(<Button key='editButton' btnType="EditButton" clicked={this.editInfoHandler}>Edit</Button>)
     }
@@ -213,7 +214,7 @@ class Account extends Component {
           <Modal show={this.state.editing} modalClosed={this.editCancelHandler}>
             {editInfo}
           </Modal>
-          {errorMessage ? errorMessage : showUserInfo}
+          {errorMessage ? <FlashMessage duration={500}>errorMessage</FlashMessage> : showUserInfo}
           <UserConsole />
         {/* </Aux> */}
       </div>
