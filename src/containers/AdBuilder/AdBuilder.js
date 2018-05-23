@@ -18,7 +18,7 @@ class AdBuilder extends Component {
         elementConfig: {
           type: 'text',
           placeholder: 'Display title for your ad',
-          maxlength: 30
+          maxLength: 30
         },
         value: '',
         label: 'Ad Title'
@@ -165,16 +165,23 @@ class AdBuilder extends Component {
     }
     adPosted = (
       <div>
-        {postedAdRedirect}
-        {this.props.error ? this.props.message : null}        
+        {postedAdRedirect}                
         <Route exact path={`/ads/${this.props.adID}`} component={AdDetails}/>
       </div>
      )
+   }
+   let errors = null;
+   if(this.props.validations.length > 0){
+    errors = this.props.validations.map((msg, index) => {
+      return <span key={index}>{msg}</span>      
+      }
+    )   
    }
 
    const adForm = this.props.loading ? <Loader /> : form;
    return (
       <div className={classes.AdBuilder}>
+        {errors}
         {adPosted}
         {this.props.isAuthenticated ? adForm : <Redirect to="/" />}
       </div>
@@ -187,7 +194,7 @@ const mapStateToProps = (state) => {
     loading: state.adBuilder.newAd.loading,
     posted: state.adBuilder.newAd.posted,
     adID: state.adBuilder.newAd.id,
-    message: state.adBuilder.newAd.message,
+    validations: state.adBuilder.newAd.validations,
     error: state.adBuilder.newAd.error,
     isAuthenticated: state.auth.token != null,
     userID: state.auth.userID

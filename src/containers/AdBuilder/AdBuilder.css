@@ -1,3 +1,11 @@
+.AdBuilder {
+  display: grid;
+  grid-template-columns: 16rem;
+  grid-auto-rows: minmax(2rem, auto);
+  justify-content: center;
+  padding: 1rem; 
+  grid-row-gap: .5rem;
+}
 
 .Form {
   display: grid;
