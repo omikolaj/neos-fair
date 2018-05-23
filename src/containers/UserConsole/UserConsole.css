@@ -1,0 +1,7 @@
+.UserConsole {
+  display: grid;
+  grid-template-columns: repeat(2,16rem);
+  grid-auto-rows: minmax(2rem, auto);
+  justify-content: center;   
+  grid-row-gap: .5rem; 
+}

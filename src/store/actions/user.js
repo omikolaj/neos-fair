@@ -1,5 +1,4 @@
 import * as actionTypes from '../actions/actionTypes';
-import { FETCH_USERINFO_FAIL } from '../actions/actionTypes';
 
 export const fetchUserInfoStart = () => {
   return {
@@ -41,7 +40,6 @@ export const updateUserInfoFail = (error) => {
     error: error
   }
 }
-
 
 const formatData = (userInfo) => {
   let formattedUserInfo = {

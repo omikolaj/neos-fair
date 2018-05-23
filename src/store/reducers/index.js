@@ -3,12 +3,14 @@ import adsReducer from './adsReducer';
 import adBuilderReducer from './adBuilderReducer';
 import authReducer from './authReducer';
 import userReducer from './userReducer';
+import userConsoleReducer from './userConsoleReducer'
 
 const rootReducer = combineReducers({
   ads: adsReducer,
   adBuilder: adBuilderReducer,
   auth: authReducer,
-  userInfo: userReducer
+  userInfo: userReducer,
+  userConsole: userConsoleReducer
 })
 
 export default rootReducer;

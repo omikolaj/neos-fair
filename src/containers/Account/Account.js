@@ -7,6 +7,7 @@ import Button from '../../components/UI/Button/Button';
 import Modal from '../../components/UI/Modal/Modal';
 import Aux from '../../hoc/Aux/Aux';
 import EditInfo from '../../components/Account/EditInfo';
+import UserConsole from '../UserConsole/UserConsole';
 
 class Account extends Component {
   state ={
@@ -208,12 +209,13 @@ class Account extends Component {
     
     return (
       <div className={classes.Account}>
-        <Aux>        
+        {/* <Aux>         */}
           <Modal show={this.state.editing} modalClosed={this.editCancelHandler}>
             {editInfo}
           </Modal>
           {errorMessage ? errorMessage : showUserInfo}
-        </Aux>
+          <UserConsole />
+        {/* </Aux> */}
       </div>
     )
   }

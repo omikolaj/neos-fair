@@ -16,6 +16,10 @@ export {
 } from './auth';
 export{
   fetchUserInfo,
-  updateUserInfo
+  updateUserInfo,
 } from './user';
+export{
+  fetchUserAds,
+  fetchUserOrders
+} from './userConsole'
 
