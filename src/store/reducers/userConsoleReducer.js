@@ -25,7 +25,7 @@ const fetchUserAdsSuccess = (state, action) => {
     loading: false,
     error: null,
     userAds: [
-      ...action.userAds
+      ...action.userAds.ads
     ],
     userOrders: [
       ...state.userOrders
@@ -69,7 +69,7 @@ const fetchUserOrdersSuccess = (state, action) => {
       ...state.userAds
     ],
     userOrders: [
-      ...action.userOrders
+      ...action.userOrders.orders
     ]
   }
 }

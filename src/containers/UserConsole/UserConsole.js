@@ -5,8 +5,8 @@ import * as action from '../../store/actions/index';
 
 class UserConsole extends Component {
   componentDidMount(){
-    this.props.fetchUserAds(this.props.match.params.id)
-    this.props.fetchUserOrders(this.props.match.params.id)
+    this.props.fetchUserAds(this.props.userID)
+    this.props.fetchUserOrders(this.props.userID)
   }
 
   render(){
@@ -23,7 +23,11 @@ class UserConsole extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    
+    userAds: state.userConsole.userAds,
+    userOrders: state.userConsole.userOrders,
+    loading: state.userConsole.loading,
+    error: state.userConsole.error,
+    userID: state.auth.userID
   }
 }
 
