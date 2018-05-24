@@ -40,7 +40,50 @@ export const fetchUserOrdersFail = (error) => {
   }
 }
 
+export const removeUserAdStart = () => {
+  return {
+    type: actionTypes.REMOVE_USER_AD_START
+  }
+}
+
+export const removeUserAdSuccess = (resp) => {
+  return {
+    type: actionTypes.REMOVE_USER_AD_SUCCESS,
+    targetAd: resp.removed_ad_id
+  }
+}
+
+export const removeUserAdFail = (error) => {
+  return {
+    type: actionTypes.REMOVE_USER_AD_FAIL,
+    error: error
+  }
+}
+
 // Async
+
+export const removeUserAd = (userID, adID) => {
+  return dispatch => {
+    dispatch(removeUserAdStart())
+    fetch(`/api/users/${userID}/ads/${adID}`,{
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(resp=>resp.json())
+    .then(data => {
+      if(data.status >=200 && data.status < 300){
+        dispatch(removeUserAdSuccess(data))
+      }else{
+        return Promise.reject(data)
+      }
+    })
+    .catch(error=>{
+      dispatch(removeUserAdFail(error))
+    })
+  }
+}
 
 export const fetchUserAds = (userID) => {
   return dispatch => {

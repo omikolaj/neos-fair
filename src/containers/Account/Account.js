@@ -207,13 +207,11 @@ class Account extends Component {
     
     return (
       <div className={classes.Account}>
-        {/* <Aux>         */}
           <Modal show={this.state.editing} modalClosed={this.editCancelHandler}>
             {editInfo}
           </Modal>
           {showUserInfo}
           <UserConsole />
-        {/* </Aux> */}
       </div>
     )
   }

@@ -4,6 +4,8 @@ import classes from './UserConsole.css';
 import * as action from '../../store/actions/index';
 import Aux from '../../hoc/Aux/Aux';
 import Button from '../../components/UI/Button/Button';
+import UserAd from '../../components/Account/UserAd/UserAd';
+import Loader from '../../components/UI/Loader/Loader';
 
 class UserConsole extends Component {
   componentDidMount(){
@@ -11,19 +13,39 @@ class UserConsole extends Component {
     this.props.fetchUserOrders(this.props.userID)
   }
 
-  render(){
-    const userAds = this.props.userAds.map(ad => {
-      return <div className={classes.UserAds}>
-        <h3>{ad.title}</h3>
-        <Button btnType="RemoveButton">Remove</Button>
-      </div>
-    })
+  shouldComponentUpdate(){
+    return true;
+  }
 
+  removeUserAdHandler = (adID, userID) => {
+    this.props.removeUserAd(userID, adID)
+  }
+
+  render(){
+    let usrAds = null;    
+    if((!this.props.loading) && this.props.userAds.length > 0){
+      usrAds = this.props.userAds.map(ad => {
+        return <div key={ad.id ? ad.id : 0} className={classes.UserAds}>
+          <UserAd title={ad.title} />
+          <Button btnType="RemoveButton" clicked={(userID, adID) => this.removeUserAdHandler(ad.id, this.props.userID)}>Remove</Button>
+        </div>
+      })    
+    }
+    if(this.props.loading){
+      usrAds = <Loader />
+    }
+
+    if((!this.props.loading) && this.props.userAds.length === 0){
+      usrAds = (
+        <p>You have no posted ads</p>
+      )
+    }
+    
     return (
-      <Aux>
+      <div>
         <h2>Posted Ads</h2>
-          {userAds}
-      </Aux>
+          {usrAds}
+      </div>
     );
   }
 }
@@ -41,7 +63,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserAds: (userID) => dispatch(action.fetchUserAds(userID)),
-    fetchUserOrders: (userID) => dispatch(action.fetchUserOrders(userID))
+    fetchUserOrders: (userID) => dispatch(action.fetchUserOrders(userID)),
+    removeUserAd: (userID, adID) => dispatch(action.removeUserAd(userID, adID))
   }
 }
 

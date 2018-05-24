@@ -127,10 +127,10 @@ class AdBuilder extends Component {
     this.props.createNewAd(newAd);
 
    }
-   
-   updateHistory = (id) => {
-     this.props.history.push('/ads/' + id)
-   }
+
+  //  updateHistory = (id) => {
+  //    this.props.history.push('/ads/' + id)
+  //  }
 
  render(){
    const formElementsArray = [];
@@ -160,9 +160,9 @@ class AdBuilder extends Component {
   let adPosted = null;
   if(this.props.adID || this.props.error){
     const postedAdRedirect = this.props.posted ? <Redirect to={`/ads/` + this.props.adID} /> : null ;
-    if(postedAdRedirect){
-      this.updateHistory(this.props.adID)
-    }
+    // if(postedAdRedirect){
+    //   this.updateHistory(this.props.adID)
+    // }
     adPosted = (
       <div>
         {postedAdRedirect}                

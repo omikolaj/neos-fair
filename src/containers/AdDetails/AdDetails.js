@@ -34,7 +34,8 @@ class AdDetails extends Component {
 const MapStateToProps = (state) => {
   return {
     ad: state.ads.ad,
-    loading: state.ads.loading
+    loading: state.ads.loading,
+    new: state.adBuilder.newAd.new
   }
 }
 

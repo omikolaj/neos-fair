@@ -8,6 +8,7 @@ const initialState = {
     validations: [],
     posted: false,
     error: false,    
+    new: false
   }  
 }
 
@@ -60,7 +61,7 @@ const adPostingInit = (state , action) => {
         ...state.newAd.validations
       ],
       posted: false,
-      error: false, 
+      error: false,
     }
   }
 }

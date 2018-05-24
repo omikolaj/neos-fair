@@ -20,6 +20,7 @@ export{
 } from './user';
 export{
   fetchUserAds,
-  fetchUserOrders
+  fetchUserOrders,
+  removeUserAd
 } from './userConsole'
 

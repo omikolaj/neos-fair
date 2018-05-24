@@ -89,6 +89,49 @@ const fetchUserOrdersFail = (state, action) => {
   }
 }
 
+const removeUserAdStart = (state, action) => {
+  return {
+    loading: true,
+    error: null,
+    userAds: [
+      ...state.userAds
+    ],
+    userOrders: [
+      ...state.userOrders
+    ]
+  }
+}
+
+const removeUserAdSuccess = (state, action) => {
+  const currentUserAds = [...state.userAds]
+  const updatedUserAds = currentUserAds.filter((ad) => ad.id !== action.targetAd)
+  return {
+    loading: false,
+    error: null,
+    userAds: [
+      ...updatedUserAds
+    ],
+    userOrders: [
+      ...state.userOrders
+    ]
+  }
+}
+
+const removeUserAdFail = (state, action) => {
+  return {
+    loading: false,
+    error: {
+      ...action.error
+    },
+    userAds: [
+      ...state.userAds
+    ],
+    userOrders: [
+      ...state.userOrders
+    ]
+  }
+}
+
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.FETCH_USER_ADS_START: return fetchUserAdsStart(state, action);
@@ -97,6 +140,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_USER_ORDERS_START: return fetchUserOrdersStart(state, action);
     case actionTypes.FETCH_USER_ORDERS_SUCCESS: return fetchUserOrdersSuccess(state, action);
     case actionTypes.FETCH_USER_ORDERS_FAIL: return fetchUserOrdersFail(state, action);
+    case actionTypes.REMOVE_USER_AD_START: return removeUserAdStart(state, action);
+    case actionTypes.REMOVE_USER_AD_SUCCESS: return removeUserAdSuccess(state, action);
+    case actionTypes.REMOVE_USER_AD_FAIL: return removeUserAdFail(state, action);
     default: return state;
   }
 }
