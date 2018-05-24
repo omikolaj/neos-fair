@@ -9,6 +9,7 @@ import Button from '../../components/UI/Button/Button';
 import Label from '../../components/UI/Label/Label';
 import AdDetails from '../AdDetails/AdDetails';
 import Loader from '../../components/UI/Loader/Loader';
+import checkValidity from '../Utils/Validations';
 
 class AdBuilder extends Component {
   state = {
@@ -21,7 +22,12 @@ class AdBuilder extends Component {
           maxLength: 30
         },
         value: '',
-        label: 'Ad Title'
+        label: 'Ad Title',
+        validations: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       description: {
         elementType: 'textarea',
@@ -30,8 +36,12 @@ class AdBuilder extends Component {
           placeholder: 'Ad description'
         },
         value: '',
-        label: 'Ad Description'
-
+        label: 'Ad Description',
+        validations: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       itemName: {
         elementType: 'input',
@@ -40,7 +50,12 @@ class AdBuilder extends Component {
           placeholder: 'Enter the name of your item' 
         },
         value: '',
-        label: 'Item Name'
+        label: 'Item Name',
+        validations: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       itemPrice: {
         elementType: 'input',
@@ -51,7 +66,12 @@ class AdBuilder extends Component {
           step: 'any',
         },
         value: '',
-        label: 'Item Price'
+        label: 'Item Price',
+        validations: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       itemCondition: {
         elementType: 'select',
@@ -62,7 +82,9 @@ class AdBuilder extends Component {
           ]
         },
         value: 'new',
-        label: 'Condition'
+        label: 'Condition',
+        validation: {},
+        valid: true
       }, 
       category: {
         elementType: 'select',
@@ -72,11 +94,13 @@ class AdBuilder extends Component {
           ]
         },
         value: 'test' ,
-        label: 'Category'
+        label: 'Category',
+        validation: {},
+        valid: true
       },
     },
-  }
-  
+    isFormValid: false,
+  }  
 
   componentWillUnmount(){
     this.props.onInitAdPost()
@@ -91,10 +115,18 @@ class AdBuilder extends Component {
       ...updatedNewAdForm[inputID]
     };
     updatedFormElement.value = event.target.value;
+    updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation)
+    updatedFormElement.touched = true;
     updatedNewAdForm[inputID] = updatedFormElement;
 
+    let isFormValid = true;
+    for(let inputID in updatedNewAdForm){
+      isFormValid = updatedNewAdForm[inputID].valid && isFormValid
+    }
+
     this.setState({
-      newAdForm: updatedNewAdForm
+      newAdForm: updatedNewAdForm,
+      isFormValid: isFormValid
     })
   }
   
@@ -153,7 +185,7 @@ class AdBuilder extends Component {
             />
           </Aux>     
       })}
-      <Button btnType="Success">Create Ad</Button>
+      <Button disabled={!this.state.isFormValid} btnType="Success">Create Ad</Button>
      </form>
    )
 
