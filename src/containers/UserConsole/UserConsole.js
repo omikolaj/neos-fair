@@ -4,7 +4,7 @@ import classes from './UserConsole.css';
 import * as action from '../../store/actions/index';
 import Aux from '../../hoc/Aux/Aux';
 import Button from '../../components/UI/Button/Button';
-import UserAd from '../../components/Account/UserAd/UserAd';
+import UserAd from '../../components/EditInfo/UserAd/UserAd';
 import Loader from '../../components/UI/Loader/Loader';
 
 class UserConsole extends Component {

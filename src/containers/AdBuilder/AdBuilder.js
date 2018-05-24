@@ -24,7 +24,9 @@ class AdBuilder extends Component {
         value: '',
         label: 'Ad Title',
         validations: {
-          required: true
+          required: true,
+          minLength: 2,
+          maxLength: 30
         },
         valid: false,
         touched: false
@@ -38,7 +40,8 @@ class AdBuilder extends Component {
         value: '',
         label: 'Ad Description',
         validations: {
-          required: true
+          required: true,
+          minLength: 2
         },
         valid: false,
         touched: false
@@ -52,7 +55,8 @@ class AdBuilder extends Component {
         value: '',
         label: 'Item Name',
         validations: {
-          required: true
+          required: true,
+          minLength: 2
         },
         valid: false,
         touched: false
@@ -68,7 +72,8 @@ class AdBuilder extends Component {
         value: '',
         label: 'Item Price',
         validations: {
-          required: true
+          required: true,
+          isNumeric: true
         },
         valid: false,
         touched: false
@@ -115,7 +120,7 @@ class AdBuilder extends Component {
       ...updatedNewAdForm[inputID]
     };
     updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validation)
+    updatedFormElement.valid = checkValidity(updatedFormElement.value, updatedFormElement.validations)
     updatedFormElement.touched = true;
     updatedNewAdForm[inputID] = updatedFormElement;
 
@@ -179,8 +184,10 @@ class AdBuilder extends Component {
             <Label labelFor={formElement.id}>{formElement.config.label}</Label>
             <Input                        
               elementType={formElement.config.elementType}
-              elementConfig = {formElement.config.elementConfig}
+              elementConfig ={formElement.config.elementConfig}
               value={formElement.config.value}
+              touched={formElement.config.touched}
+              invalid={!formElement.config.valid}
               changed={(event) => this.inputChangedHandler(event, formElement.id)}
             />
           </Aux>     
