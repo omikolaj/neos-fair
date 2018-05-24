@@ -10,6 +10,7 @@ import EditInfo from '../../components/EditInfo/EditInfo';
 import UserConsole from '../UserConsole/UserConsole';
 import FlashMessage from 'react-flash-message'
 import checkValidity from '../Utils/Validations';
+import cuid from 'cuid';
 
 class Account extends Component {
   state ={
@@ -149,16 +150,16 @@ class Account extends Component {
         )
           userInfo.push(<h1 key='accountInfo'>Account</h1>)
           if(this.props.info !== ''){
-            userInfo.push(<FlashMessage duration={3000}><span key='info'>{this.props.info}</span></FlashMessage>)
+            userInfo.push(<FlashMessage duration={3000}><span key={cuid()}>{this.props.info}</span></FlashMessage>)
           }
           if(this.props.error){
             userInfo.push(<FlashMessage duraction={3000}><span>{this.props.error.fail}</span></FlashMessage>)
           }
-          userInfo.push(<h3 key={this.props.userInfo.name}>Welcome {this.props.userInfo.name}</h3>)
-          userInfo.push(<span key='username'>username: {this.props.userInfo.username}</span>)
-          userInfo.push(<span key='email'>email: {this.props.userInfo.email}</span>)
+          userInfo.push(<h3 key={cuid()}>Welcome {this.props.userInfo.name}</h3>)
+          userInfo.push(<span key={cuid()}>username: {this.props.userInfo.username}</span>)
+          userInfo.push(<span key={cuid()}>email: {this.props.userInfo.email}</span>)
           {/* <p>Wallet: {}</p> */}
-          userInfo.push(<Button key='editButton' btnType="EditButton" clicked={this.editInfoHandler}>Edit</Button>)
+          userInfo.push(<Button key={cuid()} btnType="EditButton" clicked={this.editInfoHandler}>Edit</Button>)
     }
     
     let editInfo = null;
