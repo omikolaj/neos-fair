@@ -149,10 +149,10 @@ class Account extends Component {
         )
           userInfo.push(<h1 key='accountInfo'>Account</h1>)
           if(this.props.info !== ''){
-            userInfo.push(<FlashMessage duration={5000}><span key='info'>{this.props.info}</span></FlashMessage>)
+            userInfo.push(<FlashMessage duration={3000}><span key='info'>{this.props.info}</span></FlashMessage>)
           }
           if(this.props.error){
-            userInfo.push(<FlashMessage duraction={5000}><span>{this.props.error.fail}</span></FlashMessage>)
+            userInfo.push(<FlashMessage duraction={3000}><span>{this.props.error.fail}</span></FlashMessage>)
           }
           userInfo.push(<h3 key={this.props.userInfo.name}>Welcome {this.props.userInfo.name}</h3>)
           userInfo.push(<span key='username'>username: {this.props.userInfo.username}</span>)
