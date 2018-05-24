@@ -42,3 +42,11 @@
   height: 80%;
   width: 60%;
 }
+
+.CreateAd {
+  justify-self: center;
+  align-self: center;
+  height: 80%;
+  width: 30%;
+  grid-column: span 2;
+}

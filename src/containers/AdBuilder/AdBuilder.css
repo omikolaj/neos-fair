@@ -10,7 +10,7 @@
 .Form {
   display: grid;
   grid-template-columns: repeat(2, 16rem);
-  grid-template-rows: 2rem 2rem minmax(4rem, auto);
+  grid-template-rows: 2rem minmax(4rem, auto);
   grid-auto-rows: minmax(2rem, auto);
   grid-row-gap: .5rem;
   padding: 1rem;
@@ -21,7 +21,3 @@
   grid-column: span 2;
   resize: vertical;  
 }
-
-
-
-

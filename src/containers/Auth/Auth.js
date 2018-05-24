@@ -11,6 +11,7 @@ import Aux from '../../hoc/Aux/Aux';
 import Login from '../../components/Auth/Login/Login';
 import SignUp from '../../components/Auth/Signup/Signup';
 import GitHubButton from '../../components/Auth/GitHubButton/GitHubButton';
+import FlashMessage from 'react-flash-message';
 
 class Auth extends Component {
   state = {
@@ -195,7 +196,7 @@ class Auth extends Component {
 
     if(this.props.error){
       errorMessage = (
-        <p>{this.props.error.error}</p>
+        <FlashMessage duration={3000}><p>{this.props.error.error}</p></FlashMessage>
       )
     }
     let authRedirect = null;

@@ -10,6 +10,7 @@ import Label from '../../components/UI/Label/Label';
 import AdDetails from '../AdDetails/AdDetails';
 import Loader from '../../components/UI/Loader/Loader';
 import checkValidity from '../Utils/Validations';
+import FlashMessage from 'react-flash-message';
 
 class AdBuilder extends Component {
   state = {
@@ -192,7 +193,7 @@ class AdBuilder extends Component {
             />
           </Aux>     
       })}
-      <Button disabled={!this.state.isFormValid} btnType="Success">Create Ad</Button>
+      <Button disabled={!this.state.isFormValid} btnType="CreateAd">Create Ad</Button>
      </form>
    )
 
@@ -212,15 +213,15 @@ class AdBuilder extends Component {
    let errors = null;
    if(this.props.validations.length > 0){
     errors = this.props.validations.map((msg, index) => {
-      return <span key={index}>{msg}</span>      
+      return <FlashMessage duration={3000}><span key={index}>{msg}</span></FlashMessage>      
       }
     )   
    }
 
    const adForm = this.props.loading ? <Loader /> : form;
    return (
-      <div className={classes.AdBuilder}>
-        {errors}
+      <div className={classes.AdBuilder}>        
+        {errors}        
         {adPosted}
         {this.props.isAuthenticated ? adForm : <Redirect to="/" />}
       </div>
