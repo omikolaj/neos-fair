@@ -5,7 +5,7 @@ import classes from './UserAd.css';
 import FlashMessage from 'react-flash-message';
 
 const userAd = (props) => {
-  const message = props.message ? <div className={classes.Message}><FlashMessage duration={5000}><span>{props.message}</span></FlashMessage></div> : null;
+  const message = props.message ? <div className={classes.Message}><FlashMessage duration={7000}><span >{props.message}</span></FlashMessage></div> : null;
   return (
     <Aux>
       <h3>{props.title}</h3>
