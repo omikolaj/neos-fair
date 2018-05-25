@@ -4,7 +4,8 @@ const initialState = {
   loading: false,
   error: null,
   userAds: [],
-  userOrders: []
+  userOrders: [],
+  updatedAdID: null
 }
 
 const fetchUserAdsStart = (state, action) => {
@@ -132,6 +133,55 @@ const removeUserAdFail = (state, action) => {
   }
 }
 
+const changeAdStatusStart = (state, action) => {
+  return {
+    loading: true,
+    error: null,
+    userAds: [
+      ...state.userAds
+    ],
+    userOrders: [
+      ...state.userOrders
+    ]
+  }
+}
+
+const changeAdStatusSuccess = (state, action) => {
+  const currentAds = [...state.userAds]
+  const updatedAd = [{...action.ad}]
+  let updatedAds = []
+  updatedAds = currentAds.filter(ad => {
+    return ad.id !== action.ad.id
+  })
+  const newAds = updatedAds.concat(updatedAd)
+  return {
+    loading: false,
+    error: null,
+    userAds: [
+      ...newAds
+    ],
+    userOrders: [
+      ...state.userOrders
+    ],
+    updatedAdID: action.ad.id
+  }
+}
+
+const changeAdStatusFail = (state, action) => {
+  return {
+    loading: false,
+    error: {
+      ...action.error
+    },
+    userAds: [
+      ...state.userAds
+    ],
+    userOrders: [
+      ...state.userOrders
+    ]
+  }
+}
+
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.FETCH_USER_ADS_START: return fetchUserAdsStart(state, action);
@@ -143,6 +193,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.REMOVE_USER_AD_START: return removeUserAdStart(state, action);
     case actionTypes.REMOVE_USER_AD_SUCCESS: return removeUserAdSuccess(state, action);
     case actionTypes.REMOVE_USER_AD_FAIL: return removeUserAdFail(state, action);
+    case actionTypes.CHANGE_AD_STATUS_START: return changeAdStatusStart(state, action);
+    case actionTypes.CHANGE_AD_STATUS_SUCCESS: return changeAdStatusSuccess(state, action);
+    case actionTypes.CHANGE_AD_STATUS_FAIL: return changeAdStatusFail(state, action);
     default: return state;
   }
 }

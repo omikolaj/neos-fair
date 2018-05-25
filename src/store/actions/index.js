@@ -21,6 +21,7 @@ export{
 export{
   fetchUserAds,
   fetchUserOrders,
-  removeUserAd
+  removeUserAd,
+  changeAdStatus
 } from './userConsole'
 

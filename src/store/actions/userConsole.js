@@ -60,7 +60,50 @@ export const removeUserAdFail = (error) => {
   }
 }
 
+export const changeAdStatusStart = () => {
+  return {
+    type: actionTypes.CHANGE_AD_STATUS_START
+  }
+}
+
+export const changeAdStatusSuccess = (resp) => {
+  return {
+    type: actionTypes.CHANGE_AD_STATUS_SUCCESS,
+    ad: resp.ad
+  }
+}
+
+export const changeAdStatusFail = (error) => {
+  return {
+    type: actionTypes.CHANGE_AD_STATUS_FAIL,
+    error: error
+  }
+}
+
 // Async
+
+export const changeAdStatus = (userID, adID) => {
+  return dispatch => {
+    dispatch(changeAdStatusStart())
+    fetch(`/api/users/${userID}/ads/${adID}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(resp=>resp.json())
+    .then(data=> {
+      if(data.status >=200 && data.status < 300){
+        dispatch(changeAdStatusSuccess(data))
+      }else{
+        return Promise.reject(data)
+      }
+    })
+    .catch(error=>{
+      dispatch(changeAdStatusFail(error))
+    })
+  }
+}
 
 export const removeUserAd = (userID, adID) => {
   return dispatch => {

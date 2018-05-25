@@ -29,9 +29,9 @@
 }
 
 .RemoveButton {
-  justify-self: center;
-  align-self: center;
-  height: 60%;
+  justify-self: end;
+  align-self: top;
+  height: 80%;
   width: 60%;
   max-height: 32px;
 }
@@ -49,4 +49,12 @@
   height: 80%;
   width: 30%;
   grid-column: span 2;
+}
+
+.PublishButton{
+  justify-self: start;
+  align-self: top;
+  height: 80%;
+  width: 60%;
+  max-height: 32px;
 }
