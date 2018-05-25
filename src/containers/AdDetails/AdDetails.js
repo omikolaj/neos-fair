@@ -20,8 +20,9 @@ class AdDetails extends Component {
           <h1>{this.props.ad.title}</h1>
           <p>{this.props.ad.description}</p>
           <span>{this.props.ad.user.username}</span>
+          <h3>${this.props.ad.ad_item.price}</h3>
           <Item title={this.props.ad.item.title}/>
-          <Category name={this.props.ad.category.name} />
+          <Category name={this.props.ad.category.name} />          
       </div>
       )
     }

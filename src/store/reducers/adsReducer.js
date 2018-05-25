@@ -9,6 +9,7 @@ const initialState = {
     user: {},
     item: {},
     category: {},
+    ad_item: {}
   },
   loading: false,
   error: null
@@ -27,6 +28,9 @@ const fetchAdsStart = (state, action) => {
       },
       category: {
         ...state.ad.category
+      },
+      ad_item: {
+        ...state.ad.ad_item
       }
     },
     loading: true,
@@ -55,6 +59,9 @@ const fetchAdsSuccess = (state, action) => {
       category: {
         ...state.ad.category
       },
+      ad_item: {
+        ...state.ad.ad_item
+      }
     },
     loading: false,
     error: null
@@ -75,6 +82,9 @@ const fetchAdsFail = (state, action) => {
       category: {
         ...state.ad.category
       },
+      ad_item: {
+        ...state.ad.ad_item
+      }
     },
     loading: false,
     error: action.payload.error
@@ -94,6 +104,9 @@ const fetchAdStart = (state, action) => {
       },
       category: {
         ...state.ad.category
+      },
+      ad_item: {
+        ...state.ad.ad_item
       }
     },
     loading: true,
@@ -114,6 +127,9 @@ const fetchAdSuccess = (state, action) => {
       },
       category: {
         ...action.ad.category
+      },
+      ad_item: {
+        ...action.ad.ad_item
       }
     },
     loading: false,
@@ -134,6 +150,9 @@ const fetchAdFail = (state, action) => {
       },
       category: {
         ...state.ad.category
+      },
+      ad_item: {
+        ...state.ad.ad_item
       }
     },
     loading: false,
