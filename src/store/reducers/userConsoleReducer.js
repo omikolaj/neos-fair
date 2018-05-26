@@ -147,19 +147,10 @@ const changeAdStatusStart = (state, action) => {
 }
 
 const changeAdStatusSuccess = (state, action) => {
-  const currentAds = [...state.userAds]
-  const updatedAd = [{...action.ad}]
-  let updatedAds = []
-  updatedAds = currentAds.filter(ad => {
-    return ad.id !== action.ad.id
-  })
-  const newAds = updatedAds.concat(updatedAd)
   return {
     loading: false,
     error: null,
-    userAds: [
-      ...newAds
-    ],
+    userAds: state.userAds.map(ad=> ad.id === action.ad.id ? action.ad : ad),
     userOrders: [
       ...state.userOrders
     ],
