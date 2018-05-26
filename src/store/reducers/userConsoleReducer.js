@@ -1,7 +1,8 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  loading: false,
+  consoleLoading: false,
+  userAdsLoading: false,
   error: null,
   userAds: [],
   userOrders: [],
@@ -104,14 +105,10 @@ const removeUserAdStart = (state, action) => {
 }
 
 const removeUserAdSuccess = (state, action) => {
-  const currentUserAds = [...state.userAds]
-  const updatedUserAds = currentUserAds.filter((ad) => ad.id !== action.targetAd)
   return {
     loading: false,
     error: null,
-    userAds: [
-      ...updatedUserAds
-    ],
+    userAds: state.userAds.filter(ad => ad.id !== action.targetAd),
     userOrders: [
       ...state.userOrders
     ]

@@ -29,7 +29,7 @@
 }
 
 .RemoveButton {
-  justify-self: end;
+  justify-self: start;
   align-self: top;
   height: 80%;
   width: 60%;
@@ -52,7 +52,7 @@
 }
 
 .PublishButton{
-  justify-self: start;
+  justify-self: end;
   align-self: top;
   height: 80%;
   width: 60%;

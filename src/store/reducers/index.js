@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   adBuilder: adBuilderReducer,
   auth: authReducer,
   userInfo: userReducer,
-  userConsole: userConsoleReducer
+  userConsole: userConsoleReducer,
 })
 
 export default rootReducer;

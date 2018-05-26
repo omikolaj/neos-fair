@@ -7,6 +7,8 @@ import Button from '../../components/UI/Button/Button';
 import UserAd from '../../components/EditInfo/UserAd/UserAd';
 import Loader from '../../components/UI/Loader/Loader';
 import cuid from 'cuid';
+import UserAds from './UserAds/UserAds';
+
 
 class UserConsole extends Component {
   componentDidMount(){
@@ -14,44 +16,32 @@ class UserConsole extends Component {
     this.props.fetchUserOrders(this.props.userID)
   }
 
-  removeUserAdHandler = (adID, userID) => {
-    this.props.removeUserAd(userID, adID)
+  removeUserAdHandler = (adID) => {
+    this.props.removeUserAd(this.props.userID, adID)
   }
 
-  changeAdStatusHandler = (userID, adID) => {
-    this.props.changeAdStatus(userID,adID)
+  changeAdStatusHandler = (adID) => {
+    this.props.changeAdStatus(this.props.userID,adID)
   }
 
   render(){
-    let usrAds = null; 
-    let info = '';   
-    if((!this.props.loading) && this.props.userAds.length > 0){
-      usrAds = this.props.userAds.map(ad => {
-        info = this.props.updatedAdID === ad.id ? <span>{ad.title} has been updated</span> : null;
-        const message = ad.published ? 'Ad has been published' : 'Ad has been unpublished';
-        return <div key={ad.id ? ad.id : 0} className={classes.UserAds}>
-          <UserAd title={ad.title} published={ad.published} message={this.props.updatedAdID === ad.id ? message : null}/>
-          <Button btnType="RemoveButton" clicked={(userID, adID) => this.removeUserAdHandler(ad.id, this.props.userID)}>Remove</Button>
-          <Button btnType="PublishButton" clicked={(adID) => this.changeAdStatusHandler(this.props.userID ,ad.id)}>{ad.published ? 'Unpublish' : 'Publish'}</Button>
+    let usrAds = null;   
+    
+    if((!this.props.loading) && this.props.error == null){
+      usrAds = (
+        <div key={cuid()} className={classes.UserAds}>
+          <UserAds title={this.props.title} publishClicked={this.changeAdStatusHandler} removeClicked={this.removeUserAdHandler}/>
         </div>
-      })    
+      )   
     }
+    
     if(this.props.loading){
       usrAds = <Loader />
-    }
-
-    if((!this.props.loading) && this.props.userAds.length === 0){
-      usrAds = (
-        <p>You have no posted ads</p>
-      )
     }
     
     return (
       <div>
         <h2 className={classes.PostedAds}>Posted Ads</h2>
-          <div className={classes.Info}>
-            {this.props.updatedAdID ? info : null}
-          </div>
           {usrAds}
       </div>
     );
@@ -59,13 +49,10 @@ class UserConsole extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    userAds: state.userConsole.userAds,
-    userOrders: state.userConsole.userOrders,
-    loading: state.userConsole.loading,
+  return {        
+    loading: state.userConsole.consoleLoading,
     error: state.userConsole.error,
-    userID: state.auth.userID,
-    updatedAdID: state.userConsole.updatedAdID
+    userID: state.auth.userID,    
   }
 }
 
