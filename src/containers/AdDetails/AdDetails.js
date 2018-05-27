@@ -5,15 +5,36 @@ import classes from './AdDetails.css';
 import Item from '../../components/Ad/AdItem/AdItem';
 import Category from '../../components/Ad/AdCategory/AdCategory';
 import Loader from '../../components/UI/Loader/Loader';
+import Button from '../../components/UI/Button/Button';
+import Aux from '../../hoc/Aux/Aux';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Ad/OrderSummary/OrderSummary';
 
-class AdDetails extends Component {  
+class AdDetails extends Component {
+  state={
+    purchasing: false
+  }
 
   componentDidMount(){
     this.props.fetchAd(this.props.match.params.id);
   }
 
+  buyHandler = () => {
+    this.setState({purchasing: true})
+  }
+
+  buyCancelHandler = () => {
+    this.setState({purchasing: false})
+  }
+
+  payHandler = () => {
+    const payData = {userID: this.props.userID, adID: this.props.ad.id, price: this.props.ad.ad_item.price}
+    this.props.pay(payData)
+  }
+
   render() {
     let ad = <Loader />;
+    let orderSummary = null;
     if(!this.props.loading){
       ad = (
         <div className={classes.AdDetails}>
@@ -22,12 +43,25 @@ class AdDetails extends Component {
           <span>{this.props.ad.user.username}</span>
           <h3>{this.props.ad.ad_item.price}</h3>
           <Item title={this.props.ad.item.title}/>
-          <Category name={this.props.ad.category.name} />          
+          <Category name={this.props.ad.category.name} />
+          <Button clicked={this.buyHandler}>Buy this item</Button>          
       </div>
       )
+
+      orderSummary = <OrderSummary
+        item={this.props.ad.item.title}
+        price={this.props.ad.ad_item.price}
+        pay={this.payHandler}
+        
+        />
     }
     return (
-      ad
+      <Aux>
+        <Modal show={this.state.purchasing} modalClosed={this.buyCancelHandler}>
+            {orderSummary}
+        </Modal>
+        {ad}
+      </Aux>
     )       
   }
 }
@@ -36,13 +70,16 @@ const MapStateToProps = (state) => {
   return {
     ad: state.ads.ad,
     loading: state.ads.loading,
-    new: state.adBuilder.newAd.new
+    new: state.adBuilder.newAd.new,
+    userID: state.auth.userID,
+    wallet: state.userInfo.wallet
   }
 }
 
 const MapDispatchToProps = (dispatch) => {
   return {
-    fetchAd: (id) => dispatch(actions.fetchAd(id))
+    fetchAd: (id) => dispatch(actions.fetchAd(id)),
+    pay: (userID, adID) => dispatch(actions.payForItem(userID, adID))
   }
 }
 
