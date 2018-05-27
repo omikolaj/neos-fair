@@ -194,11 +194,14 @@ class Auth extends Component {
 
     let errorMessage = null;
 
-    if(this.props.error){
-      errorMessage = this.props.error.error.map((msg, index) => {
-        return <FlashMessage duration={5000}><span key={index}>{msg}</span></FlashMessage>      
-        }
-      )
+    if(this.props.error){      
+      if(Array.isArray(this.props.error.error)){
+        errorMessage = this.props.error.error.map((msg, index) => {
+          return <FlashMessage duration={5000} key={index}><span>{msg}</span></FlashMessage>      
+        })
+      }else{
+        errorMessage = <FlashMessage duration={5000}><span>{this.props.error.error}</span></FlashMessage> 
+      }
     }
     let authRedirect = null;
    

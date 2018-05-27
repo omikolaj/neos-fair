@@ -20,7 +20,7 @@ export const authSuccess = (data) => {
 export const authFail = (error) => {
   return {
     type: actionTypes.AUTH_FAIL,
-    error: error,
+    error: error
   }
 }
 
