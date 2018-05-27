@@ -11,12 +11,16 @@ const initialState = {
     category: {},
     ad_item: {}
   },
+  purchaseStatus: null,
+  purchaseError: false,
+  purchaseSuccess: null,
   loading: false,
   error: null
 }
 
 const fetchAdsStart = (state, action) => {  
   return {
+    ...state,
     ads: [...state.ads],
     ad: {
       ...state.ad,     
@@ -47,6 +51,7 @@ const fetchAdsSuccess = (state, action) => {
     })
   })
   return {
+    ...state,
     ads: [...updatedAds],
     ad: {
       ...state.ad,      
@@ -70,6 +75,7 @@ const fetchAdsSuccess = (state, action) => {
 
 const fetchAdsFail = (state, action) => {
   return {
+    ...state,
     ads: [...state.ads],
     ad: {
       ...state.ad,     
@@ -93,6 +99,7 @@ const fetchAdsFail = (state, action) => {
 
 const fetchAdStart = (state, action) => {
   return {
+    ...state,
     ads: [...state.ads],
     ad: {
       ...state.ad, 
@@ -116,6 +123,7 @@ const fetchAdStart = (state, action) => {
 
 const fetchAdSuccess = (state, action) => {
   return {
+    ...state,
     ads: [...state.ads],
     ad: {
       ...action.ad, 
@@ -133,12 +141,15 @@ const fetchAdSuccess = (state, action) => {
       }
     },
     loading: false,
-    ...state.error
+    error: null,
+    purchaseError: null,
+    purchaseSuccess: null,
   }
 }
 
 const fetchAdFail = (state, action) => {
   return {
+    ...state,
     ads: [...state.ads],
     ad: {    
       ...state.ad,    
@@ -161,7 +172,7 @@ const fetchAdFail = (state, action) => {
 }
 
 const payForItemStart = (state, action) => {
-  return {
+  return {    
     ads: [...state.ads],
     ad: {
       ...state.ad, 
@@ -179,13 +190,16 @@ const payForItemStart = (state, action) => {
       }
     },
     loading: true,
-    error: null
+    error: null,
+    purchaseError: null,
+    purchaseStatus: null,
+    purchaseSuccess: null,
   }
 }
 
 const payForItemSuccess = (state, action) => {
-  debugger
   return {
+    ...state,
     ads: [...state.ads],
     ad: {
       ...state.ad, 
@@ -203,7 +217,10 @@ const payForItemSuccess = (state, action) => {
       }
     },
     loading: false,
-    error: null
+    error: null,
+    purchaseStatus: action.resp.success,
+    purchaseError: false,
+    purchaseSuccess: true,
   }
 }
 
@@ -226,9 +243,12 @@ const payForItemFail = (state, action) => {
       }
     },
     loading: false,
-    error: {
+    error: null,
+    purchaseError: true,
+    purchaseStatus: {
       ...action.error
-    }
+    },
+    purchaseSuccess: null
   }
 }
 

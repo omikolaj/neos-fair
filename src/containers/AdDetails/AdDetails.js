@@ -9,6 +9,7 @@ import Button from '../../components/UI/Button/Button';
 import Aux from '../../hoc/Aux/Aux';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Ad/OrderSummary/OrderSummary';
+import FlashMessage from 'react-flash-message';
 
 class AdDetails extends Component {
   state={
@@ -28,6 +29,7 @@ class AdDetails extends Component {
   }
 
   payHandler = () => {
+    this.setState({purchasing: false});
     const payData = {userID: this.props.userID, adID: this.props.ad.id, price: this.props.ad.ad_item.price}
     this.props.pay(payData)
   }
@@ -55,11 +57,23 @@ class AdDetails extends Component {
         
         />
     }
+    let message = null;
+    if(this.props.purchaseError){
+      message = (
+        <FlashMessage duration={5000}>
+            <p>{this.props.purchaseStatus.fail}</p>
+        </FlashMessage>        
+      )
+    }
+
     return (
       <Aux>
         <Modal show={this.state.purchasing} modalClosed={this.buyCancelHandler}>
             {orderSummary}
         </Modal>
+        <div className={classes.PurchaseMessage}>
+          {message}
+        </div>
         {ad}
       </Aux>
     )       
@@ -72,7 +86,8 @@ const MapStateToProps = (state) => {
     loading: state.ads.loading,
     new: state.adBuilder.newAd.new,
     userID: state.auth.userID,
-    wallet: state.userInfo.wallet
+    purchaseError: state.ads.purchaseError,
+    purchaseStatus: state.ads.purchaseStatus
   }
 }
 
