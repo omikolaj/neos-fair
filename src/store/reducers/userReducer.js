@@ -6,7 +6,8 @@ const initialState = {
   userInfo: {
     name: '',
     username: '',
-    email: ''
+    email: '',
+    wallet: null
   },
   info: ''
 };
