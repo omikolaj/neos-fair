@@ -9,7 +9,7 @@ class UserAds extends Component {
     let userAds = this.props.userAds.map(ad => {
       const info = ad.published ? 'Your ad has been published' : 'Your ad has been unpublished';
       return ( 
-        <UserAd message={this.props.updatedAdID === ad.id ? info : null} updatedAdID={this.props.updatedAdID} published={ad.published} title={ad.title} adID={ad.id} publishClicked={this.props.publishClicked} removeClicked={this.props.removeClicked}/>
+        <UserAd key={ad.id} message={this.props.updatedAdID === ad.id ? info : null} updatedAdID={this.props.updatedAdID} published={ad.published} title={ad.title} adID={ad.id} publishClicked={this.props.publishClicked} removeClicked={this.props.removeClicked}/>
       )
     })
     
