@@ -28,14 +28,6 @@
   color: #944317;
 }
 
-.RemoveButton {
-  justify-self: start;
-  align-self: top;
-  height: 80%;
-  width: 60%;
-  max-height: 32px;
-}
-
 .EditButton {
   justify-self: center;
   align-self: center;
@@ -53,7 +45,17 @@
 
 .PublishButton{
   justify-self: end;
-  align-self: top;
+  /* align-self: top; */
+  height: 80%;
+  width: 60%;
+  max-height: 32px;
+  grid-column: 1/2;
+}
+
+.RemoveButton {
+  /* grid-column: 2/3;
+  justify-self: start;
+  align-self: top; */
   height: 80%;
   width: 60%;
   max-height: 32px;

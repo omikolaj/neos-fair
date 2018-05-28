@@ -2,6 +2,8 @@ import React, {PureComponent, Component} from 'react';
 import {connect} from 'react-redux';
 import UserAd from '../../../components/EditInfo/UserAd/UserAd';
 import classes from './UserAds.css';
+import Aux from '../../../hoc/Aux/Aux';
+import UserOrders from '../UserOrders/UserOrders';
 
 class UserAds extends Component {
 
@@ -20,9 +22,10 @@ class UserAds extends Component {
     }
 
     return (
-      <div className={classes.UserAds}>
-        {userAds}
-      </div>
+      <Aux>
+        <h2 className={classes.PostedAds}>Posted Ads</h2>          
+        {userAds}     
+      </Aux>
     )
   }
 }

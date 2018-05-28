@@ -8,6 +8,7 @@ import UserAd from '../../components/EditInfo/UserAd/UserAd';
 import Loader from '../../components/UI/Loader/Loader';
 import cuid from 'cuid';
 import UserAds from './UserAds/UserAds';
+import UserOrders from './UserOrders/UserOrders';
 
 
 class UserConsole extends Component {
@@ -25,24 +26,36 @@ class UserConsole extends Component {
   }
 
   render(){
-    let usrAds = null;   
-    
+    let userAds = null;   
+    let userOrders = null;
     if((!this.props.loading) && this.props.error == null){
-      usrAds = (
-        <div key={cuid()} className={classes.UserAds}>
-          <UserAds title={this.props.title} publishClicked={this.changeAdStatusHandler} removeClicked={this.removeUserAdHandler}/>
-        </div>
-      )   
+      userAds = (
+        
+          <UserAds publishClicked={this.changeAdStatusHandler} removeClicked={this.removeUserAdHandler}/>
+              
+      )
+      userOrders = (
+        
+          <UserOrders />
+        
+      )
     }
     
-    if(this.props.loading){
-      usrAds = <Loader />
-    }
+    // if(this.props.loading){
+    //   const loading = <Loader />
+    // }
+
+    const userAdsAndOrders = (
+      <Aux>
+        {userAds}
+        {userOrders}
+      </Aux>
+    )
     
     return (
-      <div>
-        <h2 className={classes.PostedAds}>Posted Ads</h2>
-          {usrAds}
+      <div className={classes.UserConsole}>        
+          {!this.props.loading ? userAdsAndOrders : <Loader />}          
+          {/* {userAds} */}
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import {Redirect} from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 import classes from './AdDetails.css';
 import Item from '../../components/Ad/AdItem/AdItem';
@@ -57,13 +58,17 @@ class AdDetails extends Component {
         
         />
     }
-    let message = null;
+    let purchased = null;
     if(this.props.purchaseError){
-      message = (
+      purchased = (
         <FlashMessage duration={5000}>
             <p>{this.props.purchaseStatus.fail}</p>
         </FlashMessage>        
       )
+    }
+
+    if(this.props.purchaseSuccess){
+      purchased = <Redirect to={`/users/${this.props.userID}`} />
     }
 
     return (
@@ -72,7 +77,7 @@ class AdDetails extends Component {
             {orderSummary}
         </Modal>
         <div className={classes.PurchaseMessage}>
-          {message}
+          {purchased}
         </div>
         {ad}
       </Aux>
@@ -87,7 +92,8 @@ const MapStateToProps = (state) => {
     new: state.adBuilder.newAd.new,
     userID: state.auth.userID,
     purchaseError: state.ads.purchaseError,
-    purchaseStatus: state.ads.purchaseStatus
+    purchaseStatus: state.ads.purchaseStatus,
+    purchaseSuccess: state.ads.purchaseSuccess
   }
 }
 
