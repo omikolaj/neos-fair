@@ -3,16 +3,16 @@ import {connect} from 'react-redux';
 import classes from './UserOrders.css';
 import Aux from '../../../hoc/Aux/Aux';
 import cuid from 'cuid';
+import UserOrder from '../../../components/EditInfo/UserOrder/UserOrder';
 
 class UserOrders extends Component {
 
   render() {
     const userOrders = this.props.userOrders.map(order => {
-      return <div key={cuid()} className={classes.UserOrder}>        
-          <span>Title: {order.order.item.title}</span>
-          <span>Price: {order.order.price}</span>        
-        </div>
-    })
+      return (
+        <UserOrder key={order.id} title={order.order.item.title} price={order.order.price} />
+      )
+    })    
 
     return (
       <Aux>
