@@ -11,7 +11,7 @@ class UserOrders extends Component {
   render() {
     let userOrders = null;
 
-    userOrders = this.props.userOrders.reverse().map(order => {
+    userOrders = this.props.userOrders.map(order => {
       return (
         <UserOrder 
           key={cuid()} 

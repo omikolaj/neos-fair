@@ -69,6 +69,7 @@ const fetchUserOrdersStart = (state, action) => {
 }
 
 const fetchUserOrdersSuccess = (state, action) => {
+  const updatedOrders = [...action.userOrders.orders.reverse()]
   return {
     ...state,
     userOrdersLoading: false,
@@ -77,7 +78,7 @@ const fetchUserOrdersSuccess = (state, action) => {
       ...state.userAds
     ],
     userOrders: [
-      ...action.userOrders.orders
+      ...updatedOrders
     ]
   }
 }
@@ -143,6 +144,7 @@ const removeUserAdFail = (state, action) => {
 const changeAdStatusStart = (state, action) => {
   return {
     ...state,
+    updatedAdID: null,
     loading: true,
     error: null,
     userAds: [
