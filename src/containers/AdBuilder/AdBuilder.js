@@ -68,13 +68,14 @@ class AdBuilder extends Component {
           type: 'number',
           placeholder: 'Enter the Price',
           min: 1,
-          step: 'any',
+          max: 4,
         },
         value: '',
         label: 'Item Price',
         validations: {
           required: true,
-          isNumeric: true
+          isNumeric: true,
+          maxLength: 4,
         },
         valid: false,
         touched: false

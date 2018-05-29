@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import UserAd from '../../../components/EditInfo/UserAd/UserAd';
+import UserAd from '../../../components/UserConsole/UserAd/UserAd';
 import classes from './UserAds.css';
 import Aux from '../../../hoc/Aux/Aux';
 import * as actions from '../../../store/actions/index';

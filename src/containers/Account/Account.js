@@ -13,7 +13,8 @@ import cuid from 'cuid';
 
 class Account extends Component {
   state ={
-    editing: false
+    editing: false,
+    displayInfo: false
   }
 
   componentDidMount(){
@@ -85,11 +86,11 @@ class Account extends Component {
   }
 
   editInfoHandler = () => {
-    this.setState({editing: true});
+    this.setState({editing: true, displayInfo: false});
   }
 
   editCancelHandler = () => {
-    this.setState({editing: false})
+    this.setState({editing: false, displayInfo: false})
   }
 
   inputChangedHandler = (event, id) => {
@@ -132,33 +133,60 @@ class Account extends Component {
     event.preventDefault()
     this.setState({
       editing: false,
+      displayInfo: true
     })
     const userForm = this.formatUserUpdateForm()
     this.props.updateUserInfo(userForm)
   }
 
+  rechargeAccount = () => {
+    this.setState({
+      displayInfo: true
+    })
+    this.props.rechargeAccount(this.props.userID)
+  }
+
   render() {    
     let showUserInfo = null;
     if(this.props.loading !== true){ 
-      let userInfo = [];   
+      let message = null;
+      if(this.props.info !== '' && this.state.displayInfo){
+        message = (
+          <FlashMessage duration={3000} key={cuid()}><span>{this.props.info}</span></FlashMessage>
+        )
+      }
+      if(this.props.error && this.state.displayInfo){
+        message =(
+          <FlashMessage duration={3000} key={cuid()}><span>{this.props.error.fail}</span></FlashMessage>
+        )
+      }
         showUserInfo = (
-          <div className={classes.Account}>
-            {userInfo}
+          <div className={classes.Account}>                      
+            <h1>Account</h1>
+            {message}
+            <h3>Welcome {this.props.userInfo.name}</h3>
+            <span>username: {this.props.userInfo.username}</span>
+            <span>email: {this.props.userInfo.email}</span>
+            <p>Wallet: {this.props.userInfo.wallet}</p>
+            <Button btnType="RechargeAccount" clicked={this.rechargeAccount}>Recharge</Button>
+            <Button btnType="EditButton" clicked={this.editInfoHandler}>Edit</Button>
           </div>
         )
-          userInfo.push(<h1 key='accountInfo'>Account</h1>)
-          if(this.props.info !== ''){
-            userInfo.push(<FlashMessage duration={3000} key={cuid()}><span>{this.props.info}</span></FlashMessage>)
-          }
-          if(this.props.error){
-            userInfo.push(<FlashMessage duration={3000} key={cuid()}><span>{this.props.error.fail}</span></FlashMessage>)
-          }
-          userInfo.push(<h3 key={cuid()}>Welcome {this.props.userInfo.name}</h3>)
-          userInfo.push(<span key={cuid()}>username: {this.props.userInfo.username}</span>)
-          userInfo.push(<span key={cuid()}>email: {this.props.userInfo.email}</span>)
-          userInfo.push(<p key={cuid()}>Wallet: {this.props.userInfo.wallet}</p>)
-          userInfo.push(<Button key={cuid()} btnType="EditButton" clicked={this.editInfoHandler}>Edit</Button>)
-    }
+      }
+    //       userInfo.push(<h1 key={cuid()}>Account</h1>)
+    //       if(this.props.info !== ''){
+    //         userInfo.push(<FlashMessage duration={3000} key={cuid()}><span>{this.props.info}</span></FlashMessage>)
+    //       }
+    //       if(this.props.error){
+    //         userInfo.push(<FlashMessage duration={3000} key={cuid()}><span>{this.props.error.fail}</span></FlashMessage>)
+    //       }
+    //       userInfo.push(<h3 key={cuid()}>Welcome {this.props.userInfo.name}</h3>)
+    //       userInfo.push(<span key={cuid()}>username: {this.props.userInfo.username}</span>)
+    //       userInfo.push(<span key={cuid()}>email: {this.props.userInfo.email}</span>)
+    //       userInfo.push(<p key={cuid()}>Wallet: {this.props.userInfo.wallet}</p>)
+    //       userInfo.push(<Button key={cuid()} btnType="RechargeAccount" clicked={this.rechargeAccount}>Recharge</Button>)
+    //       userInfo.push(<Button key={cuid()} btnType="EditButton" clicked={this.editInfoHandler}>Edit</Button>)          
+    // }
     
     let editInfo = null;
     if(this.state.editing){
@@ -201,6 +229,7 @@ const mapDispatchToState = (dispatch) => {
   return {
     fetchUserInfo: (userID) => dispatch(actions.fetchUserInfo(userID)),
     updateUserInfo: (userInfo) => dispatch(actions.updateUserInfo(userInfo)),
+    rechargeAccount: (userID) => dispatch(actions.rechargeAccount(userID))
   }
 }
 

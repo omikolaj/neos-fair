@@ -19,6 +19,7 @@ export {
 export{
   fetchUserInfo,
   updateUserInfo,
+  rechargeAccount
 } from './user';
 export{
   fetchUserAds,

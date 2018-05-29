@@ -28,11 +28,18 @@
   color: #944317;
 }
 
+.RechargeAccount {
+  justify-self: center;
+  align-self: center;
+  height: 80%;
+  width: 40%;
+}
+
 .EditButton {
   justify-self: center;
   align-self: center;
   height: 80%;
-  width: 60%;
+  width: 40%;
 }
 
 .CreateAd {

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classes from './UserOrders.css';
 import Aux from '../../../hoc/Aux/Aux';
-import UserOrder from '../../../components/EditInfo/UserOrder/UserOrder';
+import UserOrder from '../../../components/UserConsole/UserOrder/UserOrder';
 import cuid from 'cuid';
 import FlashMessage from 'react-flash-message';
 import * as actions from '../../../store/actions/index';

@@ -51,7 +51,59 @@ const formatData = (userInfo) => {
   return formattedUserInfo;
 }
 
+export const rechargeAccountStart = () => {
+  return {
+    type: actionTypes.RECHARGE_ACCOUNT_START
+  }
+}
+
+export const rechargeAccountSuccess = (data) => {
+  return {
+    type: actionTypes.RECHARGE_ACCOUNT_SUCCESS,
+    resp: data.success,
+    wallet: data.wallet
+  }
+}
+
+export const rechargeAccountFail = (error) => {
+  return {
+    type: actionTypes.RECHARGE_ACCOUNT_FAIL,
+    error: error
+  }
+}
+
+const rechargeAmount = () => {
+  return Math.floor(Math.random() * (1000 - 10 + 1)) + 10;
+}
+
 // Async
+
+export const rechargeAccount = (userID) => {  
+  const rechargeTotal = {recharge: rechargeAmount()}
+  return dispatch => {
+    dispatch(rechargeAccountStart())
+    fetch('/api/users/' + userID, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(rechargeTotal)
+    })
+    .then(resp=>resp.json())
+    .then(data => {
+      if(data.status >= 200 && data.status < 300){
+        dispatch(rechargeAccountSuccess(data))
+      }
+      else{
+        return Promise.reject(data)
+      }
+    })
+    .catch(error => {
+      dispatch(rechargeAccountFail(error))
+    })
+  }
+}
 
 export const updateUserInfo = (userInfo) => {
   const userInfoFormatted = formatData(userInfo)

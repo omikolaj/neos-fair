@@ -73,6 +73,39 @@ const updateUserInfoFail = (state, action) => {
   }
 }
 
+const rechargeAccountStart = (state, action) => {
+  return {
+    ...state,
+    userInfo: {
+      ...state.userInfo
+    },
+    loading: true,
+  }
+}
+
+const rechargeAccountSuccess = (state, action) => {
+  return {
+    ...state,
+    loading: false,
+    error: null,
+    userInfo: {
+      ...state.userInfo,
+      wallet: action.wallet
+    },
+    info: action.resp
+  }
+}
+
+const rechargeAccountFail = (state, action) => {
+  return {
+    ...state,
+    loading: false,
+    error: {
+      ...action.error
+    }
+  }
+}
+
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.FETCH_USERINFO_START: return fetchUserInfoStart(state, action);
@@ -81,6 +114,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.UPDATE_USER_INFO_START: return updateUserInfoStart(state, action);
     case actionTypes.UPDATE_USER_INFO_SUCCESS: return updateUserInfoSuccess(state, action);
     case actionTypes.UPDATE_USER_INFO_FAIL: return updateUserInfoFail(state, action);
+    case actionTypes.RECHARGE_ACCOUNT_START: return rechargeAccountStart(state, action);
+    case actionTypes.RECHARGE_ACCOUNT_SUCCESS: return rechargeAccountSuccess(state, action);
+    case actionTypes.RECHARGE_ACCOUNT_FAIL: return rechargeAccountFail(state, action);
     default: return state
   }
 }

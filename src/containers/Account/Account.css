@@ -1,6 +1,6 @@
 .Account {
   display: grid;
-  grid-template-columns: 16rem;
+  grid-template-columns: 26rem;
   grid-auto-rows: minmax(2rem, auto);
   justify-content: center;
   padding: 1rem;
