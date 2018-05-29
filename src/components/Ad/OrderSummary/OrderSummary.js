@@ -1,16 +1,19 @@
 import React from 'react';
 import Aux from '../../../hoc/Aux/Aux';
 import Button from '../../UI/Button/Button';
+import classes from './OrderSummary.css';
 
 const orderSummary = (props) => {
   return (
-    <Aux>
+    <div className={classes.CheckoutSummary}>
       <h2>Checkout Summary</h2>
       <h3>Item you are purchasing</h3>
       <h3>{props.item}</h3>
       <h3>Price: {props.price}</h3>
-      <Button clicked={props.pay}>Pay</Button>
-    </Aux>    
+      <div className={classes.CheckoutButtonDiv}>
+        <Button btnType="BuyButton" clicked={props.pay}>Pay</Button>
+      </div>
+    </div>    
   )
 }
 

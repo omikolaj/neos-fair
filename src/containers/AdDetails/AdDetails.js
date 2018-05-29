@@ -47,7 +47,9 @@ class AdDetails extends Component {
           <h3>{this.props.ad.ad_item.price}</h3>
           <Item title={this.props.ad.item.title}/>
           <Category name={this.props.ad.category.name} />
-          <Button clicked={this.buyHandler}>Buy this item</Button>          
+          <div className={classes.BuyButtonDiv}>
+            <Button btnType="BuyButton" clicked={this.buyHandler}>Buy this item</Button>          
+          </div>
       </div>
       )
 

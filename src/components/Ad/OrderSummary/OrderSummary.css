@@ -1,0 +1,9 @@
+.CheckoutSummary{
+  text-align: center;
+}
+
+.CheckoutButtonDiv {
+  width: 10rem;
+  height: 3rem;
+  margin: auto;
+}

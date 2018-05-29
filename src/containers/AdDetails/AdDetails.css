@@ -9,3 +9,9 @@
 .PurchaseMessage{
   text-align: center;
 }
+
+.BuyButtonDiv {
+  width: 10rem;
+  height: 3rem;
+  margin: auto;
+}
