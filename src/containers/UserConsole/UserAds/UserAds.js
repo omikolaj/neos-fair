@@ -43,7 +43,7 @@ class UserAds extends Component {
 
     return (
       <Aux>
-        <h2 className={classes.PostedAds}>Posted Ads</h2>          
+        <h2 className={classes.PostedAds}>Posted Ads</h2>         
         {userAds}     
       </Aux>
     )

@@ -36,6 +36,7 @@ class Ads extends Component {
     }
     return (
       <div>
+        <h1>Currently Posted Ads</h1>
         <section className={classes.Ads}>
           {ads}
         </section>      

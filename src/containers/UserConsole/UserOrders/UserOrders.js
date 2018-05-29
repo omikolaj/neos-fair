@@ -27,7 +27,7 @@ class UserOrders extends Component {
     }
 
     let message = null
-    if(this.props.purchaseStatus){
+    if(this.props.purchaseSuccess){
       message = (
         <FlashMessage duration={6000}>
           <span className={classes.PurchaseSuccess}>{this.props.purchaseStatus}</span>
@@ -38,7 +38,7 @@ class UserOrders extends Component {
     return (
       <Aux>
         <h2 className={classes.OrdersTitle}>Past Orders</h2>
-        <div className={classes.UserOrders}>
+        <div className={classes.UserOrders}>          
           {message}
           {userOrders}        
         </div>

@@ -248,7 +248,7 @@ const payForItemFail = (state, action) => {
     purchaseStatus: {
       ...action.error
     },
-    purchaseSuccess: null
+    purchaseSuccess: false
   }
 }
 
