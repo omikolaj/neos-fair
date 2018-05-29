@@ -1,7 +1,8 @@
 export {
   fetchAds,
   fetchAd,
-  payForItem
+  payForItem,
+  clearPurchaseState
 } from './ads';
 export {
   createNewAd,

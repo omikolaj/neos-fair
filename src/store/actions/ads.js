@@ -94,7 +94,6 @@ export const fetchAds = (token) => {
 export const payForItem = (payData) => {
   return dispatch => {
     dispatch(payForItemStart());
-    // ?userID=${data.userID}&adID=${data.adID}&price=${data.price}
     const data = {userID: payData.userID, adID: payData.adID, price: payData.price.substring(1)}    
     fetch(`/api/pay?userID=${data.userID}&adID=${data.adID}&price=${data.price}`, {
       method: 'POST',

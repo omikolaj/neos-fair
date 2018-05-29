@@ -4,13 +4,17 @@ import UserAd from '../../../components/EditInfo/UserAd/UserAd';
 import classes from './UserAds.css';
 import Aux from '../../../hoc/Aux/Aux';
 import UserOrders from '../UserOrders/UserOrders';
-import * as action from '../../../store/actions/index';
-import Loader from '../../../components/UI/Loader/Loader';
+import * as actions from '../../../store/actions/index';
 
 class UserAds extends Component {
 
+  changeAdStatusHandler = (adID) => {
+    this.props.changeAdStatus(this.props.userID,adID)
+  }
 
-  
+  removeUserAdHandler = (adID) => {
+    this.props.removeUserAd(this.props.userID, adID)
+  }
 
   render(){
     let userAds = null;
@@ -26,8 +30,8 @@ class UserAds extends Component {
           published={ad.published} 
           title={ad.title} 
           adID={ad.id} 
-          publishClicked={this.props.publishClicked} 
-          removeClicked={this.props.removeUserAdHandler}/>
+          publishClicked={this.changeAdStatusHandler} 
+          removeClicked={this.removeUserAdHandler}/>
       )
     })
       
@@ -57,7 +61,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // fetchUserAds: (userID) => dispatch(action.fetchUserAds(userID))
+    removeUserAd: (userID, adID) => dispatch(actions.removeUserAd(userID, adID)),
+    changeAdStatus: (userID, adID) => dispatch(actions.changeAdStatus(userID, adID))
   }
 }
 

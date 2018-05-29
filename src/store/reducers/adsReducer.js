@@ -252,6 +252,33 @@ const payForItemFail = (state, action) => {
   }
 }
 
+const clearPurchaseStatus = (state, action) => {
+  return {
+    ...state,
+    ads: [...state.ads],
+    ad: {
+      ...state.ad, 
+      user: {
+        ...state.ad.user
+      },
+      item: {
+        ...state.ad.item
+      },
+      category: {
+        ...state.ad.category
+      },
+      ad_item: {
+        ...state.ad.ad_item
+      }
+    },
+    loading: false,
+    error: null,
+    purchaseStatus: null,
+    purchaseError: false,
+    purchaseSuccess: false,
+  }
+}
+
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.FETCH_ADS_START: return fetchAdsStart(state, action);
@@ -263,6 +290,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.PAY_FOR_ITEM_START: return payForItemStart(state, action);
     case actionTypes.PAY_FOR_ITEM_SUCCESS: return payForItemSuccess(state, action);
     case actionTypes.PAY_FOR_ITEM_FAIL: return payForItemFail(state, action);
+    case actionTypes.CLEAR_PURCHASE_STATUS: return clearPurchaseStatus(state, action);
     default: return state;
   }
 }

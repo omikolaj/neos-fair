@@ -202,7 +202,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToState = (dispatch) => {
   return {
     fetchUserInfo: (userID) => dispatch(actions.fetchUserInfo(userID)),
-    updateUserInfo: (userInfo) => dispatch(actions.updateUserInfo(userInfo))
+    updateUserInfo: (userInfo) => dispatch(actions.updateUserInfo(userInfo)),
   }
 }
 

@@ -4,6 +4,7 @@ import classes from './UserOrders.css';
 import Aux from '../../../hoc/Aux/Aux';
 import UserOrder from '../../../components/EditInfo/UserOrder/UserOrder';
 import cuid from 'cuid';
+import FlashMessage from 'react-flash-message';
 
 class UserOrders extends Component {
 
@@ -25,10 +26,20 @@ class UserOrders extends Component {
       )
     }
 
+    let message = null
+    if(this.props.purchaseStatus){
+      message = (
+        <FlashMessage duration={6000}>
+          <span className={classes.PurchaseSuccess}>{this.props.purchaseStatus}</span>
+        </FlashMessage>
+      )      
+    }
+
     return (
       <Aux>
         <h2 className={classes.OrdersTitle}>Past Orders</h2>
         <div className={classes.UserOrders}>
+          {message}
           {userOrders}        
         </div>
       </Aux>
@@ -38,7 +49,9 @@ class UserOrders extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userOrders: state.userConsole.userOrders
+    userOrders: state.userConsole.userOrders,
+    purchaseSuccess: state.ads.purchaseSuccess,
+    purchaseStatus: state.ads.purchaseStatus
   }
 }
 
