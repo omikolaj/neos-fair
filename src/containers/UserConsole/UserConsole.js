@@ -17,45 +17,34 @@ class UserConsole extends Component {
     this.props.fetchUserOrders(this.props.userID)
   }
 
-  removeUserAdHandler = (adID) => {
-    this.props.removeUserAd(this.props.userID, adID)
-  }
-
   changeAdStatusHandler = (adID) => {
     this.props.changeAdStatus(this.props.userID,adID)
   }
 
-  render(){
-    let userAds = null;   
-    let userOrders = null;
-    if((!this.props.loading) && this.props.error == null){
-      userAds = (
-        
-          <UserAds publishClicked={this.changeAdStatusHandler} removeClicked={this.removeUserAdHandler}/>
-              
-      )
-      userOrders = (
-        
-          <UserOrders />
-        
-      )
-    }
-    
-    // if(this.props.loading){
-    //   const loading = <Loader />
-    // }
+  removeUserAdHandler = (adID) => {
+    this.props.removeUserAd(this.props.userID, adID)
+  }
 
-    const userAdsAndOrders = (
+  render(){
+    let userAdsAndOrders = (
       <Aux>
-        {userAds}
-        {userOrders}
+        <UserAds userID={this.props.userID} publishClicked={this.changeAdStatusHandler} removeClicked={this.removeUserAdHandler}/>
+        <UserOrders userID={this.props.userID} />
       </Aux>
     )
+
+    if(this.props.loading){
+      userAdsAndOrders = null;
+    }
+    
+    if(this.props.error){
+      userAdsAndOrders = 
+      <p>{this.props.error.error}</p>
+    }
     
     return (
       <div className={classes.UserConsole}>        
-          {!this.props.loading ? userAdsAndOrders : <Loader />}          
-          {/* {userAds} */}
+          {userAdsAndOrders}          
       </div>
     );
   }
@@ -63,9 +52,8 @@ class UserConsole extends Component {
 
 const mapStateToProps = (state) => {
   return {        
-    loading: state.userConsole.consoleLoading,
+    loading: state.userConsole.userAdsLoading && state.userConsole.userOrdersLoading,
     error: state.userConsole.error,
-    userID: state.auth.userID,    
   }
 }
 

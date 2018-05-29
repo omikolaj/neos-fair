@@ -15,3 +15,9 @@
   display: block;
   font-weight: 900;
 }
+
+.UserOrders + p{
+  grid-column: 2;
+  align-self: center;
+  justify-self: center;
+}

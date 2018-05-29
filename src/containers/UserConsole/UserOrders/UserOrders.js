@@ -8,11 +8,22 @@ import cuid from 'cuid';
 class UserOrders extends Component {
 
   render() {
-    const userOrders = this.props.userOrders.map(order => {
+    let userOrders = null;
+
+    userOrders = this.props.userOrders.reverse().map(order => {
       return (
-        <UserOrder key={cuid()} title={order.order.item.title} price={order.order.price} />
+        <UserOrder 
+          key={cuid()} 
+          title={order.order.item.title} 
+          price={order.order.price} />
       )
     })    
+
+    if(this.props.userOrders.length === 0){
+      userOrders = (
+        <p>You have no past orders</p>
+      )
+    }
 
     return (
       <Aux>

@@ -45,7 +45,7 @@
 
 .PublishButton{
   justify-self: end;
-  /* align-self: top; */
+  align-self: end;
   height: 80%;
   width: 60%;
   max-height: 32px;
@@ -54,8 +54,8 @@
 
 .RemoveButton {
   /* grid-column: 2/3;
-  justify-self: start;
-  align-self: top; */
+  justify-self: start; */
+  align-self: end;
   height: 80%;
   width: 60%;
   max-height: 32px;

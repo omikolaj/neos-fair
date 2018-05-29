@@ -1,17 +1,19 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  consoleLoading: false,
+  userOrdersLoading: false,
   userAdsLoading: false,
   error: null,
   userAds: [],
   userOrders: [],
-  updatedAdID: null
+  updatedAdID: null,
+  loading: false,
 }
 
 const fetchUserAdsStart = (state, action) => {
   return {
-    loading: true,
+    ...state,
+    userAdsLoading: true,
     error: null,
     userAds: [
       ...state.userAds
@@ -24,7 +26,8 @@ const fetchUserAdsStart = (state, action) => {
 
 const fetchUserAdsSuccess = (state, action) => {
   return {
-    loading: false,
+    ...state,
+    userAdsLoading: false,
     error: null,
     userAds: [
       ...action.userAds.ads
@@ -37,7 +40,8 @@ const fetchUserAdsSuccess = (state, action) => {
 
 const fetchUserAdsFail = (state, action) => {
   return {
-    loading: false,
+    ...state,
+    userAdsLoading: false,
     error: {
       ...action.error
     },
@@ -52,7 +56,8 @@ const fetchUserAdsFail = (state, action) => {
 
 const fetchUserOrdersStart = (state, action) => {
   return {
-    loading: true,
+    ...state,
+    userOrdersLoading: true,
     error: null,
     userAds: [
       ...state.userAds
@@ -65,7 +70,8 @@ const fetchUserOrdersStart = (state, action) => {
 
 const fetchUserOrdersSuccess = (state, action) => {
   return {
-    loading: false,
+    ...state,
+    userOrdersLoading: false,
     error: null,
     userAds: [
       ...state.userAds
@@ -78,7 +84,8 @@ const fetchUserOrdersSuccess = (state, action) => {
 
 const fetchUserOrdersFail = (state, action) => {
   return {
-    loading: false,
+    ...state,
+    userOrdersLoading: false,
     error: {
       ...action.error
     },
@@ -93,6 +100,7 @@ const fetchUserOrdersFail = (state, action) => {
 
 const removeUserAdStart = (state, action) => {
   return {
+    ...state,
     loading: true,
     error: null,
     userAds: [
@@ -106,6 +114,7 @@ const removeUserAdStart = (state, action) => {
 
 const removeUserAdSuccess = (state, action) => {
   return {
+    ...state,
     loading: false,
     error: null,
     userAds: state.userAds.filter(ad => ad.id !== action.targetAd),
@@ -117,6 +126,7 @@ const removeUserAdSuccess = (state, action) => {
 
 const removeUserAdFail = (state, action) => {
   return {
+    ...state,
     loading: false,
     error: {
       ...action.error
@@ -132,6 +142,7 @@ const removeUserAdFail = (state, action) => {
 
 const changeAdStatusStart = (state, action) => {
   return {
+    ...state,
     loading: true,
     error: null,
     userAds: [
@@ -145,6 +156,7 @@ const changeAdStatusStart = (state, action) => {
 
 const changeAdStatusSuccess = (state, action) => {
   return {
+    ...state,
     loading: false,
     error: null,
     userAds: state.userAds.map(ad=> ad.id === action.ad.id ? action.ad : ad),
@@ -157,6 +169,7 @@ const changeAdStatusSuccess = (state, action) => {
 
 const changeAdStatusFail = (state, action) => {
   return {
+    ...state,
     loading: false,
     error: {
       ...action.error

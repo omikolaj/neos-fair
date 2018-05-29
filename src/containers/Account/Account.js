@@ -183,7 +183,7 @@ class Account extends Component {
             {editInfo}
           </Modal>
           {showUserInfo}
-          <UserConsole />
+          <UserConsole userID={this.props.userID}/>
       </div>
     )
   }
