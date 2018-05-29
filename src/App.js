@@ -8,7 +8,7 @@ import AdDetails from './containers/AdDetails/AdDetails';
 import AdBuilder from './containers/AdBuilder/AdBuilder';
 import * as actions from './store/actions/index';
 import Logout from './containers/Auth/Logout/Logout';
-import Welcome from './containers/Welcome/Welcome';
+import Welcome from './components/Welcome/Welcome';
 import Account from './containers/Account/Account';
 import { getQueryParams } from './store/utility';
 

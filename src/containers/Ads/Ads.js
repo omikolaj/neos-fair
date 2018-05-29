@@ -5,7 +5,6 @@ import * as actions from '../../store/actions/index';
 import classes from './Ads.css'
 import Loader from '../../components/UI/Loader/Loader';
 
-
 class Ads extends Component {
 
   componentDidMount(){

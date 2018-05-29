@@ -59,9 +59,7 @@
   grid-column: 1/2;
 }
 
-.RemoveButton {
-  /* grid-column: 2/3;
-  justify-self: start; */
+.RemoveButton {  
   align-self: end;
   height: 80%;
   width: 60%;

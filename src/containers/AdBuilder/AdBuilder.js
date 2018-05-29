@@ -69,12 +69,12 @@ class AdBuilder extends Component {
           placeholder: 'Enter the Price',
           min: 1,
           max: 5000,
+          step: 'any'
         },
         value: '',
         label: 'Item Price',
         validations: {
           required: true,
-          // isNumeric: true,
           isPrice: true,
           maxLength: 7
         },
@@ -174,10 +174,6 @@ class AdBuilder extends Component {
 
    }
 
-  //  updateHistory = (id) => {
-  //    this.props.history.push('/ads/' + id)
-  //  }
-
  render(){
    const formElementsArray = [];
    for (let key in this.state.newAdForm){
@@ -208,9 +204,6 @@ class AdBuilder extends Component {
   let adPosted = null;
   if(this.props.adID || this.props.error){
     const postedAdRedirect = this.props.posted ? <Redirect to={`/ads/` + this.props.adID} /> : null ;
-    // if(postedAdRedirect){
-    //   this.updateHistory(this.props.adID)
-    // }
     adPosted = (
       <div>
         {postedAdRedirect}                
