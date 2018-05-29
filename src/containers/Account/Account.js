@@ -163,7 +163,7 @@ class Account extends Component {
         showUserInfo = (
           <div className={classes.Account}>                      
             <h1>Account</h1>
-            {message}
+            <div>{message}</div>
             <h3>Welcome {this.props.userInfo.name}</h3>
             <span>username: {this.props.userInfo.username}</span>
             <span>email: {this.props.userInfo.email}</span>
@@ -221,7 +221,8 @@ const mapStateToProps = (state) => {
     loading: state.userInfo.loading,
     error: state.userInfo.error,
     info: state.userInfo.info,
-    userID: state.auth.userID    
+    userID: state.auth.userID,
+    recharged: state.userInfo.recharged
   }
 }
 

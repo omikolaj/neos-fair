@@ -9,7 +9,7 @@ const initialState = {
     email: '',
     wallet: null
   },
-  info: ''
+  info: '',
 };
 
 const fetchUserInfoStart = (state, action) => {
@@ -79,7 +79,6 @@ const rechargeAccountStart = (state, action) => {
     userInfo: {
       ...state.userInfo
     },
-    loading: true,
   }
 }
 
@@ -92,7 +91,7 @@ const rechargeAccountSuccess = (state, action) => {
       ...state.userInfo,
       wallet: action.wallet
     },
-    info: action.resp
+    info: action.resp,
   }
 }
 
