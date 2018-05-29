@@ -173,20 +173,6 @@ class Account extends Component {
           </div>
         )
       }
-    //       userInfo.push(<h1 key={cuid()}>Account</h1>)
-    //       if(this.props.info !== ''){
-    //         userInfo.push(<FlashMessage duration={3000} key={cuid()}><span>{this.props.info}</span></FlashMessage>)
-    //       }
-    //       if(this.props.error){
-    //         userInfo.push(<FlashMessage duration={3000} key={cuid()}><span>{this.props.error.fail}</span></FlashMessage>)
-    //       }
-    //       userInfo.push(<h3 key={cuid()}>Welcome {this.props.userInfo.name}</h3>)
-    //       userInfo.push(<span key={cuid()}>username: {this.props.userInfo.username}</span>)
-    //       userInfo.push(<span key={cuid()}>email: {this.props.userInfo.email}</span>)
-    //       userInfo.push(<p key={cuid()}>Wallet: {this.props.userInfo.wallet}</p>)
-    //       userInfo.push(<Button key={cuid()} btnType="RechargeAccount" clicked={this.rechargeAccount}>Recharge</Button>)
-    //       userInfo.push(<Button key={cuid()} btnType="EditButton" clicked={this.editInfoHandler}>Edit</Button>)          
-    // }
     
     let editInfo = null;
     if(this.state.editing){
