@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 const adCategory = (props) => (
     <h2>{props.name}</h2>

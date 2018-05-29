@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Aux from '../../hoc/Aux/Aux';
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
-import Loader from '../UI/Loader/Loader';
 import classes from './EditInfo.css';
 
 class EditInfo extends Component{

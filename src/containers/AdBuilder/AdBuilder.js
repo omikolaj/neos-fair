@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {Route, Redirect, Link} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 import Aux from '../../hoc/Aux/Aux';
 import * as actions from '../../store/actions/index';
 import classes from './AdBuilder.css';

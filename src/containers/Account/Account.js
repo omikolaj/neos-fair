@@ -5,7 +5,6 @@ import classes from './Account.css';
 import Loading from '../../components/UI/Loader/Loader';
 import Button from '../../components/UI/Button/Button';
 import Modal from '../../components/UI/Modal/Modal';
-import Aux from '../../hoc/Aux/Aux';
 import EditInfo from '../../components/EditInfo/EditInfo';
 import UserConsole from '../UserConsole/UserConsole';
 import FlashMessage from 'react-flash-message'
@@ -141,7 +140,6 @@ class Account extends Component {
   render() {    
     let showUserInfo = null;
     if(this.props.loading !== true){ 
-      let errorMessage = null;
       let userInfo = [];   
         showUserInfo = (
           <div className={classes.Account}>

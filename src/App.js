@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import {Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Layout from './hoc/Layout/Layout';
 import classes from './App.css';
 import Ads from './containers/Ads/Ads';
 import AdDetails from './containers/AdDetails/AdDetails';
 import AdBuilder from './containers/AdBuilder/AdBuilder';
-import Auth from './containers/Auth/Auth';
 import * as actions from './store/actions/index';
 import Logout from './containers/Auth/Logout/Logout';
 import Welcome from './containers/Welcome/Welcome';
@@ -14,6 +13,7 @@ import Account from './containers/Account/Account';
 import { getQueryParams } from './store/utility';
 
 class App extends Component {  
+  
   componentDidMount(){
     this.props.onTryAutoAuth();
     const githubParams = getQueryParams()
@@ -29,7 +29,7 @@ class App extends Component {
   }
 
   componentDidUpdate(){    
-    const paramsArray = getQueryParams()
+    getQueryParams()
   }
 
   render() {
@@ -74,10 +74,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onTryAutoAuth: () => dispatch(actions.authCheckState()),
-    // loginGithub: (auth) => dispatch(actions.loginGithub(auth)),
     authSuccess: (data) => dispatch(actions.authSuccess(data)),
     authFail: (error) => (dispatch(actions.authFail(error)))
-    // loginGithubFail: (error) => dispatch(actions.loginGithubFail(error))
   };
 }
 

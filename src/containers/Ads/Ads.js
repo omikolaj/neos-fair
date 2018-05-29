@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import {Route, Switch} from 'react-router-dom';
+import {connect} from 'react-redux';
 import Ad from '../../components/Ad/Ad';
 import * as actions from '../../store/actions/index';
 import classes from './Ads.css'

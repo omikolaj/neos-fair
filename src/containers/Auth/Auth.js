@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Redirect, Route} from 'react-router-dom';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
-import Label from '../../components/UI/Label/Label';
 import classes from './Auth.css';
 import * as actions from '../../store/actions/index';
 import Loader from '../../components/UI/Loader/Loader';
-import Aux from '../../hoc/Aux/Aux';
 import Login from '../../components/Auth/Login/Login';
 import SignUp from '../../components/Auth/Signup/Signup';
-import GitHubButton from '../../components/Auth/GitHubButton/GitHubButton';
 import FlashMessage from 'react-flash-message';
 
 class Auth extends Component {
@@ -203,7 +199,6 @@ class Auth extends Component {
         errorMessage = <FlashMessage duration={5000}><span>{this.props.error.error}</span></FlashMessage> 
       }
     }
-    let authRedirect = null;
    
     return (
       <div className={classes.Auth}>

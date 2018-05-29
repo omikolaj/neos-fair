@@ -1,4 +1,4 @@
-import React, {PureComponent, Component} from 'react';
+import React from 'react';
 import Button from '../../UI/Button/Button';
 import Aux from '../../../hoc/Aux/Aux';
 import classes from './UserAd.css';

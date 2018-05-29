@@ -1,9 +1,8 @@
-import React, {PureComponent, Component} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import UserAd from '../../../components/EditInfo/UserAd/UserAd';
 import classes from './UserAds.css';
 import Aux from '../../../hoc/Aux/Aux';
-import UserOrders from '../UserOrders/UserOrders';
 import * as actions from '../../../store/actions/index';
 
 class UserAds extends Component {
