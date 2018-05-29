@@ -5,8 +5,13 @@ import Aux from '../../../hoc/Aux/Aux';
 import UserOrder from '../../../components/EditInfo/UserOrder/UserOrder';
 import cuid from 'cuid';
 import FlashMessage from 'react-flash-message';
+import * as actions from '../../../store/actions/index';
 
 class UserOrders extends Component {
+
+  componentWillUnmount(){
+    this.props.clearPurchaseState()
+  }
 
   render() {
     let userOrders = null;
@@ -55,4 +60,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(UserOrders);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    clearPurchaseState: () => dispatch(actions.clearPurchaseState())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserOrders);

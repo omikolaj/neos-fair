@@ -61,6 +61,12 @@ export const payForItemFail = (error) => {
   }
 }
 
+export const clearPurchaseState = () => {
+  return {
+    type: actionTypes.CLEAR_PURCHASE_STATUS
+  }
+}
+
 // Async calls
 
 export const fetchAd = (id) => {
