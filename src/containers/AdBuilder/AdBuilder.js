@@ -68,14 +68,15 @@ class AdBuilder extends Component {
           type: 'number',
           placeholder: 'Enter the Price',
           min: 1,
-          max: 4,
+          max: 5000,
         },
         value: '',
         label: 'Item Price',
         validations: {
           required: true,
-          isNumeric: true,
-          maxLength: 4,
+          // isNumeric: true,
+          isPrice: true,
+          maxLength: 7
         },
         valid: false,
         touched: false
@@ -97,7 +98,13 @@ class AdBuilder extends Component {
         elementType: 'select',
         elementConfig: {
           options: [
-            {value: 'test', displayValue: 'Test Category'}
+            {value: 'toys', displayValue: 'Toys'},
+            {value: 'electronics', displayValue: 'Electronics'},
+            {value: 'automobiles', displayValue: 'Automobiles'},
+            {value: 'clothes', displayValue: 'Clothes'},
+            {value: 'services', displayValue: 'Services'},
+            {value: 'Parts', displayValue: 'Parts'},
+            {value: 'Other', displayValue: 'Other'},
           ]
         },
         value: 'test' ,

@@ -21,6 +21,11 @@ const checkValidity = (value, rules) => {
       isValid = pattern.test(value) && isValid
   }
 
+  if (rules.isPrice){
+      const pattern = /\d{1,4}(?:[.,]\d{3})*(?:[.,]\d{2})/
+      isValid = pattern.test(value) && isValid
+  }
+
   if (rules.isNumeric) {
       const pattern = /^\d+$/;
       isValid = pattern.test(value) && isValid
