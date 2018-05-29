@@ -80,6 +80,12 @@ export const changeAdStatusFail = (error) => {
   }
 }
 
+export const clearUpdatedAdID = () => {
+  return {
+    type: actionTypes.CLEAR_UPDATED_AD_ID
+  }
+}
+
 // Async
 
 export const changeAdStatus = (userID, adID) => {

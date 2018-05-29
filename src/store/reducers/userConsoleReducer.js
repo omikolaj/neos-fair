@@ -185,6 +185,23 @@ const changeAdStatusFail = (state, action) => {
   }
 }
 
+const clearUpdatedAdID = (state, action) => {
+  return {
+    ...state,
+    updatedAdID: null,
+    loading: false,
+    error: {
+      ...action.error
+    },
+    userAds: [
+      ...state.userAds
+    ],
+    userOrders: [
+      ...state.userOrders
+    ]
+  }
+}
+
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.FETCH_USER_ADS_START: return fetchUserAdsStart(state, action);
@@ -199,6 +216,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.CHANGE_AD_STATUS_START: return changeAdStatusStart(state, action);
     case actionTypes.CHANGE_AD_STATUS_SUCCESS: return changeAdStatusSuccess(state, action);
     case actionTypes.CHANGE_AD_STATUS_FAIL: return changeAdStatusFail(state, action);
+    case actionTypes.CLEAR_UPDATED_AD_ID: return clearUpdatedAdID(state, action);
     default: return state;
   }
 }

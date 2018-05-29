@@ -8,6 +8,10 @@ import * as actions from '../../../store/actions/index';
 
 class UserAds extends Component {
 
+  componentWillUnmount(){
+    this.props.clearUpdatedAdID()
+  }
+
   changeAdStatusHandler = (adID) => {
     this.props.changeAdStatus(this.props.userID,adID)
   }
@@ -62,7 +66,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     removeUserAd: (userID, adID) => dispatch(actions.removeUserAd(userID, adID)),
-    changeAdStatus: (userID, adID) => dispatch(actions.changeAdStatus(userID, adID))
+    changeAdStatus: (userID, adID) => dispatch(actions.changeAdStatus(userID, adID)),
+    clearUpdatedAdID: () => dispatch(actions.clearUpdatedAdID())
   }
 }
 
