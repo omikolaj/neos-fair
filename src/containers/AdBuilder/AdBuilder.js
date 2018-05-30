@@ -222,10 +222,9 @@ class AdBuilder extends Component {
 
    let adForm = this.props.loading ? <Loader /> : form;
 
-   if(this.props.unauthorized){
+   if(this.props.unauthorized && this.props.validations.length < 0){
      adForm = <h1>{this.props.message}</h1>
    }
-
    
    return (
       <div className={classes.AdBuilder}>        
