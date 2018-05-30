@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+import {getToken} from '../utility';
 
 export const createNewAdStart = () => {
   return {
@@ -27,12 +28,19 @@ export const adPostingInit = () =>{
   }
 }
 
+export const clearUnauthorizedState = () => {
+  return {
+    type: actionTypes.CLEAR_UNAUTHORIZED_STATE
+  }
+}
+
 // Async code
 
 export const createNewAd = (adData) => {
+  const token = getToken()
   return dispatch => {
     dispatch(createNewAdStart())
-    fetch('/api/ads', {
+    fetch('/api/ads?auth=' + token, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

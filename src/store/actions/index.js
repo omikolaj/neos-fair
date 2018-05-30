@@ -6,7 +6,8 @@ export {
 } from './ads';
 export {
   createNewAd,
-  adPostingInit
+  adPostingInit,
+  clearUnauthorizedState
 } from './adBuilder';
 export {
   auth,

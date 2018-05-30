@@ -118,6 +118,7 @@ class AdBuilder extends Component {
 
   componentWillUnmount(){
     this.props.onInitAdPost()
+    this.props.clearUnauthorizedState()
   }
 
   // inputID = email , category on the newAdForm etc.
@@ -214,12 +215,18 @@ class AdBuilder extends Component {
    let errors = null;
    if(this.props.validations.length > 0){
     errors = this.props.validations.map((msg, index) => {
-      return <FlashMessage duration={3000}><span key={index}>{msg}</span></FlashMessage>      
+      return <FlashMessage duration={3000}key={index}><span>{msg}</span></FlashMessage>      
       }
     )   
    }
 
-   const adForm = this.props.loading ? <Loader /> : form;
+   let adForm = this.props.loading ? <Loader /> : form;
+
+   if(this.props.unauthorized){
+     adForm = <h1>{this.props.message}</h1>
+   }
+
+   
    return (
       <div className={classes.AdBuilder}>        
         {errors}        
@@ -238,14 +245,17 @@ const mapStateToProps = (state) => {
     validations: state.adBuilder.newAd.validations,
     error: state.adBuilder.newAd.error,
     isAuthenticated: state.auth.token != null,
-    userID: state.auth.userID
+    userID: state.auth.userID,
+    unauthorized: state.adBuilder.newAd.unauthorized,
+    message: state.adBuilder.newAd.message
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     createNewAd: (newAd) => dispatch(actions.createNewAd(newAd)), 
-    onInitAdPost: () => dispatch(actions.adPostingInit())
+    onInitAdPost: () => dispatch(actions.adPostingInit()),
+    clearUnauthorizedState: () => dispatch(actions.clearUnauthorizedState())
   }
 }
 

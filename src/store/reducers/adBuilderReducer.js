@@ -8,7 +8,8 @@ const initialState = {
     validations: [],
     posted: false,
     error: false,    
-    new: false
+    new: false,
+    unauthorized: false
   }  
 }
 
@@ -20,7 +21,8 @@ const createNewAdStart = (state, action) => {
       validations: [
         ...state.newAd.validations
       ],
-    }
+      unauthorized: false
+    }    
   }
 }
 
@@ -48,7 +50,8 @@ const createNewAdFail = (state, action) => {
       validations: [
         ...action.validations
       ],
-      error: true,      
+      error: true,   
+      unauthorized: true   
     }
   }
 }
@@ -66,12 +69,27 @@ const adPostingInit = (state , action) => {
   }
 }
 
+const clearUnauthorizedState = (state , action) => {
+  return {
+    newAd: {
+      ...state.newAd,
+      validations: [
+        ...state.newAd.validations
+      ],
+      posted: false,
+      error: false,
+      unauthorized: false
+    }
+  }
+}
+
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.CREATE_NEW_AD_START: return createNewAdStart(state, action);
     case actionTypes.CREATE_NEW_AD_SUCCESS: return createNewAdSuccess(state, action);
     case actionTypes.CREATE_NEW_AD_FAIL: return createNewAdFail(state, action);
-    case actionTypes.AD_POSTING_INIT: return adPostingInit(state, action) 
+    case actionTypes.AD_POSTING_INIT: return adPostingInit(state, action);
+    case actionTypes.CLEAR_UNAUTHORIZED_STATE: return clearUnauthorizedState(state, action);
     default: return state; 
   } 
 }
