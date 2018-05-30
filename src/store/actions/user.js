@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+import {getToken} from '../utility';
 
 export const fetchUserInfoStart = () => {
   return {
@@ -133,9 +134,10 @@ export const updateUserInfo = (userInfo) => {
 }
 
 export const fetchUserInfo = (userID) => {
+  const token = getToken();
   return dispatch => {
     dispatch(fetchUserInfoStart())
-    fetch('/api/users/' + userID)
+    fetch(`/api/users/${userID}?auth=${token}`)
     .then(resp=>resp.json())
     .then(userData => {
       if(userData.status >= 200 && userData.status < 300){

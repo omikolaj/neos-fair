@@ -10,11 +10,13 @@ import UserConsole from '../UserConsole/UserConsole';
 import FlashMessage from 'react-flash-message'
 import checkValidity from '../Utils/Validations';
 import cuid from 'cuid';
+import Aux from '../../hoc/Aux/Aux';
 
 class Account extends Component {
   state ={
     editing: false,
-    displayInfo: false
+    displayInfo: false,
+    message: null,
   }
 
   componentDidMount(){
@@ -143,8 +145,14 @@ class Account extends Component {
     this.setState({
       displayInfo: true
     })
-    this.props.rechargeAccount(this.props.userID)
+    if(parseFloat(this.props.userInfo.wallet.substring(1)).toFixed(2) < 10000){
+      this.props.rechargeAccount(this.props.userID)
+    }else{
+      this.setState({
+        message: <FlashMessage duration={3000} key={cuid()}><span>You have reached your limit</span></FlashMessage>
+      })
   }
+}
 
   render() {    
     let showUserInfo = null;
@@ -156,14 +164,20 @@ class Account extends Component {
         )
       }
       if(this.props.error && this.state.displayInfo){
-        message =(
+        message = (
+          <FlashMessage duration={3000} key={cuid()}><span>{this.props.error.fail}</span></FlashMessage>
+        )
+      }
+
+      if(this.props.error && !this.props.unauthorized){
+        message = (
           <FlashMessage duration={3000} key={cuid()}><span>{this.props.error.fail}</span></FlashMessage>
         )
       }
         showUserInfo = (
           <div className={classes.Account}>                      
             <h1>Account</h1>
-            <div>{message}</div>
+            <div>{this.state.message || message}</div>
             <h3>Welcome {this.props.userInfo.name}</h3>
             <span>username: {this.props.userInfo.username}</span>
             <span>email: {this.props.userInfo.email}</span>
@@ -188,14 +202,25 @@ class Account extends Component {
     if(this.props.loading){
       showUserInfo = <Loading />
     }
+
+    let account = (
+      <Aux>
+        {showUserInfo}
+        <UserConsole userID={this.props.userID}/>
+      </Aux>
+    )
+
+    if(this.props.error && this.props.unauthorized){
+      account = <h1>{this.props.error.fail}</h1>;
+      editInfo = null;      
+    }
     
     return (
       <div className={classes.Account}>
           <Modal show={this.state.editing} modalClosed={this.editCancelHandler}>
             {editInfo}
           </Modal>
-          {showUserInfo}
-          <UserConsole userID={this.props.userID}/>
+          {account}
       </div>
     )
   }
@@ -208,7 +233,8 @@ const mapStateToProps = (state) => {
     error: state.userInfo.error,
     info: state.userInfo.info,
     userID: state.auth.userID,
-    recharged: state.userInfo.recharged
+    recharged: state.userInfo.recharged,
+    unauthorized: state.userInfo.unauthorized
   }
 }
 

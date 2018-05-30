@@ -10,6 +10,7 @@ const initialState = {
     wallet: null
   },
   info: '',
+  unauthorized: false,
 };
 
 const fetchUserInfoStart = (state, action) => {
@@ -40,7 +41,8 @@ const fetchUserInfoFail = (state, action) => {
     error: {
       ...action.error,
     },
-    userInfo: {}    
+    userInfo: {}    ,
+    unauthorized: action.error.unauthorized
   }
 }
 

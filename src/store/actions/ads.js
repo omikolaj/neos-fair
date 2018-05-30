@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import {getToken} from '../utility';
 
 export const fetchAdsStart = () => {
   return {
@@ -69,20 +70,27 @@ export const clearPurchaseState = () => {
 // Async calls
 
 export const fetchAd = (id) => {
+  const token = getToken()
   return dispatch => {
     dispatch(fetchAdStart())
-    fetch(`/api/ads/${id}`)
+    fetch(`/api/ads/${id}?auth=${token}`)
     .then(resp=>resp.json())
     .then(data => {
-      dispatch(fetchAdSuccess(data))
+      if(data.status >= 200 && data.status < 300){
+        dispatch(fetchAdSuccess(data))
+      }
+      else{
+        return Promise.reject(data)
+      }
     })
-    .catch(error=>{
+    .catch(error => {
       dispatch(fetchAdFail(error))
     })
   }
 }
 
-export const fetchAds = (token) => {
+export const fetchAds = () => {
+  const token = getToken()
   return dispatch => {
     dispatch(fetchAdsStart())
     fetch('/api/ads.json?auth='+ token)
@@ -101,7 +109,7 @@ export const fetchAds = (token) => {
   }
 }
 
-export const payForItem = (payData) => {
+export const payForItem = (payData) => {  
   return dispatch => {
     dispatch(payForItemStart());
     const data = {userID: payData.userID, adID: payData.adID, price: payData.price.substring(1)}    

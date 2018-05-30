@@ -8,7 +8,7 @@ import Loader from '../../components/UI/Loader/Loader';
 class Ads extends Component {
 
   componentDidMount(){
-    this.props.fetchAds(this.props.token);
+    this.props.fetchAds();
   }
 
   adSelectedHandler = (id) => {
@@ -55,13 +55,12 @@ const mapStateToProps = (state) => {
     ads: state.ads.ads,
     error: state.ads.error,
     loading: state.ads.loading,
-    token: state.auth.token
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAds: (token) => dispatch(actions.fetchAds(token))
+    fetchAds: () => dispatch(actions.fetchAds())
   };
 };
 

@@ -118,7 +118,8 @@ const fetchAdStart = (state, action) => {
       }
     },
     loading: true,
-    ...state.error
+    ...state.error,
+    unauthorized: false
   }
 }
 
@@ -168,7 +169,10 @@ const fetchAdFail = (state, action) => {
       }
     },
     loading: false,
-    error: action.payload.error
+    error: {
+      ...action.payload
+    },
+    unauthorized: true
   }
 }
 
@@ -195,6 +199,7 @@ const payForItemStart = (state, action) => {
     purchaseError: null,
     purchaseStatus: null,
     purchaseSuccess: null,
+    unauthorized: false,
   }
 }
 
@@ -249,7 +254,7 @@ const payForItemFail = (state, action) => {
     purchaseStatus: {
       ...action.error
     },
-    purchaseSuccess: false
+    purchaseSuccess: false,
   }
 }
 

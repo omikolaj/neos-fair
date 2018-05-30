@@ -73,6 +73,13 @@ class AdDetails extends Component {
       purchased = <Redirect to={`/users/${this.props.userID}`} />
     }
 
+    if(this.props.error && this.props.unauthorized){
+      purchased = (        
+        <h1>{this.props.error.fail}</h1>        
+      )
+      ad = null;       
+    }
+
     return (
       <Aux>
         <Modal show={this.state.purchasing} modalClosed={this.buyCancelHandler}>
@@ -95,7 +102,9 @@ const MapStateToProps = (state) => {
     userID: state.auth.userID,
     purchaseError: state.ads.purchaseError,
     purchaseStatus: state.ads.purchaseStatus,
-    purchaseSuccess: state.ads.purchaseSuccess
+    purchaseSuccess: state.ads.purchaseSuccess,
+    unauthorized: state.ads.unauthorized,
+    error: state.ads.error
   }
 }
 
