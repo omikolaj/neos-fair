@@ -15,7 +15,7 @@ export const fetchAdsSuccess = (ads) => {
 
 export const fetchAdsFail = (error) => {
   return {
-    type: actionTypes.FETCH_AD_FAIL,
+    type: actionTypes.FETCH_ADS_FAIL,
     payload: error
   }
 }
@@ -87,8 +87,13 @@ export const fetchAds = (token) => {
     dispatch(fetchAdsStart())
     fetch('/api/ads.json?auth='+ token)
     .then(resp=>resp.json())
-    .then(data =>{
-      dispatch(fetchAdsSuccess(data))
+    .then(data => {
+      if(data.status >= 200 && data.status < 300){
+        dispatch(fetchAdsSuccess(data))
+      }
+      else{
+        return Promise.reject(data)
+      }
     })
     .catch(error => {
       dispatch(fetchAdsFail(error))

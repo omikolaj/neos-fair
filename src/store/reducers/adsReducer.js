@@ -42,7 +42,7 @@ const fetchAdsStart = (state, action) => {
 }
 
 const fetchAdsSuccess = (state, action) => {
-  const updatedAds = action.ads.filter(freshAd=>{
+  const updatedAds = action.ads.ads.filter(freshAd=>{
     return state.ads.map(currentAd=>{
       if(freshAd.id!==currentAd.id){
         return freshAd
@@ -92,7 +92,9 @@ const fetchAdsFail = (state, action) => {
       }
     },
     loading: false,
-    error: action.payload.error
+    error: {
+      ...action.payload
+    }
   }
 }
 

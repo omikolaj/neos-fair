@@ -20,3 +20,7 @@ export const getQueryParams = () => {
   }
   return null  
 }
+
+export const getToken = () => {
+  return localStorage.getItem('token')
+}

@@ -8,7 +8,7 @@ import Loader from '../../components/UI/Loader/Loader';
 class Ads extends Component {
 
   componentDidMount(){
-    this.props.fetchAds();
+    this.props.fetchAds(this.props.token);
   }
 
   adSelectedHandler = (id) => {
@@ -31,9 +31,17 @@ class Ads extends Component {
         )
       })      
     }
+
+    let header = <h1>Currently Posted Ads</h1>
+
+    if(this.props.error){
+      header = <div><h1 className={classes.Error}>{this.props.error.fail}</h1></div>
+      ads = null;
+    }
+
     return (
       <div>
-        <h1>Currently Posted Ads</h1>
+        {header}
         <section className={classes.Ads}>
           {ads}
         </section>      
@@ -45,7 +53,9 @@ class Ads extends Component {
 const mapStateToProps = (state) => {
   return {
     ads: state.ads.ads,
-    loading: state.ads.loading
+    error: state.ads.error,
+    loading: state.ads.loading,
+    token: state.auth.token
   }
 }
 

@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+import {getToken} from '../utility';
 
 export const fetchUserAdsStart = () => {
   return {
@@ -135,9 +136,10 @@ export const removeUserAd = (userID, adID) => {
 }
 
 export const fetchUserAds = (userID) => {
+  const token = getToken()
   return dispatch => {
     dispatch(fetchUserAdsStart())
-    fetch(`/api/users/${userID}/ads`)
+    fetch(`/api/users/${userID}/ads?auth=${token}`)
     .then(resp=>resp.json())
     .then(userAds => {
       if(userAds.status >= 200 && userAds.status < 300){

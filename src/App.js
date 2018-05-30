@@ -67,7 +67,8 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token != null,
-    userID: state.auth.userID
+    userID: state.auth.userID,
+    token: state.auth.token
   }
 }
 
