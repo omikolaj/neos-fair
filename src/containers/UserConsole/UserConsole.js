@@ -10,7 +10,7 @@ class UserConsole extends Component {
 
   componentDidMount(){
     this.props.fetchUserAds(this.props.userID)
-    // this.props.fetchUserOrders(this.props.userID)
+    this.props.fetchUserOrders(this.props.userID)
   }
 
   render(){
