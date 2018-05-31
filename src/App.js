@@ -43,7 +43,7 @@ class App extends Component {
 
     if(this.props.isAuthenticated){
       routes = (
-        <Switch>
+      <Switch>
         <Route exact path='/ads/new' component={AdBuilder} />                  
         <Route exact path='/ads' component={Ads} />
         <Route exact path='/ads/:id' component={AdDetails} />

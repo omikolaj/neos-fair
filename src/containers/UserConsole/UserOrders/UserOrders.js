@@ -9,9 +9,9 @@ import * as actions from '../../../store/actions/index';
 
 class UserOrders extends Component {
 
-  componentWillUnmount(){
-    this.props.clearPurchaseState()
-  }
+  // componentWillUnmount(){
+  //   this.props.clearPurchaseState()
+  // }
 
   render() {
     let userOrders = null;
@@ -62,7 +62,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    clearPurchaseState: () => dispatch(actions.clearPurchaseState())
+    // clearPurchaseState: () => dispatch(actions.clearPurchaseState())
   }
 }
 

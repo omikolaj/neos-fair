@@ -88,7 +88,7 @@ class Account extends Component {
   }
 
   editInfoHandler = () => {
-    this.setState({editing: true, displayInfo: false});
+    this.setState({editing: true, displayInfo: false, message: ''});
   }
 
   editCancelHandler = () => {

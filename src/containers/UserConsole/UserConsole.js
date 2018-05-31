@@ -13,6 +13,10 @@ class UserConsole extends Component {
     this.props.fetchUserOrders(this.props.userID)
   }
 
+  componentWillUnmount(){
+    this.props.clearPurchaseState()
+  }
+
   render(){
     let userAdsAndOrders = (
       <Aux>
@@ -49,6 +53,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserAds: (userID) => dispatch(actions.fetchUserAds(userID)),
     fetchUserOrders: (userID) => dispatch(actions.fetchUserOrders(userID)),
+    clearPurchaseState: () => dispatch(actions.clearPurchaseState())
   }
 }
 
