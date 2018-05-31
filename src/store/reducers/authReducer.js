@@ -34,9 +34,10 @@ const authFail = (state, action) => {
 
 const logout = (state, action) => {
   return {
-    ...state,
+    loading: false,
     token: null,
     userID: null,
+    error: null
   }
 }
 

@@ -7,7 +7,7 @@ import * as actions from '../../store/actions/index';
 import Loader from '../../components/UI/Loader/Loader';
 import Login from '../../components/Auth/Login/Login';
 import SignUp from '../../components/Auth/Signup/Signup';
-import FlashMessage from 'react-flash-message';
+import FlashMessage from '../Utils/FlashMessage/FlashMessage';
 
 class Auth extends Component {
   state = {
@@ -193,10 +193,10 @@ class Auth extends Component {
     if(this.props.error){      
       if(Array.isArray(this.props.error.error)){
         errorMessage = this.props.error.error.map((msg, index) => {
-          return <FlashMessage duration={5000} key={index}><span>{msg}</span></FlashMessage>      
+          return <FlashMessage duration={5000} key={index} class='Error'><span>{msg}</span></FlashMessage>
         })
       }else{
-        errorMessage = <FlashMessage duration={5000}><span>{this.props.error.error}</span></FlashMessage> 
+        errorMessage = <FlashMessage duration={5000} class='Error'><span>{this.props.error.error}</span></FlashMessage>
       }
     }
    

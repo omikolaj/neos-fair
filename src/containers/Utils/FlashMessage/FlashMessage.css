@@ -1,0 +1,38 @@
+.Error {
+  background: #f03939;
+  border-radius: 5px;
+  padding: 6px;
+  color: black;
+  font-weight: 900;  
+}
+
+.Warning {
+  background: #f0ce39;
+  border-radius: 5px;
+  color: rgb(7, 22, 163);
+  font-weight: 900; 
+  width: 50%;
+  margin: 0 auto;
+  padding: 5px;  
+  text-align: center;
+}
+
+.Warning1 {
+  background: #f0ce39;
+  border-radius: 5px;
+  color: rgb(7, 22, 163);
+  font-weight: 900; 
+  margin: 0 auto;
+  padding: 5px;  
+  text-align: center;
+}
+
+.Info{
+  background: #e3eef4;
+  border-radius: 5px;
+  color: rgb(4, 13, 88);
+  font-weight: 900; 
+  margin: 0 auto;
+  padding: 3px;  
+  text-align: center;
+}

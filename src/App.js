@@ -14,7 +14,7 @@ import { getQueryParams } from './store/utility';
 
 class App extends Component {  
   
-  componentDidMount(){
+  componentDidMount(){   
     this.props.onTryAutoAuth();
     const githubParams = getQueryParams()
     if(githubParams){
@@ -28,7 +28,7 @@ class App extends Component {
     }   
   }
 
-  componentDidUpdate(){    
+  componentDidUpdate(){ 
     getQueryParams()
   }
 

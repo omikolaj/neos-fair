@@ -7,7 +7,7 @@ import Button from '../../components/UI/Button/Button';
 import Modal from '../../components/UI/Modal/Modal';
 import EditInfo from '../../components/EditInfo/EditInfo';
 import UserConsole from '../UserConsole/UserConsole';
-import FlashMessage from 'react-flash-message'
+import FlashMessage from '../Utils/FlashMessage/FlashMessage';
 import checkValidity from '../Utils/Validations';
 import cuid from 'cuid';
 import Aux from '../../hoc/Aux/Aux';
@@ -149,7 +149,7 @@ class Account extends Component {
       this.props.rechargeAccount(this.props.userID)
     }else{
       this.setState({
-        message: <FlashMessage duration={3000} key={cuid()}><span>You have reached your limit</span></FlashMessage>
+        message: <FlashMessage duration={3000} key={cuid()} class='Warning1'><span>You have reached your limit</span></FlashMessage>
       })
   }
 }
@@ -160,18 +160,18 @@ class Account extends Component {
       let message = null;
       if(this.props.info !== '' && this.state.displayInfo){
         message = (
-          <FlashMessage duration={3000} key={cuid()}><span>{this.props.info}</span></FlashMessage>
+          <FlashMessage duration={3000} key={cuid()} class='Info'><span>{this.props.info}</span></FlashMessage>
         )
       }
       if(this.props.error && this.state.displayInfo){
         message = (
-          <FlashMessage duration={3000} key={cuid()}><span>{this.props.error.fail}</span></FlashMessage>
+          <FlashMessage duration={3000} key={cuid()} class='Error'><span>{this.props.error.fail}</span></FlashMessage>
         )
       }
 
       if(this.props.error && !this.props.unauthorized){
         message = (
-          <FlashMessage duration={3000} key={cuid()}><span>{this.props.error.fail}</span></FlashMessage>
+          <FlashMessage duration={3000} key={cuid()} class='Error'><span>{this.props.error.fail}</span></FlashMessage>
         )
       }
         showUserInfo = (
@@ -181,7 +181,7 @@ class Account extends Component {
             <h3>Welcome {this.props.userInfo.name}</h3>
             <span>username: {this.props.userInfo.username}</span>
             <span>email: {this.props.userInfo.email}</span>
-            <p>Wallet: {this.props.userInfo.wallet}</p>
+            <p>Wallet: <strong>{this.props.userInfo.wallet}</strong></p>
             <Button btnType="RechargeAccount" clicked={this.rechargeAccount}>Recharge</Button>
             <Button btnType="EditButton" clicked={this.editInfoHandler}>Edit</Button>
           </div>

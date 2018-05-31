@@ -10,7 +10,7 @@ import Button from '../../components/UI/Button/Button';
 import Aux from '../../hoc/Aux/Aux';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Ad/OrderSummary/OrderSummary';
-import FlashMessage from 'react-flash-message';
+import FlashMessage from '../Utils/FlashMessage/FlashMessage';
 
 class AdDetails extends Component {
   state={
@@ -63,7 +63,7 @@ class AdDetails extends Component {
     let purchased = null;
     if(this.props.purchaseError){
       purchased = (
-        <FlashMessage duration={5000}>
+        <FlashMessage duration={5000} class='Warning'>
             <p>{this.props.purchaseStatus.fail}</p>
         </FlashMessage>        
       )

@@ -4,14 +4,10 @@ import classes from './UserOrders.css';
 import Aux from '../../../hoc/Aux/Aux';
 import UserOrder from '../../../components/UserConsole/UserOrder/UserOrder';
 import cuid from 'cuid';
-import FlashMessage from 'react-flash-message';
+import FlashMessage from '../../Utils/FlashMessage/FlashMessage';
 import * as actions from '../../../store/actions/index';
 
 class UserOrders extends Component {
-
-  // componentWillUnmount(){
-  //   this.props.clearPurchaseState()
-  // }
 
   render() {
     let userOrders = null;
@@ -34,7 +30,7 @@ class UserOrders extends Component {
     let message = null
     if(this.props.purchaseSuccess){
       message = (
-        <FlashMessage duration={6000}>
+        <FlashMessage duration={6000} class='Info'>
           <span className={classes.PurchaseSuccess}>{this.props.purchaseStatus}</span>
         </FlashMessage>
       )      
@@ -60,10 +56,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    // clearPurchaseState: () => dispatch(actions.clearPurchaseState())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserOrders);
+export default connect(mapStateToProps, null)(UserOrders);

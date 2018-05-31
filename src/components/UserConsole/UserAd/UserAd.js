@@ -2,10 +2,10 @@ import React from 'react';
 import Button from '../../UI/Button/Button';
 import Aux from '../../../hoc/Aux/Aux';
 import classes from './UserAd.css';
-import FlashMessage from 'react-flash-message';
+import FlashMessage from '../../../containers/Utils/FlashMessage/FlashMessage';
 
 const userAd = (props) => {
-  const message = props.message ? <FlashMessage duration={3000}><span>{props.message}</span></FlashMessage> : null;
+  const message = props.message ? <FlashMessage duration={3000} class='Info'><span>{props.message}</span></FlashMessage> : null;
     return ( 
     <Aux>
       <div className={classes.UserAd}>
