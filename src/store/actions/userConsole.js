@@ -1,6 +1,8 @@
 import * as actionTypes from '../actions/actionTypes';
 import {getToken} from '../utility';
 
+const API_HOST = process.env.REACT_APP_API_HOST
+
 export const fetchUserAdsStart = () => {
   return {
     type: actionTypes.FETCH_USER_ADS_START
@@ -92,7 +94,7 @@ export const clearUpdatedAdID = () => {
 export const changeAdStatus = (userID, adID) => {
   return dispatch => {
     dispatch(changeAdStatusStart())
-    fetch(`/api/users/${userID}/ads/${adID}`, {
+    fetch(`${API_HOST}/users/${userID}/ads/${adID}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json'
@@ -115,7 +117,7 @@ export const changeAdStatus = (userID, adID) => {
 export const removeUserAd = (userID, adID) => {
   return dispatch => {
     dispatch(removeUserAdStart())
-    fetch(`/api/users/${userID}/ads/${adID}`,{
+    fetch(`${API_HOST}/users/${userID}/ads/${adID}`,{
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
@@ -139,7 +141,7 @@ export const fetchUserAds = (userID) => {
   const token = getToken()
   return dispatch => {
     dispatch(fetchUserAdsStart())
-    fetch(`/api/users/${userID}/ads?auth=${token}`)
+    fetch(`${API_HOST}/users/${userID}/ads?auth=${token}`)
     .then(resp=>resp.json())
     .then(userAds => {
       if(userAds.status >= 200 && userAds.status < 300){
@@ -157,7 +159,7 @@ export const fetchUserAds = (userID) => {
 export const fetchUserOrders = (userID) => {
   return dispatch => {
     dispatch(fetchUserOrdersStart())
-    fetch(`/api/users/${userID}/orders`)
+    fetch(`${API_HOST}/users/${userID}/orders`)
     .then(resp=>resp.json())
     .then(userOrders => {
       if(userOrders.status >= 200 && userOrders.status < 300){

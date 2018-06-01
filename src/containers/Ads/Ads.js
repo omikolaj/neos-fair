@@ -9,6 +9,7 @@ class Ads extends Component {
 
   componentDidMount(){
     this.props.fetchAds();
+    console.log("Inside Console log", process.env.REACT_APP_ADS)
   }
 
   adSelectedHandler = (id) => {

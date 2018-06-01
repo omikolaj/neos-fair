@@ -1,6 +1,8 @@
 import * as actionTypes from './actionTypes';
 import {getToken} from '../utility';
 
+const API_HOST = process.env.REACT_APP_API_HOST
+
 export const fetchAdsStart = () => {
   return {
     type: actionTypes.FETCH_ADS_START    
@@ -73,7 +75,7 @@ export const fetchAd = (id) => {
   const token = getToken()
   return dispatch => {
     dispatch(fetchAdStart())
-    fetch(`/api/ads/${id}?auth=${token}`)
+    fetch(`${API_HOST}/ads/${id}?auth=${token}`)
     .then(resp=>resp.json())
     .then(data => {
       if(data.status >= 200 && data.status < 300){
@@ -93,7 +95,7 @@ export const fetchAds = () => {
   const token = getToken()
   return dispatch => {
     dispatch(fetchAdsStart())
-    fetch('/api/ads.json?auth='+ token)
+    fetch(`${API_HOST}/ads?auth=`+ token)
     .then(resp=>resp.json())
     .then(data => {
       if(data.status >= 200 && data.status < 300){
@@ -113,7 +115,7 @@ export const payForItem = (payData) => {
   return dispatch => {
     dispatch(payForItemStart());
     const data = {userID: payData.userID, adID: payData.adID, price: payData.price.substring(1)}    
-    fetch(`/api/pay?userID=${data.userID}&adID=${data.adID}&price=${data.price}`, {
+    fetch(`${API_HOST}/pay?userID=${data.userID}&adID=${data.adID}&price=${data.price}`, {
       method: 'POST',
       header: {
         'Accept': 'application/json',

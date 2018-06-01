@@ -1,6 +1,8 @@
 import * as actionTypes from '../actions/actionTypes';
 import {getToken} from '../utility';
 
+const API_HOST = process.env.REACT_APP_API_HOST
+
 export const fetchUserInfoStart = () => {
   return {
     type: actionTypes.FETCH_USERINFO_START
@@ -83,7 +85,7 @@ export const rechargeAccount = (userID) => {
   const rechargeTotal = {recharge: rechargeAmount()}
   return dispatch => {
     dispatch(rechargeAccountStart())
-    fetch('/api/users/' + userID, {
+    fetch(`${API_HOST}/users/` + userID, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -110,7 +112,7 @@ export const updateUserInfo = (userInfo) => {
   const userInfoFormatted = formatData(userInfo)
   return dispatch => {
     dispatch(updateUserInfoStart());
-    fetch('/api/users/' + userInfoFormatted.user.id, {
+    fetch(`${API_HOST}/users/` + userInfoFormatted.user.id, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -137,7 +139,7 @@ export const fetchUserInfo = (userID) => {
   const token = getToken();
   return dispatch => {
     dispatch(fetchUserInfoStart())
-    fetch(`/api/users/${userID}?auth=${token}`)
+    fetch(`${API_HOST}/users/${userID}?auth=${token}`)
     .then(resp=>resp.json())
     .then(userData => {
       if(userData.status >= 200 && userData.status < 300){

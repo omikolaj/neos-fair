@@ -1,6 +1,8 @@
 import * as actionTypes from '../actions/actionTypes';
 import {getToken} from '../utility';
 
+const API_HOST = process.env.REACT_APP_API_HOST
+
 export const createNewAdStart = () => {
   return {
     type: actionTypes.CREATE_NEW_AD_START
@@ -40,7 +42,7 @@ export const createNewAd = (adData) => {
   const token = getToken()
   return dispatch => {
     dispatch(createNewAdStart())
-    fetch('/api/ads?auth=' + token, {
+    fetch(`${API_HOST}/ads?auth=` + token, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

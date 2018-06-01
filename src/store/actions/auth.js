@@ -1,5 +1,8 @@
 import * as actionTypes from './actionTypes';
 
+const API_HOST = process.env.REACT_APP_API_HOST
+const GITHUB_REDIRECT = process.env.REACT_APP_GITHUB
+
 export const authStart = () => {
   return {
     type: actionTypes.AUTH_START
@@ -76,7 +79,7 @@ const formatData = (userInfo, isSignUp) => {
 
 export const initLoginGithub = () => {
   return dispatch => {
-    window.location.href="https://github.com/login/oauth/authorize?client_id=67cb7ac47afbb2aad88e&scope=user"
+    window.location.href= GITHUB_REDIRECT;
   }
 }
 
@@ -86,12 +89,12 @@ export const auth = (userInfo, isSignUp) =>{
   const userData = formatData(userInfo, isSignUp);
   return dispatch => {
     dispatch(authStart());
-    let url = '/api/login';
+    let url = `${API_HOST}/login`;
     if(isSignUp){
       if(isSignUp === "guest"){
-        url = '/api/guest'
+        url = `${API_HOST}/guest`
       }else{
-        url = '/api/users'
+        url = `${API_HOST}/users`
       }     
     }
     fetch(url, {
