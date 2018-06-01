@@ -1,8 +1,7 @@
 {
   "name": "client-side",
   "version": "0.1.0",
-  "private": true,
-  "proxy": "https://neos-fair-api.herokuapp.com",
+  "private": true, 
   "dependencies": {
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
