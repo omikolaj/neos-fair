@@ -104,6 +104,9 @@ class AdBuilder extends Component {
             {value: 'clothes', displayValue: 'Clothes'},
             {value: 'services', displayValue: 'Services'},
             {value: 'Parts', displayValue: 'Parts'},
+            {value: 'Parts', displayValue: 'Tools'},
+            {value: 'House Items', displayValue: 'House Items'},
+            {value: 'House Items', displayValue: 'Kitchen'},
             {value: 'Other', displayValue: 'Other'},
           ]
         },
