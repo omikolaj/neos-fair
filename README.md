@@ -19,16 +19,8 @@ React-Redux application inspired by craigslist and offerup. Place where people c
 
 ## Usage
 This application has been deployed to Heroku. You can find the live version at 
-Manual set-up:
-  - Clone the repository
-  - cd into /server-side run 'bundle-install'
-  - run rake db:create (Make sure to have postgreSQL server installed)
-  - run rake db:migrate
-  - run rake db:seed
-  - run rails s -p 3001
-  - cd into /client-side
-  - set up a proxy in the package.json file "proxy": "http://localhost:3001" NOTE: (Some routes may not work due to environment variables not being set)
-  - run 'npm-install && start'
+Run npm install && npm start to install dependencies and start front end server.
+
 
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/omikolaj/neos-fair. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.

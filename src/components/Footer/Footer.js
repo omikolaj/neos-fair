@@ -7,7 +7,7 @@ const footer = (props) => {
     <div>
       <div className={classes.PhantomStyle}/>
       <footer>        
-          <a href='https://github.com/omikolaj/neos-fair'>
+          <a href='https://github.com/omikolaj/neos-fair' alt="">
             <img className={classes.Github} src={github}/>
           </a>
         </footer>      
