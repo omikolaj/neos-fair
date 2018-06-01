@@ -23,14 +23,14 @@ class UserOrders extends Component {
 
     if(this.props.userOrders.length === 0){
       userOrders = (
-        <p>You have no past orders</p>
+        <p className={classes.NoPastOrders}>You have no past orders</p>
       )
     }
 
     let message = null
     if(this.props.purchaseSuccess){
       message = (
-        <FlashMessage duration={6000} class='Info'>
+        <FlashMessage duration={6000} class='Info1'>
           <span className={classes.PurchaseSuccess}>{this.props.purchaseStatus}</span>
         </FlashMessage>
       )      
@@ -38,11 +38,9 @@ class UserOrders extends Component {
 
     return (
       <Aux>
-        <h2 className={classes.OrdersTitle}>Past Orders</h2>
-        <div className={classes.UserOrders}>          
+        <h2 className={classes.OrdersTitle}>Past Orders</h2>        
           {message}
-          {userOrders}        
-        </div>
+          {userOrders}   
       </Aux>
     )
   }

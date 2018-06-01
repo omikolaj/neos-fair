@@ -4,8 +4,7 @@ import classes from './UserOrder.css'
 const userOrder = (props) => {
   return (
     <div className={classes.UserOrder}>        
-      <span>Title: {props.title}</span>
-      <span>Price: {props.price}</span>        
+      <span>Title: <strong>{props.title}</strong> Price: <strong>{props.price}</strong></span>     
     </div>
   )
 }

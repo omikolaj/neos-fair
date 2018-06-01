@@ -167,7 +167,8 @@ class Auth extends Component {
 
   render() {
     const formElementsArray = this.formatData()
-    let form = (
+    const btnType = this.state.isSignUp ? 'SignUp' : 'Login'
+    let form = (      
       <form className={classes.Form} onSubmit={this.submitHandler}>
       {formElementsArray.map(formElement => {
         return <Input
@@ -180,7 +181,7 @@ class Auth extends Component {
         touched={formElement.config.touched}
         changed={(event) => this.inputChangedHandler( event, formElement.id )} />          
       })}
-      <Button btnType="Success">{this.state.isSignUp ? 'Sign Up' : 'Login' }</Button>
+      <Button btnType={btnType}>{this.state.isSignUp ? 'Sign Up' : 'Login'}</Button>
       </form>
     )
     
@@ -199,14 +200,15 @@ class Auth extends Component {
         errorMessage = <FlashMessage duration={5000} class='Error'><span>{this.props.error.error}</span></FlashMessage>
       }
     }
-   
+    
+    const btnType1 = this.state.isSignUp ? 'Login' : 'SignUp'
     return (
       <div className={classes.Auth}>
         {errorMessage}      
         {this.state.isSignUp ? <SignUp form={form}/> : <Login form={form} />}
-        <Button clicked={this.switchAuthModeHandler} btnType="Success">Go to {this.state.isSignUp ? 'Login' : 'Sign Up'}</Button>
-        <Button clicked={this.loginAsGuestHandler}>Login as Guest</Button>
-        <Button clicked={this.initLoginGitHubHandler}>Login via GitHub</Button>
+        <Button clicked={this.switchAuthModeHandler} btnType={btnType1}>Go to {this.state.isSignUp ? 'Login' : 'Sign Up'}</Button>
+        <Button clicked={this.loginAsGuestHandler} btnType='Guest'>Login as Guest</Button>
+        <Button clicked={this.initLoginGitHubHandler} btnType='Github'>Login via GitHub</Button>
       </div>
     );
   }

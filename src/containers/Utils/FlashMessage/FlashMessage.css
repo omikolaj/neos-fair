@@ -36,3 +36,14 @@
   padding: 3px;  
   text-align: center;
 }
+
+.Info1{
+  background: #e3eef4;
+  border-radius: 5px;
+  color: rgb(4, 13, 88);
+  font-weight: 900; 
+  margin: 0 auto;
+  padding: 18px;  
+  text-align: center;
+  grid-column: span 2; 
+}

@@ -1,0 +1,25 @@
+footer {
+  background: radial-gradient(ellipse at center, rgba(255, 254, 234, 0.459) 0%, rgba(255, 254, 234, 0.459) 35%, rgba(113, 174, 177, 0.459) 100%);
+  font-size: 20px;
+  color: white;
+  border-top: 1px solid #E7E7E7;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 50px;
+  width: 100%;  
+}
+
+.PhantomStyle{
+  display: block;
+  padding: 20px;
+  height: 60px;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.Github{
+  height: 100%
+}

@@ -1,4 +1,39 @@
-.Welcome{
+@import url('https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911');
+
+.Welcome{  
   display: block;
   text-align: center;
+}
+
+.Welcome h1 {
+  font-family: 'Goudy Bookletter 1911', serif;
+}
+
+.Info {
+  background: rgba(185, 183, 183, 0.52);
+  height: 7rem;
+  font-family: 'Goudy Bookletter 1911', serif;
+  font-size: 1.5rem;
+  padding: 1px 5rem;
+  width: 80%;
+  margin: 0 auto;
+}
+
+@media (max-width: 1017px){
+  .Info {
+    height: 9rem;
+  }
+}
+
+@media (max-width: 758px){
+  .Info {
+    height: 12rem;
+  }
+}
+
+@media (max-width: 536px){
+  .Info {
+    height: 17rem;
+    padding: 3px 5rem;
+  }
 }

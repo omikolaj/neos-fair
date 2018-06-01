@@ -1,5 +1,6 @@
 body {
-  background: url('./assets/images/Low-Poly.JPG')
+  background: url('./assets/images/Low-Poly.JPG');
+  background-attachment: fixed;
 }
 .App {
   text-align: center;

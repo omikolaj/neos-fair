@@ -20,12 +20,21 @@
   cursor: not-allowed;
 }
 
-.Success {
-  color: white;
+.Guest:hover,
+.Github:hover,
+.Login:hover,
+.SignUp:hover,
+.CreateAd:hover{
+  background: white;
+  color: rgb(161, 166, 167)
 }
 
-.Danger {
-  color: #944317;
+.RechargeAccount:hover,
+.EditButton:hover,
+.PublishButton:hover,
+.BuyButton:hover{
+  background: white;
+  color: rgb(161, 166, 167)
 }
 
 .RechargeAccount {
@@ -59,11 +68,17 @@
   grid-column: 1/2;
 }
 
+.RemoveButton:hover{
+  background: white;
+  color: rgb(202, 25, 25)
+}
+
 .RemoveButton {  
   align-self: end;
   height: 80%;
   width: 60%;
   max-height: 32px;
+  grid-column: 2;
 }
 
 .BuyButton {

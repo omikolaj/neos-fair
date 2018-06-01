@@ -10,7 +10,9 @@ import * as actions from './store/actions/index';
 import Logout from './containers/Auth/Logout/Logout';
 import Welcome from './components/Welcome/Welcome';
 import Account from './containers/Account/Account';
+import Footer from './components/Footer/Footer';
 import { getQueryParams } from './store/utility';
+import Aux from './hoc/Aux/Aux';
 
 class App extends Component {  
   
@@ -55,11 +57,12 @@ class App extends Component {
     }    
 
     return (
-      <div>
+      <Aux>
         <Layout>
-          {routes}         
+          {routes}                  
         </Layout>
-      </div>
+        <Footer/>
+      </Aux>
     );
   }
 }

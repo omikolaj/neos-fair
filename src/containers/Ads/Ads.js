@@ -32,7 +32,11 @@ class Ads extends Component {
       })      
     }
 
-    let header = <h1>Currently Posted Ads</h1>
+    if(this.props.ads.length === 0){
+      ads = <h3>There are no posted ads</h3>
+    }
+
+    let header = <h1>Posted Ads</h1>
 
     if(this.props.error){
       header = <div><h1 className={classes.Error}>{this.props.error.fail}</h1></div>
