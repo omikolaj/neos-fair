@@ -17,6 +17,7 @@ React-Redux application inspired by craigslist and offerup. Place where people c
 ## Blog
 
 
+
 ## Usage
 This application has been deployed to Heroku. You can find the live version at 
 Run npm install && npm start to install dependencies and start front end server.
