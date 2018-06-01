@@ -75,7 +75,7 @@ export const fetchAd = (id) => {
   const token = getToken()
   return dispatch => {
     dispatch(fetchAdStart())
-    fetch(`${API_HOST}/ads/${id}?auth=${token}`)
+    fetch(`${API_HOST}/ads/${id}?auth=` + token)
     .then(resp=>resp.json())
     .then(data => {
       if(data.status >= 200 && data.status < 300){
