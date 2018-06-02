@@ -20,8 +20,8 @@
 /*
   If the screen is 499px or smaller, we want to hide the menu items so we can display the sidedrawer menu
 */
-@media (max-width: 499px) {
+/* @media (max-width: 499px) {
   .DesktopOnly {
       display: none;
   }
-}
+} */
