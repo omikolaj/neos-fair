@@ -12,7 +12,8 @@ const input = (props) => {
 
   switch(props.elementType){
     case('input'):
-      inputElement = <input
+      inputElement = <input  
+        defaultValue={props.defaultValue}      
         className={inputClasses.join(' ')} 
         {...props.elementConfig}
         value={props.value}

@@ -5,7 +5,7 @@ import Button from '../UI/Button/Button';
 import classes from './EditInfo.css';
 
 class EditInfo extends Component{
-
+  
   render(){
   const userInfo = {...this.props.userInfo}
   const userInfoUpdateForm = {...this.props.userUpdateInfoForm}
@@ -24,7 +24,7 @@ class EditInfo extends Component{
         key={formElement.id}
         elementType={formElement.config.elementType}
         elementConfig={formElement.config.elementConfig}
-        value={formElement.id ? userInfo[formElement.id].value : ''}
+        defaultValue={formElement.id ? userInfo[formElement.id] : ''}        
         touched={formElement.config.touched}
         invalid={!formElement.config.valid}
         changed={(event) => this.props.changed(event, formElement.id)}

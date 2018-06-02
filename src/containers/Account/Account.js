@@ -17,14 +17,17 @@ class Account extends Component {
     editing: false,
     displayInfo: false,
     message: null,
+
   }
 
   componentDidMount(){
     this.props.fetchUserInfo(this.props.userID)
   }
 
-  static getDerivedStateFromProps(nextProps, prevState){
-    return {
+  editInfoHandler = () => {
+    this.setState({editing: true,
+      displayInfo: false,
+      message: '',
       userUpdateInfoForm: {
         name: {
           elementType: 'input',
@@ -32,7 +35,7 @@ class Account extends Component {
             type: 'text',
             placeholder: 'Name'         
           },
-          value: nextProps.userInfo.name,
+          value: this.props.userInfo.name,
           validation: {
             required: true,
             minlength: 4
@@ -46,7 +49,7 @@ class Account extends Component {
             type: 'text',
             placeholder: 'Username'
           },
-          value: nextProps.userInfo.username,
+          value: this.props.userInfo.username,
           validation: {
             required: true,
             minLength: 4
@@ -60,7 +63,7 @@ class Account extends Component {
             type: 'email',
             placeholder: 'Email'
           },
-          value: nextProps.userInfo.email,
+          value: this.props.userInfo.email,
           validation: {
             required: true,
             isEmail: true
@@ -84,11 +87,7 @@ class Account extends Component {
         },
       },
       isFormValid: false
-    }
-  }
-
-  editInfoHandler = () => {
-    this.setState({editing: true, displayInfo: false, message: ''});
+    });
   }
 
   editCancelHandler = () => {
@@ -193,7 +192,7 @@ class Account extends Component {
       editInfo = <EditInfo 
       updateUserInfo={(event) => this.updateUserInfoHandler(event)}
       userUpdateInfoForm={this.state.userUpdateInfoForm}
-      userInfo={this.state.userUpdateInfoForm}
+      userInfo={this.props.userInfo}
       isFormValid={this.state.isFormValid}
       changed={(event, id) => this.inputChangedHandler(event, id)}
     />
