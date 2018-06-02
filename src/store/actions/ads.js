@@ -114,7 +114,7 @@ export const fetchAds = () => {
 export const payForItem = (payData) => {  
   return dispatch => {
     dispatch(payForItemStart());
-    const data = {userID: payData.userID, adID: payData.adID, price: payData.price.substring(1)}    
+    const data = {userID: payData.userID, adID: payData.adID, price: payData.price}    
     fetch(`${API_HOST}/pay?userID=${data.userID}&adID=${data.adID}&price=${data.price}`, {
       method: 'POST',
       header: {
