@@ -14,8 +14,6 @@ React-Redux application inspired by craigslist and offerup. Place where people c
 - All requests to the server utilize asynchronous Javascript fetch api with error handeling
 - PostgreSQL database
 
-## Blog
-
 ## Usage
 This application has been deployed to Heroku. You can find the live version at https://neos-fair.herokuapp.com/
 Run npm install && npm start to install dependencies and start front end server.
