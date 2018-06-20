@@ -9,7 +9,7 @@ React-Redux application inspired by craigslist and offerup. Place where people c
 - Custom login and sign up flow system
 - Full CRUD support (Create, Retrieve, Update, Delete) with error handling
 - Ruby on Rails powered back-end API for database persistence
-- Stateless back-end API using JWT (Jason Web Token) authentication system
+- Stateless back-end API using JWT (Json Web Token) authentication system
 - Each API end-point is guarded to only allow authenticated requests access data
 - All requests to the server utilize asynchronous Javascript fetch api with error handeling
 - PostgreSQL database
